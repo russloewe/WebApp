@@ -1,0 +1,8 @@
+export const databaseConfig = {
+    user: 'username',
+    database: 'app database',
+    password: 'password',
+    port: 123
+};
+
+export const siteName = 'example.com';
