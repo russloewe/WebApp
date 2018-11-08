@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 
 //sub comp
-import CustomerList from './react/customerList.jsx';
+import UserList from './react/userList.jsx';
 import EditUser from './react/editUser.jsx';
+import CreateUser from './react/createUser.jsx';
 
 const mapStateToProps = state => {
     return{article: state.article};
@@ -17,9 +18,12 @@ class Admin extends React.Component {
     render() {
         return(
            <div >
-              <CustomerList />
+              <h3>Admin Dashboard </h3>
+              <UserList />
+              <h4> Edit User </h4>
               <EditUser />
-              Adimn Dash
+              <h4> Create User </h4>
+              <CreateUser />
            </div>
         )
     }

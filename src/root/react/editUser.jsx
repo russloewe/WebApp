@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {databaseUpdateUsers, databaseStatus, userStatus} from '../redux/actions';
 import { connect } from "react-redux";
 import {postSimple} from "../api/api.js";
 
+const mapStateToProps = state => {
+    return{activeUser: state.activeUser};
+};
 
-export default class EditUser extends React.Component {
+class EditUser extends React.Component {
     constructor(props){
         super(props);
-        this.state = {username: 'bob',
-                      password: 'pass'};
+        this.state = {username: '',
+                      email: '',
+                      password: ''}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.resetUser = this.resetUser.bind(this);
+    }
+    
+    componentDidMount (){
+        this.unsubscribe = store.subscribe(this.resetUser);
+        this.resetUser();
+    }
+    
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+    
+    resetUser() {
+        this.setState({username: this.props.activeUser.username,
+                       email: this.props.activeUser.email,
+                       password: this.props.activeUser.password});
     }
     
     handleChange(event) {
@@ -25,7 +44,7 @@ export default class EditUser extends React.Component {
         event.preventDefault();
         const jsonData = {username: this.state.username,
                           password: this.state.password}
-        postSimple('/auth/login', jsonData, (err, res) => {
+        postSimple('/', jsonData, (err, res) => {
             if(err){
                 console.log('Error Trying to login.');
                 console.log(err);
@@ -34,20 +53,19 @@ export default class EditUser extends React.Component {
                 window.location.href = res.url;
             }
         })
-        
     }
     
     render() {
         return(
            <div>
               <form onSubmit={this.handleSubmit} >
-                 <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
-                 <input name="password" type="text" value={this.state.password} onChange={this.handleChange} />
+                 Username: <input name="username" type="text" value={this.state.username} onChange={this.handleChange} /> <br/>
+                 Email:     <input name="email" type="text" value={this.state.email} onChange={this.handleChange} /> <br/>
+                 Password: <input name="password" type="text" value={this.state.password} onChange={this.handleChange} /> <br/> 
                  <input type="submit" value="submit" />
               </form>
            </div>
         )
     }
 }
-
-                
+export default connect(mapStateToProps)(EditUser);
