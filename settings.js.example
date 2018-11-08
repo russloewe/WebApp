@@ -1,6 +1,6 @@
 const databaseConfig = {
-    user: 'database user',
-    database: 'database name',
+    user: 'www',
+    database: 'www',
     password: 'database password',
     port: 1234
 };
