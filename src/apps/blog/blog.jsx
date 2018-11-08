@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //sub comp
 import Article from './react/article.jsx';
@@ -19,10 +20,11 @@ class Blog extends React.Component {
     
     render() {
         return(
-           
+        <Provider store={blog_store}>
            <div >
               <Article />
            </div>
+        </Provider>
         )
     }
 }

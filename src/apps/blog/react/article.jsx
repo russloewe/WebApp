@@ -19,7 +19,7 @@ class Article extends React.Component {
             if (err){
                 console.log("Error getting article");
             }else{
-                store.dispatch(setArticle(data));
+                blog_store.dispatch(setArticle(data));
             }
         })
     }
