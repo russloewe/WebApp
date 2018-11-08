@@ -1,8 +1,13 @@
-export const databaseConfig = {
-    user: 'username',
-    database: 'app database',
-    password: 'password',
-    port: 123
+const databaseConfig = {
+    user: 'database user',
+    database: 'database name',
+    password: 'database password',
+    port: 1234
 };
 
-export const siteName = 'example.com';
+const siteName = 'example.com';
+
+module.exports = {
+   databaseConfig: databaseConfig,
+   siteName: siteName
+}
