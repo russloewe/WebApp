@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {databaseUpdateUsers, databaseStatus} from '../redux/actions';
+import {updateUserList, setActiveUser} from '../redux/actions';
 import { connect } from "react-redux";
 import {getSimple} from "../api/api.js";
+import EditUser from "./editUser.jsx";
 
 
 const mapStateToProps = state => {
-    return{simpleDatabase: state.simpleDatabase,
-           simpleDatabaseStatus: state.simpleDatabaseStatus};
+    return{userList: state.userList};
 };
 
-class CustomerList extends React.Component {
+class UserList extends React.Component {
     constructor(props){
         super(props);
         this.getData = this.getData.bind(this);
@@ -19,22 +19,23 @@ class CustomerList extends React.Component {
     getData() {
         getSimple('/users/all', (err, res) => {
             if(err){
-                store.dispatch(databaseStatus(false));
+                console.log("Error getting user list");
             }else{
-                store.dispatch(databaseUpdateUsers(res));
-                store.dispatch(databaseStatus(true));
+                store.dispatch(updateUserList(res));
+                store.dispatch(setActiveUser(res[0]));
             }
-        })            
+        })
     }
     
     render() {
         return(
             <div>
             <button onClick={this.getData}>Get Users </button>
-                {this.props.simpleDatabase.users.map(p => (
+                {this.props.userList.map(p => (
                     <div className="tile" key={p.user_id}>
                         <h4>{p.username}</h4>
-                        <h5>{p.email}</h5>
+                        {p.email}<br/>
+                        {p.password}<br/>
                         {p.created_on}
                     </div>
                     )
@@ -45,5 +46,5 @@ class CustomerList extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(CustomerList);
+export default connect(mapStateToProps)(UserList);
                 
