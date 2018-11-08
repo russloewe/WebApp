@@ -1,26 +1,22 @@
-import { SIMPLE_DATABASE_UPDATE_USERS, SIMPLE_DATABASE_RESPONSE_STATUS, 
-         USER_STATUS, ACTIVE_ARTICLE, SIDEBAR_LINKS} from "./action-types";
+import { UPDATE_USER_LIST, SET_ACTIVE_USER,
+         USER_STATUS, SIDEBAR_LINKS} from "./action-types";
 const initialState = {
-  simpleDatabase: {users: []},
-  simpleDatabaseStatus: false,
+  userList: [],
+  activeUser: {},
   user: {loggedin: false},
-  sidebarLinks: [{text: "Home", href: "/"}],
-  article: ''
+  sidebarLinks: [{text: "Home", href: "/"}]
 };
 const rootReducer = (state = initialState, action) => {
     const newState = Object.assign({}, state);
   switch (action.type) {
-    case SIMPLE_DATABASE_UPDATE_USERS:
-        newState.simpleDatabase.users = action.payload ;
+    case UPDATE_USER_LIST:
+        newState.userList = action.payload ;
         return newState;   
-    case SIMPLE_DATABASE_RESPONSE_STATUS:
-        newState.simpleDatabaseStatus = action.payload;
+    case SET_ACTIVE_USER:
+        newState.activeUser = action.payload;
         return newState;
     case USER_STATUS:
         newState.user = action.payload;
-        return newState;
-    case ACTIVE_ARTICLE:
-        newState.article = action.payload;
         return newState;
     case SIDEBAR_LINKS:
         newState.sidebarLinks = action.payload;
