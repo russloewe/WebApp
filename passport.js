@@ -46,14 +46,12 @@ function ensureAdmin(options) {
     if (!req.isAuthenticated || !req.isAuthenticated()) {
       if (setReturnTo && req.session) {
         req.session.returnTo = req.originalUrl || req.url;
-        console.log(req.session.returnTo);
       }
       return res.redirect(url);
     }
     if ((req.user.user_type > 1)) {
       if (setReturnTo && req.session) {
         req.session.returnTo = req.originalUrl || req.url;
-        console.log(req.session.returnTo);
       }
       return res.redirect(unauthUrl);
     }

@@ -30,7 +30,13 @@ router.get('/all', function(req, res) {
 });
 
 router.post('/add', function(req, res) {
-    addUser(req.body);
+    db.addUser(req.body, (err, success) => {
+        if(err){
+            res.status(500).end();
+        }else{
+            res.status(200).end();
+        }
+    });
 });
 
 module.exports = router;

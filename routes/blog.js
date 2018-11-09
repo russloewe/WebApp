@@ -4,7 +4,6 @@ var siteName = require('../settings.js').siteName;
 
 /* GET blog page. */
 router.get('/', function(req, res, next) {
-  console.log(req.user);
   res.render('reactapp', { title: "Blog",
                            style: req.style});
 });
