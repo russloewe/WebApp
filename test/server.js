@@ -7,7 +7,7 @@ var assert = require('assert');
 
 chai.use(chaiHttp);
 describe('Test /auth', function() {
-    describe('/auth/login', () => {
+    describe('/auth/login', function() {
         it('Login should fail.', (done) => {
             chai.request(server)
             .post('/auth/login')
@@ -67,7 +67,6 @@ describe('Test /users ', function() {
         describe('Authenticated', function() {
             var agent;
             before(function(done_before) {
-                console.log('opening agent');
                 agent = chai.request.agent(server);
                 agent
                 .post('/auth/login')
@@ -79,7 +78,6 @@ describe('Test /users ', function() {
             });
             
             after(function(done_after) {
-                console.log('closing agent');
                 agent.close().then(
                 done_after())
             });
