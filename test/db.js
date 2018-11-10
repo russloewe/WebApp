@@ -18,7 +18,7 @@ describe("Postgres Database direct test", function() {
 describe("Test user database internal api", function(){
     describe('.addUser()', function() {
         it('Should insert user record to database', function(done) {
-            user = {username: 'testuser5',
+            var user = {username: 'testuser5',
                     password: 'testpassword',
                     passsalt: 'testsalt',
                     email:    'testemail5',

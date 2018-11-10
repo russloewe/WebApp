@@ -127,7 +127,7 @@ function removeUserId(userid, cb){
             cb(err, null);
             done();
         }else{
-            const query = 'DELETE FROM users WHERE user_id = '+userid+');';
+            const query = 'DELETE FROM users WHERE user_id = '+userid+';';
             client.query(query, function(err, result){
                 done();
                 if(err){
