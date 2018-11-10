@@ -26,13 +26,12 @@ export default class EditUser extends React.Component {
         event.preventDefault();
         const jsonData = {username: this.state.username,
                           password: this.state.password}
-        postSimple('/', jsonData, (err, res) => {
+        postSimple('/users/add', jsonData, (err, res) => {
             if(err){
-                console.log('Error Trying to login.');
+                console.log('Error Trying to add user.');
                 console.log(err);
             }else{
-                console.log(res.url);
-                window.location.href = res.url;
+                console.log(res.status);
             }
         })
     }
