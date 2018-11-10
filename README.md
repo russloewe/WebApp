@@ -1,5 +1,6 @@
 # WebApp
-Basic Web Application using nodejs, express, passport, postrgesql, webpack, react, and redux.
+Basic Web Application using Nodejs, Express, Passport, Postrgesql, Webpack, React, and Redux.
+Testing with Mocha and Chai.
 
 ## Sever Setup
 
@@ -16,6 +17,7 @@ www and add table for users:
     password VARCHAR (50) NOT NULL,
     passsalt VARCHAR (20) NOT NULL,
     email VARCHAR (355) UNIQUE NOT NULL,
+    user_type INT NOT NULL,
     created_on TIMESTAMP NOT NULL,
     last_login TIMESTAMP
     );
@@ -36,7 +38,25 @@ Install modules
 Setup settings by copying settings.json.example to settings.json and filling
 and change the values.
 
+Run the server tests
+
+    npm run test
+
 Create the javascript bundle
 
     ./load.sh -w
+
+Start the server
+
+    npm start
     
+## Customize
+
+
+Change CSS for desktop
+
+    /public/stylsheets/styl.css
+    
+Chang CSS for mobile
+
+    /public/stylsheets/styl_mobil.css
