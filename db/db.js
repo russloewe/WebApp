@@ -46,8 +46,6 @@ function getAllUsers(cb) {
     })
 }
 
-
-
 function findByName(username, cb){
     pool.connect((err, client, done) => {
         if(err){

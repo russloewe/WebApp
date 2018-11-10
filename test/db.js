@@ -1,5 +1,6 @@
 var expect = require("chai").expect;
 var db = require("../db/db.js");
+var db_article = require("../db/db_articles.js");
 
 describe("Postgres Database direct test", function() {
   describe("Connecting to the database", function() {
@@ -14,7 +15,7 @@ describe("Postgres Database direct test", function() {
   });
 });
 
-describe("Test database internal api", function(){
+describe("Test user database internal api", function(){
     describe('.addUser()', function() {
         it('Should insert user record to database', function(done) {
             user = {username: 'testuser5',
@@ -118,3 +119,94 @@ describe("Test database internal api", function(){
         }).timeout(1000);
     });
 }) 
+
+describe("Test article database internal api", function(){
+    describe('.addArticle()', function() {
+        it('Should insert article into database', function(done) {
+            article = {title: 'test article',
+                       author: 'test author',
+                       keywords: 'test test',
+                       text: 'Article text body'};
+            db_article.addArticle(article, function(err, result) {
+                expect(err).to.be.null;
+                db_article.findByTitle('test article', function(err2, res) {
+                    expect(err2).to.be.null;
+                    expect(res.author).to.exist;
+                    expect(res.author).to.be.a('string').and.to.equal('test author');
+                    done();
+                })
+            });
+        }).timeout(1000);
+    });
+    describe('.getAllArticles()', function(){
+        it("Should get a list of all the articles", function(done) {
+            db_article.getAllArticles(function(err, results) {
+                expect(err).to.be.null;
+                expect(results).to.not.be.null;
+                expect(results).to.be.a('array');
+                expect(results[0]).to.have.property('title').and.to.be.a('string');
+                expect(results[0]).to.have.property('author').and.to.be.a('string');
+                expect(results[0]).to.have.property('text').and.to.be.a('string');
+                expect(results[0]).to.have.property('keywords').and.to.be.a('string');
+                expect(results[0]).to.have.property('article_id').and.to.be.a('number');
+                done();
+            })
+        }).timeout(1000);
+    });
+    describe('.findByTitle()', function () {
+        it("Should return the test article", function(done) {
+            db_article.findByTitle("test article", function(err, result){
+                expect(err).to.be.null;
+                expect(result).to.have.property('title');
+                expect(result.article_id).to.be.a('number');
+                done();
+            })
+        }).timeout(1000);
+    });
+    describe('.findById()', function () {
+        it("Should return test article", function(done) {
+            db_article.findById(2, function(err, result){
+                expect(err).to.be.null;
+                expect(result).to.not.be.null;
+                expect(result).to.have.property('title').and.to.equal('test article');
+                expect(result.article_id).to.equal(2);
+                done();
+            })
+        }).timeout(1000);
+    });
+    describe('.updateArticle', function(){
+        it('Should update the article keywords', function(done){
+            db_article.findByTitle('test article', function(err, res) {
+                expect(err).to.be.null;
+                db_article.updateArticle(res.article_id, 'keywords', 'newkeywords', function(err2,res2){
+                    expect(err2).to.be.null;
+                    db_article.findById(res.article_id, function(err3, res3){
+                        expect(err3).to.be.null;
+                        expect(res3.keywords).to.equal('newkeywords');
+                        done();
+                    });
+                });
+            });
+        }).timeout(1000);
+    });
+    describe('.sqlAddArticleFormat', function() {
+        it("Should get right formatted string", function(done){
+            article = {title: 'test article',
+                       author: 'test author',
+                       keywords: 'test test',
+                       text: 'Article text body'};
+            const formatted = db_article.sqlAddArticleFormat(article);
+            expect(formatted).to.be.a('string');
+            expect(formatted).to.equal("INSERT INTO articles (title, author, keywords, text, created_on) VALUES('test article','test author','test test','Article text body', CURRENT_TIMESTAMP);");
+            done();
+        }).timeout(1000);
+    });
+    describe('.removeArticleTitle()', function() {
+        it('Should remove user using title', function(done) {
+            db_article.removeArticleTitle('test article', function(err, res) {
+                expect(err).to.be.null;
+                done();
+            })
+        }).timeout(1000);
+    });
+})
