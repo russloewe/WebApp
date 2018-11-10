@@ -67,7 +67,8 @@ describe('Test /users ', function() {
     });
 
     describe('/GET /users/all', () => {
-        describe('Authenticated', function() {
+        describe('Authenticated as Admin', function() {
+            let test_user_id;
             var agent;
             before(function(done_before) {
                 agent = chai.request.agent(server);
@@ -81,10 +82,56 @@ describe('Test /users ', function() {
             });
             
             after(function(done_after) {
-                agent.close().then(
-                done_after())
+                agent.post('/users/remove')
+                .send({username: 'testuser_server1'})
+                .end((err1, res1) => {
+                    expect(err1).to.be.null;
+                    agent.post('/users/remove')
+                    .send({username: 'testuser_server2'})
+                    .end((err2, res2) => {
+                        agent.close();
+                        done_after();
+                    })
+                    
+                })
             });
-            
+            it('Should add test user1', (done) => {
+                const user = {username: 'testuser_server1',
+                              password: 'testpassword',
+                              passsalt: 'testsalt',
+                              email:    'testemail_server1',
+                              user_type: 3};
+                agent
+                .post('/users/add')
+                .send(user)
+                .end((err, res) => {
+                    expect(err).to.be.null;
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.not.be.empty;
+                    expect(res.body).to.have.property('username').and.to.equal('testuser_server1');
+                    expect(res.body).to.have.property('user_id').and.to.be.a('number');
+                    test_user_id = res.body.user_id;
+                    done();
+                })
+            }).timeout(1000);
+            it('Should add test user2', (done) => {
+                const user = {username: 'testuser_server2',
+                              password: 'testpassword',
+                              passsalt: 'testsalt',
+                              email:    'testemail_server2',
+                              user_type: 3};
+                agent
+                .post('/users/add')
+                .send(user)
+                .end((err, res) => {
+                    expect(err).to.be.null;
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.not.be.empty;
+                    expect(res.body).to.have.property('username').and.to.equal('testuser_server2');
+                    expect(res.body).to.have.property('user_id').and.to.be.a('number');
+                    done();
+                })
+            }).timeout(1000);
             it('Should get all the users', (done) => {
                agent
                .get('/users/all')
@@ -94,6 +141,45 @@ describe('Test /users ', function() {
                    expect(res.body[0]).to.have.property('user_id').and.to.be.a('number');
                    done();
                });
+            }).timeout(1000);
+            
+            it('Should get user bob', (done) => {
+                agent
+                .get('/users/info?user_id=2')
+                .end((err, res) => {
+                    expect(err).to.be.null;
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.not.be.null;
+                    expect(res.body).to.have.property('username').and.to.equal('bob');
+                    done();
+                })
+            }).timeout(1000);
+            
+            it('Should remove test user by name', (done) => {
+                agent
+                .post('/users/remove')
+                .send({username: 'testuser_server2'})
+                .end((err, res) => {
+                    expect(err).to.be.null;
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.not.be.null;
+                    expect(res.body).to.have.property('status').and.to.equal(true);
+                    done();
+                })
+            }).timeout(1000);
+            
+            it('Should remove test user by id', (done) => {
+                agent
+                .post('/users/remove')
+                .send({user_id: test_user_id})
+                .end((err, res) => {
+                    console.log(res.body);
+                    expect(err).to.be.null;
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.not.be.null;
+                    expect(res.body).to.have.property('status').and.to.equal(true);
+                    done();
+                })
             }).timeout(1000);
         })
     });
