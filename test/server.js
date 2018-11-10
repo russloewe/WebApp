@@ -1,3 +1,4 @@
+
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../app');
@@ -13,7 +14,9 @@ describe('Test /auth', function() {
             .post('/auth/login')
             .send({username: 'bob', password: 'fakepass'})
             .end((err, res) => {
-                res.should.have.status(200);
+                expect(err).to.be.null;
+                expect(res).to.exist;
+                expect(res.status).to.equal(200);                
                 expect(res.redirects).to.exist.and.to.be.a('array');
                 expect(res.redirects[0]).to.exist;
                 expect(res.redirects[0]).to.have.string('/auth/login?success=false');
