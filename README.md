@@ -5,7 +5,7 @@ Testing with Mocha and Chai.
 ## Sever Setup
 
 First install and set up a postgre server. Create user role and database
-www and add table for users:
+www and add table for users and articles:
 
     CREATE DATABASE yourdbname;
     CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
@@ -21,6 +21,16 @@ www and add table for users:
     created_on TIMESTAMP NOT NULL,
     last_login TIMESTAMP
     );
+
+    CREATE TABLE articles(
+    title VARCHAR(500) NOT NULL;
+    created_on TIMESTAMP NOT NULL,
+    text VARCHAR,
+    keywords VARCHAR(500),
+    author VARCHAR(500),
+    article_id serial PRIMARY KEY);
+    
+    GRANT ALL PRIVILEGES ON TABLE articles_serial_seq TO www;
 
 Next install nvm see https://github.com/creationix/nvm 
 
