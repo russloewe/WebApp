@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
                            style: req.style});
 });
 
-router.get('/article:id', function(req, res, next) {
+router.get('/article:id?', function(req, res, next) {
   const article = {title: "How to Code",
                    date: req.query.id,
                    text:"textsaenotuhasne othnet aohneotuh"};
