@@ -68,6 +68,21 @@ describe("Test database internal api", function(){
             })
         }).timeout(1000);
     });
+    describe('.updateUser', function(){
+        it('Should update the user email', function(done){
+            db.findByName('testuser5', function(err, res) {
+                expect(err).to.be.null;
+                db.updateUser(res.user_id, 'email', 'newgmail2', function(err2,res2){
+                    expect(err2).to.be.null;
+                    db.findById(res.user_id, function(err3, res3){
+                        expect(err3).to.be.null;
+                        expect(res3.email).to.equal('newgmail2');
+                        done();
+                    });
+                });
+            });
+        }).timeout(1000);
+    });
     describe('.sqlAddUserFormat', function() {
         it("Should get right formatted string", function(done){
             const user = {username: 'testuser',

@@ -46,6 +46,8 @@ function getAllUsers(cb) {
     })
 }
 
+
+
 function findByName(username, cb){
     pool.connect((err, client, done) => {
         if(err){
@@ -103,6 +105,24 @@ function addUser(user, cb){
     });
 };
 
+function updateUser(user_id, property, value, cb){
+    pool.connect((err, client, done) => {
+        if(err){
+            cb(err, null);
+        }else{
+            const query_str = "UPDATE users SET "+property+" = '"+value+"' WHERE user_id ="+user_id+";";
+            client.query(query_str, function(err, res) {
+                done();
+                if(err){
+                    cb(err, null);
+                }else{
+                    cb(null, res);
+                };
+            });
+        }
+    });
+};
+
 function removeUserId(userid, cb){
     pool.connect((err, client, done) => {
         if(err){
@@ -146,6 +166,7 @@ module.exports = {
    findById: findById,
    getAllUsers: getAllUsers,
    addUser: addUser,
+   updateUser: updateUser,
    removeUserId: removeUserId,
    removeUserName: removeUserName,
    pool: pool,
