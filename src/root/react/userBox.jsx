@@ -41,7 +41,7 @@ class UserBox extends React.Component {
         
         return(
            <div id="userbox">
-           {this.props.user.loggedin ? greeting : ''} {isAdmin(this.props.user.usertype) ? adminbutton : ''} 
+           {this.props.user.loggedin ? greeting : ''}
            {this.props.user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
            </div>
         )

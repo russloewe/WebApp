@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import {getSimple} from "../api/api.js";
 import {userStatus} from '../redux/actions';
-import UserBox from './userBox.jsx';
+
 
 const mapStateToProps = state => {
     return{user: state.user};
@@ -15,13 +15,24 @@ class NavBar extends React.Component {
     }
 
     render() {
-  return (
+  
+        const usertype = this.props.user.usertype;
+        const adminbutton = <a href="/admin">Admin Tools</a>;
+        
+        const isAdmin = (type) => {
+            if (type != 1){
+                return false;
+            }else{
+                return true;
+            }
+        };
+        return (
   <div>
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><UserBox /></li>
+        <li>{isAdmin(this.props.user.usertype) ? adminbutton : ''} </li> 
     </ul>
     
   </div>

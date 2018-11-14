@@ -4,7 +4,7 @@ var siteName = require('../settings.js').siteName;
 
 /* GET projects page. */
 router.get('/', function(req, res, next) {
-  res.render('reactapp', { title: "Projects",
+  res.render('index', { title: "Projects",
                            style: req.style});
 });
 

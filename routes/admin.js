@@ -8,4 +8,13 @@ router.get('/', function(req, res, next) {
                            style: req.style});
 });
 
+router.get('/users', function(req, res, next) {
+  res.render('reactapp', { title: "User Dashboard",
+                           style: req.style});
+});
+
+router.get('/addUser', function(req, res, next) {
+  res.render('reactapp', { title: "Admin Dashboard",
+                           style: req.style});
+});
 module.exports = router;

@@ -5,6 +5,7 @@ html, body {
   margin:0;
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   position: relative;
+  background: #d4f1fb;
 }
 
 a {
@@ -12,10 +13,13 @@ a {
   display: block;
   text-decoration: none;
   padding: 3px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background: #359cff;
   color: #515441;
+}
+
+h4{
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
 }
 
 #logout {
@@ -28,11 +32,13 @@ a {
  background: gray;
  border-radius: 5px;
  padding: 0px;
+ font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .tile{
-  border: 2px solid black;
-  border-radius: 5px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 5px 10px #c7dcde;
   overflow:auto;
   width:fit-content;
 }
@@ -40,36 +46,32 @@ a {
 .usertile{
   border: 2px solid black;
   border-radius: 5px;
+  margin: 5px;
   overflow:auto;
   width:fit-content;
   float:left;
 }
 
-
 div#main {
-width: 1000px;
-}
-
-div#home {
-width: 1000px;
+width: 800px;
 }
 
 #navbar {
-  float: none;
-  width: 1000px;
-}
-
-#sidebar {
-float: left;
-width: 100px;
+  float: left;
+  width: 100px;
+  padding-left: 50px;
+  padding-top: 50px;
+  padding-right: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 #main {
-
+  padding-left: 40px;
 }
 
 ul{
    list-style-type: none;
+   padding-left: 0px;
 }
 
 div#navbar ul{
@@ -78,13 +80,19 @@ div#navbar ul{
 
 div#navbar li{
   float: left;
-  margin:10px;
+  margin:5px;
 }
 
 div#userbox a {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: inline;
   background: #c7c7c7;
+}
+
+div#userbox{
+  width: 50px;
+  height: 50px;
+  float: right;
 }
 
 div#createUser {

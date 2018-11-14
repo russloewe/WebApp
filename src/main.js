@@ -11,6 +11,7 @@ window.store = store;
 import Admin from './root/admin.jsx';
 import LoginScreen from './root/loginScreen.jsx';
 import NavBar from './root/react/navbar.jsx';
+import UserBox from './root/react/userBox.jsx';
 
 //load the apps
 import Blog from './apps/blog/blog.jsx';
@@ -31,6 +32,18 @@ ReactDOM.render(
     </Provider>
     </Router>,
     document.getElementById('main')
+)}
+
+if(document.getElementById("main")){
+ReactDOM.render(
+    <Router>
+    <Provider store={store}>
+        <div>
+            <UserBox />
+        </div>
+    </Provider>
+    </Router>,
+    document.getElementById('userbox')
 )}
 
 ReactDOM.render(
