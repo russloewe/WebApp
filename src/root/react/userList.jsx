@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {updateUserList, setActiveUser} from '../redux/actions';
 import { connect } from "react-redux";
-import {getSimple} from "../api/api.js";
+import {getSimple, postSimple} from "../api/api.js";
 import EditUser from "./editUser.jsx";
 
 
@@ -14,8 +14,18 @@ class UserList extends React.Component {
     constructor(props){
         super(props);
         this.getData = this.getData.bind(this);
+        this.delUser = this.delUser.bind(this);
+        this.getData();
     }
-    
+    componentDidMount(){
+        this.timerID = setInterval(() => this.tick(), 1000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+    tick(){
+        this.getData();
+    }
     getData() {
         getSimple('/users/all', (err, res) => {
             if(err){
@@ -27,16 +37,26 @@ class UserList extends React.Component {
         })
     }
     
+    delUser(input_user_id){
+        postSimple('/users/remove', {user_id: input_user_id}, function(err, res){
+            if(err){
+                 window.alert("error deleting user: "+ value);
+            }else{
+          }
+        });
+    }
+    
     render() {
         return(
-            <div>
-            <button onClick={this.getData}>Get Users </button>
+            <div id="userlist">
                 {this.props.userList.map(p => (
-                    <div className="tile" key={p.user_id}>
+                    <div className="usertile" key={p.user_id}>
                         <h4>{p.username}</h4>
                         {p.email}<br/>
                         {p.password}<br/>
-                        {p.created_on}
+                        {p.created_on} <br />
+                        <button onClick={() => this.delUser(p.user_id) } >Delete User</button>
+                        <button >Edit User</button>
                     </div>
                     )
                   )

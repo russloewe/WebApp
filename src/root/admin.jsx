@@ -20,10 +20,7 @@ class Admin extends React.Component {
            <div >
               <h3>Admin Dashboard </h3>
               <UserList />
-              <h4> Edit User </h4>
-              <EditUser />
-              <h4> Create User </h4>
-              <CreateUser />
+
            </div>
         )
     }
