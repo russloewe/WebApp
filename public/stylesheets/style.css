@@ -37,6 +37,15 @@ a {
   width:fit-content;
 }
 
+.usertile{
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow:auto;
+  width:fit-content;
+  float:left;
+}
+
+
 div#main {
 width: 1000px;
 }
