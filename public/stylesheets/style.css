@@ -40,7 +40,8 @@ h4{
   border-radius: 20px;
   box-shadow: 5px 10px #c7dcde;
   overflow:auto;
-  width:fit-content;
+    margin: 20px;
+  padding: 10px;
 }
 
 .usertile{
@@ -54,6 +55,9 @@ h4{
 
 div#main {
 width: 800px;
+}
+div#content{
+  float: left
 }
 
 #navbar {

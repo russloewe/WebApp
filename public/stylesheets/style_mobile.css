@@ -12,10 +12,13 @@ a {
   display: block;
   text-decoration: none;
   padding: 3px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background: #009cff;
   color: #515441;
+}
+
+h4{
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
 }
 
 #logout {
@@ -28,35 +31,50 @@ a {
  background: gray;
  border-radius: 5px;
  padding: 0px;
+ font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .tile{
+  background: white;
+  border-radius: 20px;
+  box-shadow: 5px 10px #c7dcde;
+  overflow:auto;
+    margin: 20px;
+  padding: 10px;
+}
+
+.usertile{
   border: 2px solid black;
   border-radius: 5px;
+  margin: 5px;
   overflow:auto;
+  width:fit-content;
+  float:left;
+}
+
+div#main {
+width: 800px;
+}
+div#content{
+  float: left
 }
 
 #navbar {
-  float: none;
-}
-
-#sidebar {
-width: 100%;
-}
-div#sidebar ul{
-  display: inline;
-}
-div#sidebar li{
   float: left;
-  margin:10px;
+  width: 100px;
+  padding-left: 50px;
+  padding-top: 50px;
+  padding-right: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 #main {
-
+  padding-left: 40px;
 }
 
 ul{
    list-style-type: none;
+   padding-left: 0px;
 }
 
 div#navbar ul{
@@ -65,11 +83,26 @@ div#navbar ul{
 
 div#navbar li{
   float: left;
-  margin:10px;
+  margin:5px;
 }
 
 div#userbox a {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: inline;
   background: #c7c7c7;
+}
+
+div#userbox{
+  width: 50px;
+  height: 50px;
+  float: right;
+}
+
+div#createUser {
+  background: #6f9ae4;
+  width: fit-content;
+  padding: 10px
+}
+div#createUser input {
+  margin: 5px
 }

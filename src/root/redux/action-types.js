@@ -1,4 +1,0 @@
-export const UPDATE_USER_LIST = "UPDATE_USER_LIST";
-export const USER_STATUS = "USER_STATUS";
-export const SET_ACTIVE_USER = "SET_ACTIVE_USER";
-export const SIDEBAR_LINKS = "SIDEBAR_LINKS";

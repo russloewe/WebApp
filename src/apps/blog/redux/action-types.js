@@ -1,2 +1,0 @@
-export const ACTIVE_ARTICLE = "ACTIVE_ARTICLE";
-export const SIDEBAR_LINKS = "SIDEBAR_LINKS";

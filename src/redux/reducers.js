@@ -1,10 +1,17 @@
-import { UPDATE_USER_LIST, SET_ACTIVE_USER,
-         USER_STATUS, SIDEBAR_LINKS} from "./action-types";
+//USER ACTIONS
+import { UPDATE_USER_LIST, SET_ACTIVE_USER, USER_STATUS} from "./action-types";
+//BLOG ACTIONS
+import { ACTIVE_ARTICLE, ALL_ARTICLES} from "./action-types";
+//PROJECT ACTIONS
+import { ALL_PROJECTS} from "./action-types";
+
 const initialState = {
   userList: [],
   activeUser: {},
   user: {loggedin: false},
-  sidebarLinks: [{text: "Home", href: "/"}]
+  article: {},
+  articles: [],
+  projects : []
 };
 const rootReducer = (state = initialState, action) => {
     const newState = Object.assign({}, state);
@@ -18,8 +25,14 @@ const rootReducer = (state = initialState, action) => {
     case USER_STATUS:
         newState.user = action.payload;
         return newState;
-    case SIDEBAR_LINKS:
-        newState.sidebarLinks = action.payload;
+    case ACTIVE_ARTICLE:
+        newState.article = action.payload;
+        return newState;
+    case ALL_ARTICLES:
+        newState.articles = action.payload;
+        return newState;
+    case ALL_PROJECTS:
+        newState.projects = action.payload;
         return newState;
     default:
       return state;

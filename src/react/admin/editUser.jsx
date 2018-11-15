@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
-import {postSimple} from "../api/api.js";
+import {postSimple} from "../../api/api.js";
 
 const mapStateToProps = state => {
     return{activeUser: state.activeUser};

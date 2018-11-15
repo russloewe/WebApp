@@ -184,3 +184,17 @@ describe('Test /users ', function() {
         })
     });
 })
+
+describe('Test /blog', function() {
+    describe('/blog/all', function() {
+        it('Should get articles', (done) => {
+            chai.request(server)
+            .get('/blog/all')
+            .end((err, res) => {
+                res.should.have.status(200);
+                console.log(res.body);
+                done();
+            });
+        }).timeout(1000);
+    })
+})

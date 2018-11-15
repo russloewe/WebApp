@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {userStatus} from '../redux/actions';
+import {userStatus} from '../../redux/actions';
 import { connect } from "react-redux";
-import {getSimple} from "../api/api.js";
+import {getSimple} from "../../api/api.js";
 
 const mapStateToProps = state => {
     return{user: state.user};
@@ -16,6 +16,9 @@ class UserBox extends React.Component {
     
     componentDidMount() {
         getSimple('/auth/status', function(err, data) {
+            if(err){
+                console.log("Error getting user status");
+            }
             if(data.username){
                 store.dispatch(userStatus({loggedin: true,
                                            username: data.username,

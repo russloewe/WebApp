@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {updateUserList, setActiveUser} from '../redux/actions';
+import {updateUserList, setActiveUser} from '../../redux/actions';
 import { connect } from "react-redux";
-import {getSimple, postSimple} from "../api/api.js";
+import {getSimple, postSimple} from "../../api/api.js";
 import EditUser from "./editUser.jsx";
 
 

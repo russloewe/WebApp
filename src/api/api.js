@@ -48,7 +48,7 @@ export function getSimpleId(id, cb) {
         }
         tms.onload = function (e){
             if (tms.status == 200 && tms.readyState == 4) {
-                var response = tms.responseText;
+                var response = JSON.parse(tms.responseText);
                 cb(null, response);
             } else if ((tms.status == 500 || tms.status == 400) && tms.readyState == 4) {
                 cb(new Error("Timeout"), null);

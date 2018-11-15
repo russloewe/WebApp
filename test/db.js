@@ -202,7 +202,7 @@ describe("Test article database internal api", function(){
         }).timeout(1000);
     });
     describe('.removeArticleTitle()', function() {
-        it('Should remove user using title', function(done) {
+        it('Should remove article using title', function(done) {
             db_article.removeArticleTitle('test article', function(err, res) {
                 expect(err).to.be.null;
                 done();
