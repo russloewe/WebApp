@@ -46,6 +46,36 @@ router.post('/add', function(req, res) {
     });
 });
 
+router.post('/edit', function(req, res) {
+    console.log(req.body);
+    if( !(req.body || req.body.user_id) ){
+        res.status.send('No user_id or request body').end();
+    }else{
+        for(property in req.body){
+            if(property && (property != 'user_id')){
+                console.log('user_id: '+ req.body.user_id +' : '+property + ' : ' + req.body[property]);
+                db.updateUser(req.body.user_id, property, req.body[property], (err, success) => {
+                    if(err){
+                        console.log(err);
+                        //res.status(500).send(err).end();
+                    }else{
+                    }
+                });
+            }
+        }
+        //need to use async waiting
+        db.findById(req.user.user_id, function (err, userrecord) {
+            if(err){
+                //res.status(500).end();
+                console.log(err);
+            }else{
+                res.json(userrecord);
+                res.end();
+            }
+        })
+    }
+});
+
 router.get('/info:user_id?', function(req, res) {
     
     let user_id;

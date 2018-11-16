@@ -24,7 +24,7 @@ class UserList extends React.Component {
         clearInterval(this.timerID);
     }
     tick(){
-        this.getData();
+        //this.getData();
     }
     getData() {
         getSimple('/users/all', (err, res) => {
@@ -56,7 +56,7 @@ class UserList extends React.Component {
                         {p.password}<br/>
                         {p.created_on} <br />
                         <button onClick={() => this.delUser(p.user_id) } >Delete User</button>
-                        <button >Edit User</button>
+                        <EditUser user={p} update={this.getData}/>
                     </div>
                     )
                   )

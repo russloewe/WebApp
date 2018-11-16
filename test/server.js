@@ -142,6 +142,36 @@ describe('Test /users ', function() {
                    done();
                });
             }).timeout(1000);
+            it('Should change bobs email address and passsalt', (done) => {
+                user_edits = {user_id: 2,
+                              email: 'changed',
+                              passsalt: 'saltchange'};
+               agent
+               .post('/users/edit')
+               .send(user_edits)
+               .end((err, res) => {
+                   expect(res.body).to.not.be.empty;
+                   expect(res.body).to.have.property('user_id').and.to.be.a('number');
+                   expect(res.body).to.have.property('email').and.to.equal('changed');
+                   expect(res.body).to.have.property('passsalt').and.to.equal('saltchange');
+                   done();
+               });
+            }).timeout(1000);
+             it('Should change bobs email address and passsalt again', (done) => {
+                user_edits = {user_id: 2,
+                              email: 'changed2',
+                              passsalt: 'saltchange2'};
+               agent
+               .post('/users/edit')
+               .send(user_edits)
+               .end((err, res) => {
+                   expect(res.body).to.not.be.empty;
+                   expect(res.body).to.have.property('user_id').and.to.be.a('number');
+                   expect(res.body).to.have.property('email').and.to.equal('changed2');
+                   expect(res.body).to.have.property('passsalt').and.to.equal('saltchange2');
+                   done();
+               });
+            }).timeout(1000);
             
             it('Should get user bob', (done) => {
                 agent
@@ -154,6 +184,8 @@ describe('Test /users ', function() {
                     done();
                 })
             }).timeout(1000);
+            
+            
             
             it('Should remove test user by name', (done) => {
                 agent
@@ -192,7 +224,7 @@ describe('Test /blog', function() {
             .get('/blog/all')
             .end((err, res) => {
                 res.should.have.status(200);
-                console.log(res.body);
+                expect(res.body).to.be.a('array').and.to.not.be.empty;
                 done();
             });
         }).timeout(1000);

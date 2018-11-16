@@ -34,7 +34,7 @@ function getAllUsers(cb) {
         if(err){
             cb(err, null);
         }else{
-            client.query('SELECT * FROM users', function(err, result){
+            client.query('SELECT * FROM users ORDER BY user_id;', function(err, result){
                 done();
                 if(err){
                     cb(err, null);
