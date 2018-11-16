@@ -38,10 +38,12 @@ class UserList extends React.Component {
     }
     
     delUser(input_user_id){
+        var cb = this.getData;
         postSimple('/users/remove', {user_id: input_user_id}, function(err, res){
             if(err){
                  window.alert("error deleting user: "+ value);
             }else{
+                cb();
           }
         });
     }
