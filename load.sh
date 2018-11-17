@@ -12,10 +12,10 @@ webpack () {
     ./node_modules/.bin/webpack --config webpack.config.js >&2
 }
 webpackProd () {
-    echo "Calling webpack"
+    echo "Calling webpack production mode"
     ./node_modules/.bin/webpack --mode production --config webpack.config.js >&2
 }
-while getopts ":hwrl" opt; do
+while getopts ":hwprl" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
