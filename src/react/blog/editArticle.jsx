@@ -23,6 +23,8 @@ export default class EditArticle extends React.Component {
     } 
     
     handleSubmit(event) {
+        let cb = this.props.update;
+        let toggle = this.toggleVisible;
         event.preventDefault();
         const jsonData = {title: this.state.title,
                           text: this.state.text,
@@ -32,8 +34,8 @@ export default class EditArticle extends React.Component {
                 console.log('Error Trying to change user.');
                 console.log(err);
             }else{
-                console.log(res.body);
-                this.props.update();
+                cb();
+                toggle();
             }
         })
     }
@@ -44,12 +46,14 @@ export default class EditArticle extends React.Component {
     
     delArticle(){
         let cb = this.props.update;
+        let toggle = this.toggleVisible;
         let artId = this.props.article.article_id;
         postSimple('/blog/remove', {article_id: artId}, function(err, res){
             if(err){
                  window.alert("error deleting user: "+ value);
             }else{
                 cb();
+                toggle();
           }
         });
     }
@@ -59,7 +63,7 @@ export default class EditArticle extends React.Component {
             form = (
             <form onSubmit={this.handleSubmit} >
                  Title: <input name="title" type="text" value={this.state.title} onChange={this.handleChange} /> <br/>
-                 Body:<br/><input name="text" type="text" value={this.state.text} onChange={this.handleChange} /> <br/>
+                 Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
               </form>
               )

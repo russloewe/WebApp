@@ -24,7 +24,8 @@ function Article(props){
             <div className="tile">
             <h3>{props.article.title}</h3>
             {props.article.created_on}<br/>
-            {props.article.text}
+            <div dangerouslySetInnerHTML={{ __html: props.article.text }}></div>
+            
             </div>
             {isAdmin(props.user.user_type) ? adminbutton : ''}
             
