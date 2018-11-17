@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //sub comp
 import Article from './react/blog/article.jsx';
+import EditArticle from './react/blog/editArticle.jsx';
 //server api
 import {getSimple, getSimpleId} from './api/api.js';
 //redux actions
@@ -45,7 +46,13 @@ class Blog extends React.Component {
     render() {
         return(
            <div >
-              <Article articles={this.props.articles}/>
+           {this.props.articles.map(p => (
+               <div key={p.article_id}>
+              <Article article={p} />
+              <EditArticle article={p} apiTarget="/blog/edit" update={this.getAllArticles} />
+              </div>
+              ))
+          }
            </div>
         )
     }

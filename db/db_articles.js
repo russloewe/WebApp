@@ -33,7 +33,7 @@ function getAllArticles(cb) {
             done();
             cb(err, null);
         }else{
-            client.query('SELECT * FROM articles', function(err, result){
+            client.query('SELECT * FROM articles ORDER BY created_on DESC;', function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -138,7 +138,7 @@ function removeArticleId(article_id, cb){
             done();
             cb(err, null);
         }else{
-            const query = 'DELETE FROM articles WHERE article_id = '+article_id+');';
+            const query = 'DELETE FROM articles WHERE article_id = '+article_id+';';
             client.query(query, function(err, result){
                 done();
                 if(err){

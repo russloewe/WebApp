@@ -32,7 +32,13 @@ class Projects extends React.Component {
     render() {
         return(
            <div >
-              <Article articles={this.props.projects}/>
+                {this.props.projects.map(p => (
+                    <div key={p.article_id}>
+                    <Article article={p} key={p.article_id}/>
+                     <EditArticle article={p} apiTarget="/projects/edit" update={this.getAllArticles} />
+                     </div>
+                    ))
+                }
            </div>
         )
     }
