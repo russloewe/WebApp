@@ -11,15 +11,20 @@ webpack () {
     echo "Calling webpack"
     ./node_modules/.bin/webpack --config webpack.config.js >&2
 }
-
+webpackProd () {
+    echo "Calling webpack"
+    ./node_modules/.bin/webpack --mode production --config webpack.config.js >&2
+}
 while getopts ":hwrl" opt; do
         case ${opt} in
     h|\?)
-      echo "-w, --webpack       invoke webpack script"
-      echo "-l, --load          copy files from external to local"
+      echo "-w       invoke webpack script"
+      echo "-p       invoke webpack script in production mode"
+      echo "-l          copy files from external to local"
       exit 1
       ;;
     w) webpack ;;
+    p) webpackProd ;;
     l) load    ;;
      *) echo "Unknown option" 
         break   ;;
