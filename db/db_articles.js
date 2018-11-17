@@ -17,8 +17,8 @@ console.log(databaseConfig);
     article_id serial PRIMARY KEY);
  */
  
-function sqlAddArticleFormat(article) {
-   const query = 'INSERT INTO articles (title, author, keywords, text, created_on) VALUES';
+function sqlAddArticleFormat(article, table) {
+   const query = 'INSERT INTO '+table+' (title, author, keywords, text, created_on) VALUES';
    const to_str = [article.title, article.author, article.keywords, article.text];
    const to_str_quotes = to_str.map(function(ele){
         return( "'"+ele+"'");
@@ -28,13 +28,13 @@ function sqlAddArticleFormat(article) {
   return final;
 }; 
 
-function getArticles(cb) {
+function getArticles(table, cb) {
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query('SELECT * FROM articles ORDER BY created_on DESC;', function(err, result){
+            client.query('SELECT * FROM '+table+' ORDER BY created_on DESC;', function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -46,13 +46,13 @@ function getArticles(cb) {
     })
 }
 
-function getLastArticle(cb){
+function getLastArticle(table,cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query("SELECT max(article_id) from articles;", function(err, result){
+            client.query("SELECT max(article_id) from "+table+";", function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -68,13 +68,13 @@ function getLastArticle(cb){
     })
 };
 
-function findArticle(id, cb){
+function findArticle(id, table, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query("SELECT * FROM articles where article_id = '"+id+"';", function(err, result){
+            client.query("SELECT * FROM "+table+" where article_id = '"+id+"';", function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -90,7 +90,7 @@ function findArticle(id, cb){
     })
 };
 
-function addArticle(user, cb){
+function addArticle(user, table, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -98,7 +98,7 @@ function addArticle(user, cb){
         }else{
             let query_str;
             try{
-                query_str = sqlAddArticleFormat(user);
+                query_str = sqlAddArticleFormat(user, table);
             }catch(error){
                 cb(error, null);
             }
@@ -114,13 +114,13 @@ function addArticle(user, cb){
     });
 };
 
-function updateArticle(article, cb){
+function updateArticle(article, table, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            const intro = "UPDATE articles SET ";
+            const intro = "UPDATE "+table+" SET ";
             const title = "title = '" + article.title+"'";
             const keywords = "keywords = '" + article.keywords+"'";
             const text =  "text = '" + article.text+"'";
@@ -138,13 +138,13 @@ function updateArticle(article, cb){
     });
 };
 
-function removeArticle(article_id, cb){
+function removeArticle(article_id, table, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            const query = 'DELETE FROM articles WHERE article_id = '+article_id+';';
+            const query = 'DELETE FROM '+table+' WHERE article_id = '+article_id+';';
             client.query(query, function(err, result){
                 done();
                 if(err){

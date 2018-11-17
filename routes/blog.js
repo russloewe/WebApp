@@ -10,15 +10,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/article:id?', function(req, res, next) {
-  const article = {title: "How to Code",
-                   date: req.query.id,
-                   text:"textsaenotuhasne othnet aohneotuh"};
-    
-  res.send(article).end();
+    db.getArticle(req.query.id, 'articles', function(err, dbres){
+      if(err){
+          res.status(500).end();
+      }else{
+        res.send(dbres).end();
+    }
+  })
 });
 
+
 router.get('/all', function(req, res, next) {
-  db.getAllArticles(function(err, dbres){
+  db.getArticles('articles', function(err, dbres){
       if(err){
           res.status(500).end();
       }else{
@@ -28,31 +31,17 @@ router.get('/all', function(req, res, next) {
 });
 
 router.post('/edit', function(req, res) {
-    console.log(req.body);
     if( !(req.body || req.body.article_id) ){
         res.status.send('No article_id or request body').end();
     }else{
-        for(property in req.body){
-            if(property && (property != 'article_id')){
-                db.updateArticle(req.body.article_id, property, req.body[property], (err, success) => {
-                    if(err){
-                        console.log(err);
-                        //res.status(500).send(err).end();
-                    }else{
-                    }
-                });
-            }
-        }
-        //need to use async waiting
-        db.findById(req.body.article_id, function (err, articleRecord) {
+        db.updateArticle(req.body, 'articles', (err, success) => {
             if(err){
-                //res.status(500).end();
                 console.log(err);
+                res.status(500).send(err).end();
             }else{
-                res.json(articleRecord);
-                res.end();
+                res.status(200).end();
             }
-        })
+        });
     }
 });
 
@@ -62,7 +51,7 @@ router.post('/remove', function(req, res){
         if( isNaN(article_id) ){
             res.status(500).send('invalid article_id format').end();
         }else{
-            db.removeArticleId(article_id, function(err, result){
+            db.removeArticle(article_id, 'articles', function(err, result){
                 if(err){
                     console.log(err);
                     res.status(500).send(err);
