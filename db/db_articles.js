@@ -10,6 +10,7 @@ console.log(databaseConfig);
     articles(
     title VARCHAR(500) NOT NULL;
     created_on TIMESTAMP NOT NULL,
+    last_edit
     text VARCHAR,
     keywords VARCHAR(500),
     author VARCHAR(500),
@@ -27,7 +28,7 @@ function sqlAddArticleFormat(article) {
   return final;
 }; 
 
-function getAllArticles(cb) {
+function getArticles(cb) {
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -45,21 +46,21 @@ function getAllArticles(cb) {
     })
 }
 
-function findByTitle(title, cb){
+function getLastArticle(cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query("SELECT * FROM articles where title = '"+title+"';", function(err, result){
+            client.query("SELECT max(article_id) from articles;", function(err, result){
                 done();
                 if(err){
                     cb(err, null);
                 }else{
                     if(result.length < 1){
-                        cb(new Error("no articles found"), null);
+                        cb(new Error("No articles found"), null);
                     }else{
-                        cb(null, result.rows[0]);
+                        cb(null, result.rows[0].max);
                     }
                 }
             })
@@ -67,7 +68,7 @@ function findByTitle(title, cb){
     })
 };
 
-function findById(id, cb){
+function findArticle(id, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -78,7 +79,7 @@ function findById(id, cb){
                 if(err){
                     cb(err, null);
                 }else{
-                    if(result.length < 1){
+                    if((result.length < 1) || (result.rows[0] == undefined)){
                         cb(new Error("No articles found"), null);
                     }else{
                         cb(null, result.rows[0]);
@@ -113,13 +114,18 @@ function addArticle(user, cb){
     });
 };
 
-function updateArticle(article_id, property, value, cb){
+function updateArticle(article, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            const query_str = "UPDATE articles SET "+property+" = '"+value+"' WHERE article_id ="+article_id+";";
+            const intro = "UPDATE articles SET ";
+            const title = "title = '" + article.title+"'";
+            const keywords = "keywords = '" + article.keywords+"'";
+            const text =  "text = '" + article.text+"'";
+            const end = " WHERE article_id ="+article.article_id+";";
+            const query_str = intro + title + ", " + keywords + ", " + text + end;
             client.query(query_str, function(err, res) {
                 done();
                 if(err){
@@ -132,7 +138,7 @@ function updateArticle(article_id, property, value, cb){
     });
 };
 
-function removeArticleId(article_id, cb){
+function removeArticle(article_id, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -151,33 +157,13 @@ function removeArticleId(article_id, cb){
     })
 };
 
-function removeArticleTitle(article_title, cb){
-    pool.connect((err, client, done) => {
-        if(err){
-            done();
-            cb(err, null);
-        }else{
-            const query = "DELETE FROM users WHERE username = '"+article_title+"';";
-            client.query(query, function(err, result){
-                done();
-                if(err){
-                    cb(err, null);
-                }else{
-                    cb(null, result);
-                }
-            })
-        }
-    })
-};
 
 module.exports = {
-   findByTitle: findByTitle,
-   findById: findById,
-   getAllArticles: getAllArticles,
+   findArticle: findArticle,
+   getArticles: getArticles,
+   getLastArticle: getLastArticle,
    addArticle: addArticle,
    updateArticle: updateArticle,
-   removeArticleId: removeArticleId,
-   removeArticleTitle: removeArticleTitle,
-   pool: pool,
+   removeArticle: removeArticle,
    sqlAddArticleFormat: sqlAddArticleFormat
 }

@@ -121,26 +121,27 @@ describe("Test user database internal api", function(){
 }) 
 
 describe("Test article database internal api", function(){
-    describe('.addArticle()', function() {
-        it('Should insert article into database', function(done) {
-            article = {title: 'test article',
-                       author: 'test author',
-                       keywords: 'test test',
-                       text: 'Article text body'};
-            db_article.addArticle(article, function(err, result) {
+    var test_id;
+    before(function(done){
+        article = {title: 'test article',
+                   author: 'test author',
+                   keywords: 'test test',
+                   text: 'Article text body'};
+        db_article.addArticle(article, function(err, result) {
                 expect(err).to.be.null;
-                db_article.findByTitle('test article', function(err2, res) {
+                db_article.getLastArticle(function(err2, result2) {
                     expect(err2).to.be.null;
-                    expect(res.author).to.exist;
-                    expect(res.author).to.be.a('string').and.to.equal('test author');
+                    expect(result2).to.be.a('number');
+                    console.log("Created article id: " + result2);
+                    test_id = result2;
                     done();
                 })
             });
-        }).timeout(1000);
-    });
-    describe('.getAllArticles()', function(){
+        });
+
+    describe('.getArticles()', function(){
         it("Should get a list of all the articles", function(done) {
-            db_article.getAllArticles(function(err, results) {
+            db_article.getArticles(function(err, results) {
                 expect(err).to.be.null;
                 expect(results).to.not.be.null;
                 expect(results).to.be.a('array');
@@ -153,40 +154,38 @@ describe("Test article database internal api", function(){
             })
         }).timeout(1000);
     });
-    describe('.findByTitle()', function () {
-        it("Should return the test article", function(done) {
-            db_article.findByTitle("test article", function(err, result){
-                expect(err).to.be.null;
-                expect(result).to.have.property('title');
-                expect(result.article_id).to.be.a('number');
-                done();
-            })
-        }).timeout(1000);
-    });
-    describe('.findById()', function () {
+    describe('.findArticle()', function () {
         it("Should return test article", function(done) {
-            db_article.findById(2, function(err, result){
+            db_article.findArticle(test_id, function(err, result){
                 expect(err).to.be.null;
                 expect(result).to.not.be.null;
                 expect(result).to.have.property('title').and.to.equal('test article');
-                expect(result.article_id).to.equal(2);
+                expect(result.article_id).to.equal(test_id);
                 done();
             })
         }).timeout(1000);
     });
     describe('.updateArticle', function(){
         it('Should update the article keywords', function(done){
-            db_article.findByTitle('test article', function(err, res) {
+            const rand_key = Math.random().toString(36).substring(2, 20);
+            const rand_text = Math.random().toString(36).substring(2, 20);
+            const rand_title = Math.random().toString(36).substring(2, 20);
+            const article = {article_id: test_id, 
+                             keywords: rand_key,
+                             title: rand_title,
+                             text: rand_text}
+                             
+            db_article.updateArticle(article, function(err,res){
                 expect(err).to.be.null;
-                db_article.updateArticle(res.article_id, 'keywords', 'newkeywords', function(err2,res2){
+                db_article.findArticle(test_id, function(err2, res2){
                     expect(err2).to.be.null;
-                    db_article.findById(res.article_id, function(err3, res3){
-                        expect(err3).to.be.null;
-                        expect(res3.keywords).to.equal('newkeywords');
-                        done();
-                    });
+                    expect(res2.keywords).to.equal(rand_key);
+                    expect(res2.title).to.equal(rand_title);
+                    expect(res2.text).to.equal(rand_text);
+                    done();
                 });
             });
+
         }).timeout(1000);
     });
     describe('.sqlAddArticleFormat', function() {
@@ -201,11 +200,15 @@ describe("Test article database internal api", function(){
             done();
         }).timeout(1000);
     });
-    describe('.removeArticleTitle()', function() {
-        it('Should remove article using title', function(done) {
-            db_article.removeArticleTitle('test article', function(err, res) {
+    describe('.removeArticle()', function() {
+        it('Should remove article: '+test_id, function(done) {
+            db_article.removeArticle(test_id, function(err, res) {
                 expect(err).to.be.null;
-                done();
+                db_article.findArticle(test_id, function(err2, res2){
+                    expect(res2).to.be.null;
+                    expect(err2).to.not.be.null;
+                    done();
+                })
             })
         }).timeout(1000);
     });

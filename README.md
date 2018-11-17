@@ -25,13 +25,30 @@ www and add table for users and articles:
     CREATE TABLE articles(
     title VARCHAR(500) NOT NULL;
     created_on TIMESTAMP NOT NULL,
+    last_edit TIMESTAMP,
     text VARCHAR,
     keywords VARCHAR(500),
     author VARCHAR(500),
     article_id serial PRIMARY KEY);
     
+    GRANT ALL PRIVILEGES ON TABLE article TO www;
     GRANT ALL PRIVILEGES ON TABLE articles_serial_seq TO www;
+    
+    //add automatic timestamp for editing articles
+    CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+    RETURNS TRIGGER AS $$
+    BEGIN
+      NEW.last_edit = NOW();
+      RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
 
+    CREATE TRIGGER set_timestamp
+    BEFORE UPDATE ON articles
+    FOR EACH ROW
+    EXECUTE PROCEDURE trigger_set_timestamp();
+    
+    
 Next install nvm see https://github.com/creationix/nvm 
 
 ## WebApp Setup
