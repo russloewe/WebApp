@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var siteName = require('../settings.js').siteName;
-const db = require('../db/db_projects.js');
+const db = require('../db/db_articles.js');
 
 /* GET projects page. */
 router.get('/', function(req, res, next) {
@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/all', function(req, res, next) {
-  db.getAllProjects(function(err, dbres){
+  db.getAllProjects('projects',function(err, dbres){
       if(err){
           res.status(500).send(err);
       }else{

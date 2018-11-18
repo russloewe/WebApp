@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const db = require("./db/db");
 var passport = require('./passport').passport;
 var ensureAdmin = require('./passport').ensureAdmin;
 var session = require('express-session');
@@ -41,6 +40,7 @@ app.use(passport.session());
 const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
                                    unauthRedirect: '/auth/unauth',
                                    userLevel: 1});
+//add mobile-desktop stylsheet setter
 app.use(function(req, res, next) {
     const userAgent = req.headers['user-agent'];
     if(userAgent.includes('Mobi')){ //simple test for mobile device

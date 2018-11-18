@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var pool = require("../db/db.js").pool;
-var db = require("../db/db.js");
+var db = require("../db/db_users.js");
 var fs = require('fs');
 
 /* GET users listing using local json file */
