@@ -4,6 +4,7 @@ var expect = require("chai").expect;
 var db = require("../db/db_users.js");
 
 describe("Test user database internal api", function(){
+	var test_id;
     describe('.addUser()', function() {
         it('Should insert user record to database', function(done) {
             var user = {username: 'testuser5',
@@ -17,6 +18,7 @@ describe("Test user database internal api", function(){
                     expect(err2).to.be.null;
                     expect(res.username).to.exist;
                     expect(res.username).to.be.a('string').and.to.equal('testuser5');
+                    test_id = res.user_id;
                     done();
                 })
             });
@@ -58,28 +60,60 @@ describe("Test user database internal api", function(){
         }).timeout(1000);
     });
     describe('.updateUser', function(){
-        it('Should update the user email', function(done){
+        it('Should update the user email and username', function(done){
             db.findByName('testuser5', function(err, res) {
                 expect(err).to.be.null;
                 var rand_email =  Math.random().toString(36).substring(2, 20);
-                var rand_type = Math.floor(Math.random() * 10);
-                var user = {username: res.username,
-                            password: res.password,
-                            user_id: res.user_id, 
-                            email: rand_email,
-                            user_type: rand_type};
-                db.updateUser(user, function(err2,res2){
+				var rand_name =  Math.random().toString(36).substring(2, 20);
+                var user = {username: rand_name,
+                            user_id: test_id, 
+                            email: rand_email};
+                db.updateUserInfo(user, function(err2,res2){
                     expect(err2).to.be.null;
-                    db.findById(res.user_id, function(err3, res3){
+                    db.findById(test_id, function(err3, res3){
                         expect(err3).to.be.null;
                         expect(res3.email).to.equal(rand_email);
-                        expect(res3.user_type).to.equal(rand_type);
+                        expect(res3.username).to.equal(rand_name);
                         done();
                     });
                 });
             });
         }).timeout(1000);
-
+        it('Should update the user password', function(done){
+            db.findByName('testuser5', function(err, res) {
+                expect(err).to.be.null;
+                var rand_pass =  Math.random().toString(36).substring(2, 20);
+                var rand_salt =  Math.random().toString(36).substring(2, 20);
+                var user = {password: rand_pass,
+					        passsalt: rand_salt,
+                            user_id: test_id};
+                db.updateUserPassword(user, function(err2,res2){
+                    expect(err2).to.be.null;
+                    db.findById(test_id, function(err3, res3){
+                        expect(err3).to.be.null;
+                        expect(res3.password).to.equal(rand_pass);
+                        expect(res3.passsalt).to.equal(rand_salt);
+                        done();
+                    });
+                });
+            });
+        }).timeout(1000);
+        it('Should update the user type', function(done){
+            db.findByName('testuser5', function(err, res) {
+                expect(err).to.be.null;
+                var rand_num =  Math.floor(Math.random() * 10);            
+                var user = {user_type: rand_num,
+                            user_id: test_id};
+                db.updateUserType(user, function(err2,res2){
+                    expect(err2).to.be.null;
+                    db.findById(test_id, function(err3, res3){
+                        expect(err3).to.be.null;
+                        expect(res3.user_type).to.equal(rand_num);
+                        done();
+                    });
+                });
+            });
+        }).timeout(1000);
     });
     describe('.sqlAddUserFormat', function() {
         it("Should get right formatted string", function(done){

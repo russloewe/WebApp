@@ -32,6 +32,7 @@ function sqlAddUserFormat(user) {
 function getAllUsers(cb) {
     pool.connect((err, client, donedb) => {
         if(err){
+			donedb();
             cb(err, null);
         }else{
             client.query('SELECT * FROM users ORDER BY user_id;', function(err, result){
@@ -47,12 +48,13 @@ function getAllUsers(cb) {
 }
 
 function findByName(username, cb){
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
+			donedb();
             cb(err, null);
         }else{
             client.query("SELECT * FROM users where username = '"+username+"';", function(err, result){
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -64,12 +66,13 @@ function findByName(username, cb){
 };
 
 function findById(userid, cb){
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
+			donedb();
             cb(err, null);
         }else{
             client.query("SELECT * FROM users where user_id = '"+userid+"';", function(err, result){
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -81,18 +84,20 @@ function findById(userid, cb){
 };
 
 function addUser(user, cb){
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
+			donedb();
             cb(err, null);
         }else{
             let query_str;
             try{
                 query_str = sqlAddUserFormat(user);
             }catch(error){
+				donedb();
                 cb(error, null);
             }
             client.query(query_str, function(err, result) {
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -103,42 +108,109 @@ function addUser(user, cb){
     });
 };
 
-function updateUser(user, cb){
-    pool.connect((err, client, done) => {
+function updateUserInfo(user, cb){
+    pool.connect((err, client, donedb) => {
         if(err){
-            done();
+            donedb();
             cb(err, null);
         }else{
+			if(!user.username){
+				donedb();
+				cb(new Error("No username provided"), null)
+			}else if(!user.email){
+				donedb();
+				cb(new Error("No email provided"), null);
+			}else{
+				//eventually change this to only update provided values
+				const intro = "UPDATE users SET ";
+				const name = "username = '" + user.username+"'";
+				const email = "email = '" + user.email+"'";
+				const end = " WHERE user_id ="+user.user_id+";";
+				const query_str = intro + name + ", " + email  + end;
+				client.query(query_str, function(err, res) {
+					donedb();
+					if(err){
+						cb(err, null);
+					}else{
+						cb(null, res);
+					};
+				});
+			}
+        }
+    });
+};
+
+function updateUserType(user, cb){
+    pool.connect((err, client, donedb) => {
+        if(err){
+            donedb();
+            cb(err, null);
+        }else{
+			if(!user.user_type){
+				donedb();
+				cb(new Error("No user_type"), null);
+			}else{
             //eventually change this to only update provided values
-            const intro = "UPDATE users SET ";
-            const name = "username = '" + user.username+"'";
-            const email = "email = '" + user.email+"'";
-            const pass =  "password = '" + user.password+"'";
-            const user_type =  "user_type = '" + user.user_type+"'";
-            const end = " WHERE user_id ="+user.user_id+";";
-            const query_str = intro + name + ", " + email + ", " + pass + ", " + user_type + end;
-            client.query(query_str, function(err, res) {
-                done();
-                if(err){
-                    cb(err, null);
-                }else{
-                    cb(null, res);
-                };
-            });
+				const intro = "UPDATE users SET ";
+				const user_type =  "user_type = '" + user.user_type+"'";
+				const end = " WHERE user_id ="+user.user_id+";";
+				const query_str = intro + user_type + end;
+				client.query(query_str, function(err, res) {
+					donedb();
+					if(err){
+						cb(err, null);
+					}else{
+						cb(null, res);
+					};
+				});
+            }
+        }
+    });
+};
+
+function updateUserPassword(user, cb){
+    pool.connect((err, client, donedb) => {
+        if(err){
+            donedb();
+            cb(err, null);
+        }else{
+			if(!user.password){
+				donedb();
+				cb(new Error("No password provided"), null);
+			}else if(!user.passsalt){
+				donedb();
+				cb(new Error("No password salt provided"), null);
+			}else{
+				//eventually change this to only update provided values
+				const intro = "UPDATE users SET ";
+				const pass =  "password = '" + user.password+"'";
+				const salt =  "passsalt = '" + user.passsalt+"'";
+				const end = " WHERE user_id ="+user.user_id+";";
+				const query_str = intro + pass + ', '+ salt + end;
+				client.query(query_str, function(err, res) {
+					donedb();
+					if(err){
+						cb(err, null);
+					}else{
+						cb(null, res);
+					};
+				});
+			}
         }
     });
 };
 
 
+
 function removeUserId(userid, cb){
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
             cb(err, null);
-            done();
+            donedb();
         }else{
             const query = 'DELETE FROM users WHERE user_id = '+userid+';';
             client.query(query, function(err, result){
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -150,14 +222,14 @@ function removeUserId(userid, cb){
 };
 
 function removeUserName(username, cb){
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
             cb(err, null);
-            done();
+            donedb();
         }else{
             const query = "DELETE FROM users WHERE username = '"+username+"';";
             client.query(query, function(err, result){
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -173,7 +245,9 @@ module.exports = {
    findById: findById,
    getAllUsers: getAllUsers,
    addUser: addUser,
-   updateUser: updateUser,
+   updateUserInfo: updateUserInfo,
+   updateUserPassword: updateUserPassword,
+   updateUserType: updateUserType,
    removeUserId: removeUserId,
    removeUserName: removeUserName,
    pool: pool,
