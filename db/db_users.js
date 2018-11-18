@@ -30,12 +30,12 @@ function sqlAddUserFormat(user) {
 }; 
 
 function getAllUsers(cb) {
-    pool.connect((err, client, done) => {
+    pool.connect((err, client, donedb) => {
         if(err){
             cb(err, null);
         }else{
             client.query('SELECT * FROM users ORDER BY user_id;', function(err, result){
-                done();
+                donedb();
                 if(err){
                     cb(err, null);
                 }else{
@@ -103,12 +103,20 @@ function addUser(user, cb){
     });
 };
 
-function updateUser(user_id, property, value, cb){
+function updateUser(user, cb){
     pool.connect((err, client, done) => {
         if(err){
+            done();
             cb(err, null);
         }else{
-            const query_str = "UPDATE users SET "+property+" = '"+value+"' WHERE user_id ="+user_id+";";
+            //eventually change this to only update provided values
+            const intro = "UPDATE users SET ";
+            const name = "username = '" + user.username+"'";
+            const email = "email = '" + user.email+"'";
+            const pass =  "password = '" + user.password+"'";
+            const user_type =  "user_type = '" + user.user_type+"'";
+            const end = " WHERE user_id ="+user.user_id+";";
+            const query_str = intro + name + ", " + email + ", " + pass + ", " + user_type + end;
             client.query(query_str, function(err, res) {
                 done();
                 if(err){
@@ -120,6 +128,7 @@ function updateUser(user_id, property, value, cb){
         }
     });
 };
+
 
 function removeUserId(userid, cb){
     pool.connect((err, client, done) => {

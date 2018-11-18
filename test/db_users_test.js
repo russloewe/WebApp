@@ -61,29 +61,25 @@ describe("Test user database internal api", function(){
         it('Should update the user email', function(done){
             db.findByName('testuser5', function(err, res) {
                 expect(err).to.be.null;
-                db.updateUser(res.user_id, 'email', 'newgmail2', function(err2,res2){
+                var rand_email =  Math.random().toString(36).substring(2, 20);
+                var rand_type = Math.floor(Math.random() * 10);
+                var user = {username: res.username,
+                            password: res.password,
+                            user_id: res.user_id, 
+                            email: rand_email,
+                            user_type: rand_type};
+                db.updateUser(user, function(err2,res2){
                     expect(err2).to.be.null;
                     db.findById(res.user_id, function(err3, res3){
                         expect(err3).to.be.null;
-                        expect(res3.email).to.equal('newgmail2');
+                        expect(res3.email).to.equal(rand_email);
+                        expect(res3.user_type).to.equal(rand_type);
                         done();
                     });
                 });
             });
         }).timeout(1000);
-        it('Should update the user type', function(done){
-            db.findByName('testuser5', function(err, res) {
-                expect(err).to.be.null;
-                db.updateUser(res.user_id, 'user_type', 5, function(err2,res2){
-                    expect(err2).to.be.null;
-                    db.findById(res.user_id, function(err3, res3){
-                        expect(err3).to.be.null;
-                        expect(res3.user_type).to.equal(5);
-                        done();
-                    });
-                });
-            });
-        }).timeout(1000);
+
     });
     describe('.sqlAddUserFormat', function() {
         it("Should get right formatted string", function(done){

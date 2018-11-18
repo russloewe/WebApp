@@ -1,22 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const passport = require("passport");
 var db = require("../db/db_users.js");
-var fs = require('fs');
 
-/* GET users listing using local json file */
-router.get('/json', function(req, res, next) {
-  var obj;
-  fs.readFile('./db/db.json', 'utf8', function(err, data){
-      if(err){
-          res.status(500).send();
-          console.log(err);
-      }else{
-          obj = JSON.parse(data);
-          res.json(obj.users);
-          res.end();
-      }
-  })
-});
+
 
 router.get('/all', function(req, res) {
     db.getAllUsers(function(err, result) {
@@ -46,32 +33,28 @@ router.post('/add', function(req, res) {
 });
 
 router.post('/edit', function(req, res) {
-    console.log(req.body);
-    if( !(req.body || req.body.user_id) ){
-        res.status.send('No user_id or request body').end();
+    //need to seperate password and user type into own routes so different middleware can be used
+    if(!req.body){
+        res.status(500).send('No request body').end();
+    }else if(!req.body.user_id){
+        res.status(500).send('No user_id').end();
+    }else if(!req.body.username){
+        res.status(500).send('No username').end();
+    }else if(!req.body.password){
+        res.status(500).send('No password').end();
+    }else if(!req.body.email){
+        res.status(500).send('No email').end();
+    }else if(!req.body.user_type){
+        res.status(500).send('No user_type').end();
     }else{
-        for(property in req.body){
-            if(property && (property != 'user_id')){
-                console.log('user_id: '+ req.body.user_id +' : '+property + ' : ' + req.body[property]);
-                db.updateUser(req.body.user_id, property, req.body[property], (err, success) => {
-                    if(err){
-                        console.log(err);
-                        //res.status(500).send(err).end();
-                    }else{
-                    }
-                });
-            }
-        }
-        //need to use async waiting
-        db.findById(req.user.user_id, function (err, userrecord) {
+        db.updateUser(req.body, (err, success) => {
             if(err){
-                //res.status(500).end();
                 console.log(err);
+                res.status(500).send(err).end();
             }else{
-                res.json(userrecord);
-                res.end();
+                res.status(200).end();
             }
-        })
+        });
     }
 });
 
