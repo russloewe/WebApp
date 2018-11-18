@@ -8,13 +8,4 @@ router.get('/', function(req, res, next) {
                            style: req.style});
 });
 
-router.get('/users', function(req, res, next) {
-  res.render('index', { title: "User Dashboard",
-                           style: req.style});
-});
-
-router.get('/addUser', function(req, res, next) {
-  res.render('index', { title: "Admin Dashboard",
-                           style: req.style});
-});
 module.exports = router;
