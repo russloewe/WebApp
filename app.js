@@ -6,6 +6,7 @@ var logger = require('morgan');
 var passport = require('./passport').passport;
 var ensureAdmin = require('./passport').ensureAdmin;
 var session = require('express-session');
+const hashpassword = require('./passport').hashpassword;
 
 //import routers
 const indexRouter = require('./routes/index');
@@ -52,6 +53,7 @@ app.use(function(req, res, next) {
 });
 
 //set routers
+app.use('/', hashpassword);
 app.use('/',  indexRouter);
 app.use('/auth', authRouter);
 app.use('/blog', blogRouter);

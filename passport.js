@@ -1,6 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require("./db/db_users");
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 passport.serializeUser(function(user, done) {
     done(null, user.user_id);
@@ -10,7 +12,8 @@ passport.deserializeUser(function(id, done) {
         user_info = {user_id: user.user_id,
                      username: user.username,
                      user_type: user.user_type,
-                     email: user.email}
+                     email: user.email,
+                     passsalt: user.passsalt}
         done(err, user_info);
     });
 });
@@ -59,8 +62,28 @@ function ensureAdmin(options) {
   }
 }
 
+function hashpassword(req, res, next) {
+    if (!req.isAuthenticated || !req.isAuthenticated()) {
+		//if user is logged in pull password salt
+      bycrypt(req.user.password, req.user.passsalt, function(err, hash){
+		  req.user.password = hash;
+		  next();
+	  })
+    }else if (req.body.password){
+		bcrypt.genSalt(saltRounds, function(err, salt) {
+			bcrypt.hash(req.body.password, salt, function(err, hash){
+				req.body.password = hash;
+				req.body.salt = salt;
+				next();
+			})
+		})
+	}else{    
+    next();
+	}
+ }
 
 module.exports = {
+	hashpassword: hashpassword,
     passport: passport,
     ensureAdmin: ensureAdmin
 };
