@@ -34,20 +34,6 @@ router.get('/unauth', function(req, res) {
                             style: req.style});
 });
 
-router.get('/fail', function(req, res) {
-    const loginResult = {success: false,
-                         message: "Login Failed!"};
-    res.json(loginResult);
-    res.end();
-});
-
-router.get('/success', function(req, res) {
-    const loginResult = {success: true,
-                         message: "Logged in."};
-    res.json(loginResult);
-    res.end();
-});
-
 router.get('/status', function(req, res) {
     if(req.user){
         db.findById(req.user.user_id, function (err, userrecord) {
