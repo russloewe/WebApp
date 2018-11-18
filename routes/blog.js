@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/article:id?', function(req, res, next) {
-    db.getArticle(req.query.id, 'articles', function(err, dbres){
+    db.findArticle(req.query.id, 'articles', function(err, dbres){
       if(err){
-          res.status(500).end();
+          res.status(500).send(err).end();
       }else{
         res.send(dbres).end();
     }
