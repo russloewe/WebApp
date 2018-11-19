@@ -63,9 +63,9 @@ function ensureAdmin(options) {
 }
 
 function hashpassword(req, res, next) {
-    if (!req.isAuthenticated || !req.isAuthenticated()) {
+    if (req.user) {
 		//if user is logged in pull password salt
-      bycrypt(req.user.password, req.user.passsalt, function(err, hash){
+      bcrypt(req.user.password, req.user.passsalt, function(err, hash){
 		  req.user.password = hash;
 		  next();
 	  })
