@@ -12,8 +12,7 @@ passport.deserializeUser(function(id, done) {
         user_info = {user_id: user.user_id,
                      username: user.username,
                      user_type: user.user_type,
-                     email: user.email,
-                     passsalt: user.passsalt}
+                     email: user.email}
         done(err, user_info);
     });
 });
@@ -21,14 +20,17 @@ passport.deserializeUser(function(id, done) {
 passport.use(new LocalStrategy(
   function(username, password, done) {
     db.findByName(username, function(err, user) {
-      if (err) { return done(err); }
+      if (err) { 
+		  return done(null, false, {message: 'DB error.'}); 
+		  }
       if (!user || user.length < 1 ) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (user.password != password) {
-       return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      if (!bcrypt.compareSync(password, user.password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+      }else{
+		  return done(null, user);
+	  }
     });
   }
 ));
@@ -63,21 +65,12 @@ function ensureAdmin(options) {
 }
 
 function hashpassword(req, res, next) {
-    if (req.user) {
-		//if user is logged in pull password salt
+    if (req.user && req.body.password) {
       bcrypt(req.user.password, req.user.passsalt, function(err, hash){
-		  req.user.password = hash;
+		  req.body.password = hash;
 		  next();
 	  })
-    }else if (req.body.password){
-		bcrypt.genSalt(saltRounds, function(err, salt) {
-			bcrypt.hash(req.body.password, salt, function(err, hash){
-				req.body.password = hash;
-				req.body.salt = salt;
-				next();
-			})
-		})
-	}else{    
+    }else{    
     next();
 	}
  }
