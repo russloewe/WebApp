@@ -19,8 +19,8 @@ console.log(databaseConfig);
  */
  
 function sqlAddUserFormat(user) {
-   const query = 'INSERT INTO users (username, password, passsalt, email, user_type, created_on) VALUES';
-   const to_str = [user.username, user.password, user.passsalt, user.email];
+   const query = 'INSERT INTO users (username, password, email, user_type, created_on) VALUES';
+   const to_str = [user.username, user.password, user.email];
    const to_str_quotes = to_str.map(function(ele){
         return( "'"+ele+"'");
   });
@@ -177,16 +177,12 @@ function updateUserPassword(user, cb){
 			if(!user.password){
 				donedb();
 				cb(new Error("No password provided"), null);
-			}else if(!user.passsalt){
-				donedb();
-				cb(new Error("No password salt provided"), null);
 			}else{
 				//eventually change this to only update provided values
 				const intro = "UPDATE users SET ";
 				const pass =  "password = '" + user.password+"'";
-				const salt =  "passsalt = '" + user.passsalt+"'";
 				const end = " WHERE user_id ="+user.user_id+";";
-				const query_str = intro + pass + ', '+ salt + end;
+				const query_str = intro + pass + end;
 				client.query(query_str, function(err, res) {
 					donedb();
 					if(err){

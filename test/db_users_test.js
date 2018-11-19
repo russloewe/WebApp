@@ -32,7 +32,6 @@ describe("Test user database internal api", function(){
                 expect(results).to.be.a('array');
                 expect(results[0]).to.have.property('username').and.to.be.a('string');
                 expect(results[0]).to.have.property('password').and.to.be.a('string');
-                expect(results[0]).to.have.property('passsalt').and.to.be.a('string');
                 expect(results[0]).to.have.property('email').and.to.be.a('string');
                 expect(results[0]).to.have.property('user_id').and.to.be.a('number');
                 done();
@@ -83,16 +82,13 @@ describe("Test user database internal api", function(){
             db.findByName('testuser5', function(err, res) {
                 expect(err).to.be.null;
                 var rand_pass =  Math.random().toString(36).substring(2, 20);
-                var rand_salt =  Math.random().toString(36).substring(2, 20);
                 var user = {password: rand_pass,
-					        passsalt: rand_salt,
                             user_id: test_id};
                 db.updateUserPassword(user, function(err2,res2){
                     expect(err2).to.be.null;
                     db.findById(test_id, function(err3, res3){
                         expect(err3).to.be.null;
                         expect(res3.password).to.equal(rand_pass);
-                        expect(res3.passsalt).to.equal(rand_salt);
                         done();
                     });
                 });
@@ -119,12 +115,11 @@ describe("Test user database internal api", function(){
         it("Should get right formatted string", function(done){
             const user = {username: 'testuser',
                           password: 'testpassword',
-                          passsalt: 'testsalt',
                           email:    'testemail',
                           user_type: 3};
             const formatted = db.sqlAddUserFormat(user);
             expect(formatted).to.be.a('string');
-            expect(formatted).to.equal("INSERT INTO users (username, password, passsalt, email, user_type, created_on) VALUES('testuser','testpassword','testsalt','testemail', 3, CURRENT_TIMESTAMP);");
+            expect(formatted).to.equal("INSERT INTO users (username, password, email, user_type, created_on) VALUES('testuser','testpassword','testemail', 3, CURRENT_TIMESTAMP);");
             done();
         });
     });
