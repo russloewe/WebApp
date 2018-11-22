@@ -66,10 +66,31 @@ function ensureAdmin(options) {
 
 function hashpassword(req, res, next) {
     if (req.user && req.body.password) {
-      bcrypt(req.user.password, req.user.passsalt, function(err, hash){
-		  req.body.password = hash;
-		  next();
-	  })
+		try{
+		  bcrypt.genSalt(saltRounds, function(err_salt, salt){
+			  if(err_salt){
+				  console.log("Error hashpassword genSalt");
+				  console.log(err_salt);
+				  res.status.send("Error in hashpassword genSalt").end();
+			  }else{
+				  bcrypt.hash(req.body.password, salt, function(err, hash){
+					  if(err){
+						  console.log("Error in hashpassword hash");
+						  console.log(err);
+						  res.status(500).send("Error in hashpassword hashing").end();
+					  }else{
+						  req.body.password = hash;
+						  next();
+					 }
+				  })
+			}
+		  })
+
+	    }catch(err){
+			console.log("hashpassword error");
+			console.log(err);
+		  res.status(500).send(err).end();
+	    }  
     }else{    
     next();
 	}
