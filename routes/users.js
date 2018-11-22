@@ -8,7 +8,8 @@ var db = require("../db/db_users.js");
 router.get('/all', function(req, res) {
     db.getAllUsers(function(err, result) {
         if(err){
-            res.status(500).end();
+			console.log(err);
+            res.status(500).send(err).end();
         }else{
             res.status(200).send(result);
         }
@@ -18,36 +19,33 @@ router.get('/all', function(req, res) {
 router.post('/add', function(req, res) {
     db.addUser(req.body, (err, success) => {
         if(err){
+			console.log("error adding user");
+			console.log(err);
             res.status(500).send(err).end();
         }else{
-            db.findByName(req.body.username, function(err, result){
-                if(err){
-                    res.status(500).send("Couldnt verify record insertion");
-                    res.end();
-                }else{
-                    res.status(200).json(result).end();
-                }
-            })
+			db.findByName(req.body.username, function(err2, res2){
+				if(err2){
+					res.status(500).send("Couldn't verify user insertion").end();
+				}else{
+					res.status(200).send({user_id: res2.user_id,
+						                  username: req.body.username}).end();
+				}
+			})
         }
     });
 });
 
-router.post('/edit', function(req, res) {
-    //need to seperate password and user type into own routes so different middleware can be used
+router.post('/edit/info', function(req, res) {
     if(!req.body){
         res.status(500).send('No request body').end();
     }else if(!req.body.user_id){
         res.status(500).send('No user_id').end();
     }else if(!req.body.username){
-        res.status(500).send('No username').end();
-    }else if(!req.body.password){
-        res.status(500).send('No password').end();
+        res.status(500).send('No username').end();    
     }else if(!req.body.email){
         res.status(500).send('No email').end();
-    }else if(!req.body.user_type){
-        res.status(500).send('No user_type').end();
     }else{
-        db.updateUser(req.body, (err, success) => {
+        db.updateUserInfo(req.body, (err, success) => {
             if(err){
                 console.log(err);
                 res.status(500).send(err).end();
@@ -57,7 +55,42 @@ router.post('/edit', function(req, res) {
         });
     }
 });
-
+router.post('/edit/password', function(req, res) {
+    if(!req.body){
+        res.status(500).send('No request body').end();
+    }else if(!req.body.user_id){
+        res.status(500).send('No user_id').end();
+    }else if(!req.body.password){
+        res.status(500).send('No password').end();
+    }else{
+        db.updateUserPassword(req.body, (err, success) => {
+            if(err){
+                console.log(err);
+                res.status(500).send(err).end();
+            }else{
+                res.status(200).end();
+            }
+        });
+    }
+});
+router.post('/edit/type', function(req, res) {
+    if(!req.body){
+        res.status(500).send('No request body').end();
+    }else if(!req.body.user_id){
+        res.status(500).send('No user_id').end();
+    }else if(!req.body.user_type){
+        res.status(500).send('No user_type').end();
+    }else{
+        db.updateUserType(req.body, (err, success) => {
+            if(err){
+                console.log(err);
+                res.status(500).send(err).end();
+            }else{
+                res.status(200).end();
+            }
+        });
+    }
+});
 router.get('/info:user_id?', function(req, res) {
     
     let user_id;
@@ -68,7 +101,7 @@ router.get('/info:user_id?', function(req, res) {
         res.end();
     }
     if((req.user && (req.user.user_id == user_id)) || (req.user.user_type < 2)){
-        db.findById(req.user.user_id, function (err, userrecord) {
+        db.findById(user_id, function (err, userrecord) {
             if(err){
                 res.status(500).end();
             }else{
