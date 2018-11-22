@@ -24,7 +24,7 @@ class UserList extends React.Component {
         clearInterval(this.timerID);
     }
     tick(){
-        //this.getData();
+        this.getData();
     }
     getData() {
         getSimple('/users/all', (err, res) => {
@@ -32,7 +32,6 @@ class UserList extends React.Component {
                 console.log("Error getting user list");
             }else{
                 store.dispatch(updateUserList(res));
-                store.dispatch(setActiveUser(res[0]));
             }
         })
     }
@@ -54,9 +53,10 @@ class UserList extends React.Component {
                 {this.props.userList.map(p => (
                     <div className="usertile" key={p.user_id}>
                         <h4>{p.username}</h4>
-                        {p.email}<br/>
-                        {p.password}<br/>
-                        {p.created_on} <br />
+                        email: {p.email}<br/>
+                        password: {p.password}<br/>
+                        id: {p.user_id} <br />
+                        created: {p.created_on} <br />
                         <button onClick={() => this.delUser(p.user_id) } >Delete User</button>
                         <EditUser user={p} update={this.getData}/>
                     </div>
