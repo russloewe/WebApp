@@ -115,6 +115,13 @@ function addArticle(user, table, cb){
 };
 
 function updateArticle(article, table, cb){
+	if(!article.title){
+		cb(new Error("no article title"), null);
+	}else if(!article.keywords){
+		cb(new Error("No keywords"), null);
+	}else if(!article.text){
+		cb(new Error("No article text"), null);
+	}
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -139,6 +146,9 @@ function updateArticle(article, table, cb){
 };
 
 function removeArticle(article_id, table, cb){
+	if(isNaN(article_id)){
+		cb(new Error("article_id is not a number"), null);
+	}
     pool.connect((err, client, done) => {
         if(err){
             done();
