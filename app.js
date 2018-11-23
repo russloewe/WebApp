@@ -6,7 +6,8 @@ var passport = require('./passport').passport;
 var ensureAdmin = require('./passport').ensureAdmin;
 var session = require('express-session');
 const hashpassword = require('./passport').hashpassword;
-var compression = require('compression');
+const compression = require('compression');
+const rateLimit = require("express-rate-limit");
 //import routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -50,9 +51,16 @@ app.use(function(req, res, next) {
     next();
 });
 
+//set up rate limiter
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100
+});
+
 //set routers
 app.use('/', hashpassword);
 app.use('/',  indexRouter);
+app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
 app.use('/blog', blogRouter);
 app.use('/projects', projectsRouter);
