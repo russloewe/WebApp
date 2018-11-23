@@ -1,13 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('./passport').passport;
 var ensureAdmin = require('./passport').ensureAdmin;
 var session = require('express-session');
 const hashpassword = require('./passport').hashpassword;
-
+var compression = require('compression');
 //import routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -18,7 +17,7 @@ const profileRouter = require('./routes/profile');
 const adminRouter = require('./routes/admin');
 
 var app = express();
-
+app.use(compression());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
