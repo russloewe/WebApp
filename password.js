@@ -1,7 +1,7 @@
 var db = require("./db/db_users.js");
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
-
+//Call this function to set the admin's user password with bcrypt
 bcrypt.genSalt(saltRounds, function(err1, salt){
 	bcrypt.hash('pass', salt, function(err2, hash){
 		console.log("hash: "+hash);

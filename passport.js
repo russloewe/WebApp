@@ -85,7 +85,6 @@ function hashpassword(req, res, next) {
 				  })
 			}
 		  })
-
 	    }catch(err){
 			console.log("hashpassword error");
 			console.log(err);
