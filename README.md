@@ -54,18 +54,6 @@ Install node
 
 	nvm install node
 	
-download source and install node packages
-
-	git clone https://github.com/russloewe/WebApp.git
-	cd ./WebApp
-	npm install
-	
-Create settings file for url and database settings
-
-	cp settings.js.example settings.js
-	
-and edit setting.js
-
 
 ### Setup on GCP Ubuntu VM
 
