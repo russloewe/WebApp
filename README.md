@@ -47,9 +47,39 @@ www and add table for users and articles:
     BEFORE UPDATE ON articles
     FOR EACH ROW
     EXECUTE PROCEDURE trigger_set_timestamp();
-    
-    
+
 Next install nvm see https://github.com/creationix/nvm 
+
+Install node
+
+	nvm install node
+	
+download source and install node packages
+
+	git clone https://github.com/russloewe/WebApp.git
+	cd ./WebApp
+	npm install
+	
+Create settings file for url and database settings
+
+	cp settings.js.example settings.js
+	
+and edit setting.js
+
+
+### Setup on GCP Ubuntu VM
+
+First setup firewall to allow port 80 traffic
+
+    sudo iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+    sudo iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    
+Second, set up internal routing so port 80 traffic is routed to port 3000. This way
+we don't need to run npm as root.
+
+	sudo iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 3000
+    
+
 
 ## WebApp Setup
 
