@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 var siteName = require('../settings.js').siteName;
 const db = require('../db/db_articles.js');
-
+var ensureAdmin = require('../passport.js').ensureAdmin;
+//set up admin authorized middlware
+const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
+                                   unauthRedirect: '/auth/unauth',
+                                   userLevel: 1});
 /* GET blog page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Blog",
+  res.render('index', { title: "Projects",
                            style: req.style});
 });
 
@@ -30,7 +34,7 @@ router.get('/all', function(req, res, next) {
   })
 });
 
-router.post('/edit', function(req, res) {
+router.post('/edit', ensureAdminMW, function(req, res) {
     if( !req.body ){
         res.status(500).send('No body').end();
     }else if(!req.body.article_id ){
@@ -51,7 +55,7 @@ router.post('/edit', function(req, res) {
     }
 });
 
-router.post('/add', function(req, res) {
+router.post('/add', ensureAdminMW, function(req, res) {
     if( !(req.body || req.body.title) ){
         res.status.send('No title or request body').end();
     }else{
@@ -66,7 +70,7 @@ router.post('/add', function(req, res) {
     }
 });
 
-router.post('/remove', function(req, res){
+router.post('/remove', ensureAdminMW, function(req, res){
     if(req.body.article_id){
         const article_id = req.body.article_id;
         if( isNaN(article_id) ){
