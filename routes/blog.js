@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/article:id?', function(req, res, next) {
-    db.findArticle(req.query.id, 'articles', function(err, dbres){
+    db.findArticle(req.query.id, 'blog', function(err, dbres){
       if(err){
           res.status(500).send(err).end();
       }else{
@@ -21,9 +21,9 @@ router.get('/article:id?', function(req, res, next) {
 
 
 router.get('/all', function(req, res, next) {
-  db.getArticles('articles', function(err, dbres){
+  db.getArticles('blog', function(err, dbres){
       if(err){
-          res.status(500).end();
+          res.status(500).send(err).end();
       }else{
         res.send(dbres).end();
     }
@@ -31,10 +31,31 @@ router.get('/all', function(req, res, next) {
 });
 
 router.post('/edit', function(req, res) {
-    if( !(req.body || req.body.article_id) ){
-        res.status.send('No article_id or request body').end();
+    if( !req.body ){
+        res.status(500).send('No body').end();
+    }else if(!req.body.article_id ){
+		res.status(500).send('No article_id').end();
+	}else if(!req.body.title){
+		res.status(500).send('No article title ').end();
+	}else if(!req.body.text){
+		res.status(500).send('No text').end();
+	}else{
+        db.updateArticle(req.body, 'blog', (err, success) => {
+            if(err){
+                console.log(err);
+                res.status(500).send(err).end();
+            }else{
+                res.status(200).end();
+            }
+        });
+    }
+});
+
+router.post('/add', function(req, res) {
+    if( !(req.body || req.body.title) ){
+        res.status.send('No title or request body').end();
     }else{
-        db.updateArticle(req.body, 'articles', (err, success) => {
+        db.addArticle(req.body, 'blog', (err, success) => {
             if(err){
                 console.log(err);
                 res.status(500).send(err).end();
@@ -51,7 +72,7 @@ router.post('/remove', function(req, res){
         if( isNaN(article_id) ){
             res.status(500).send('invalid article_id format').end();
         }else{
-            db.removeArticle(article_id, 'articles', function(err, result){
+            db.removeArticle(article_id, 'blog', function(err, result){
                 if(err){
                     console.log(err);
                     res.status(500).send(err);
