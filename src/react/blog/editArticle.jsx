@@ -8,6 +8,7 @@ export default class EditArticle extends React.Component {
         super(props);
         this.state = {title: this.props.article.title,
                       text: this.props.article.text,
+                      keywords: this.props.article.keywords,
                       visible: false}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -28,6 +29,7 @@ export default class EditArticle extends React.Component {
         event.preventDefault();
         const jsonData = {title: this.state.title,
                           text: this.state.text,
+                          keywords: this.state.keywords,
                           article_id: this.props.article.article_id}
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
@@ -63,6 +65,7 @@ export default class EditArticle extends React.Component {
             form = (
             <form onSubmit={this.handleSubmit} >
                  Title: <input name="title" type="text" value={this.state.title} onChange={this.handleChange} /> <br/>
+                 Keywords: <input name="keywords" type="text" value={this.state.keywords} onChange={this.handleChange} /> <br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
               </form>
