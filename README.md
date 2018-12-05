@@ -67,6 +67,9 @@ we don't need to run npm as root.
 
 	sudo iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 3000
     
+login to postgres server 
+
+	sudo -u postgres psql www
 
 
 ## WebApp Setup
@@ -91,6 +94,10 @@ Create the javascript bundle
 
     ./load.sh -w
 
+set to production
+
+   export NODE_ENV=production
+   
 Start the server
 
     npm start
