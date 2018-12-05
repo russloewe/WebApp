@@ -18,12 +18,15 @@ function Article(props){
                 return true;
             }
         }; 
-        
-    return(
+        let date = new Date(props.article.created_on);
+		const monthlist = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
+		let datetext = monthlist[date.getMonth()] + ' '+ date.getDay() + ', '+date.getFullYear();
+    
+    return(    
        <div id="article" >
             <div className="tile">
             <h3>{props.article.title}</h3>
-            {props.article.created_on}<br/>
+            {datetext}<br/>
             <div dangerouslySetInnerHTML={{ __html: props.article.text }}></div>
             
             </div>
