@@ -15,19 +15,25 @@ Prod () {
 	echo "Launching node in production"
     NODE_ENV=production npm start
 }
+sql () {
+	echo "Launching psql"
+    sudo -u postgres psql www
+}
 
 
-while getopts ":hwpl" opt; do
+while getopts ":hwplq" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
       echo "-p       set node production env and run node"
       echo "-l       copy files from external to local"
+      echo "-q       launch sql editor"
       exit 1
       ;;
     w) webpack ;;
     p) Prod ;;
     l) load    ;;
+    q) sql ;;
      *) echo "Unknown option" 
         break   ;;
   esac
