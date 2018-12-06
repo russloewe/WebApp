@@ -11,20 +11,22 @@ webpack () {
     echo "Calling webpack"
     ./node_modules/.bin/webpack --config webpack.config.js >&2
 }
-webpackProd () {
-    echo "Calling webpack production mode"
-    ./node_modules/.bin/webpack --mode production --config webpack.config.js >&2
+Prod () {
+	echo "Launching node in production"
+    NODE_ENV=production npm start
 }
-while getopts ":hwprl" opt; do
+
+
+while getopts ":hwpl" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
-      echo "-p       invoke webpack script in production mode"
-      echo "-l          copy files from external to local"
+      echo "-p       set node production env and run node"
+      echo "-l       copy files from external to local"
       exit 1
       ;;
     w) webpack ;;
-    p) webpackProd ;;
+    p) Prod ;;
     l) load    ;;
      *) echo "Unknown option" 
         break   ;;

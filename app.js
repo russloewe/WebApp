@@ -16,21 +16,26 @@ const blogRouter = require('./routes/blog');
 const projectsRouter = require('./routes/projects');
 const profileRouter = require('./routes/profile');
 const adminRouter = require('./routes/admin');
-
 var app = express();
 app.use(compression());
+
+//verify node environment
+var env = process.env.NODE_ENV || 'dev';
+console.log("Node env: " + env);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.static(path.join(__dirname, 'public')));
+
 //set up express-sessions
 app.use(session({secret: "cats",
                  resave: false,
                  saveUninitialized: true}));
+
 //set up passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -79,6 +84,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  
   // render the error page
   res.status(err.status || 500);
   res.render('error');
