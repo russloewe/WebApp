@@ -14,3 +14,7 @@ export const allArticles = articles => ({type: ALL_ARTICLES, payload: articles})
 //Projects
 import {ALL_PROJECTS } from "./action-types";
 export const allProjects = projects => ({type: ALL_PROJECTS, payload: projects});
+
+//Home
+import {SET_HOME} from "./action-types";
+export const setHome = home => ({type: SET_HOME, payload: home});

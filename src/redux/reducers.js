@@ -4,6 +4,8 @@ import { UPDATE_USER_LIST, SET_ACTIVE_USER, USER_STATUS} from "./action-types";
 import { ACTIVE_ARTICLE, ALL_ARTICLES} from "./action-types";
 //PROJECT ACTIONS
 import { ALL_PROJECTS} from "./action-types";
+//HOME ACTIONS
+import { SET_HOME } from "./action-types";
 
 const initialState = {
   userList: [],
@@ -11,7 +13,8 @@ const initialState = {
   user: {loggedin: false},
   article: {},
   articles: [],
-  projects : []
+  projects : [],
+  home: {}
 };
 const rootReducer = (state = initialState, action) => {
     const newState = Object.assign({}, state);
@@ -33,6 +36,9 @@ const rootReducer = (state = initialState, action) => {
         return newState;
     case ALL_PROJECTS:
         newState.projects = action.payload;
+        return newState;
+	case SET_HOME:
+        newState.home = action.payload;
         return newState;
     default:
       return state;

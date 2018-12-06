@@ -63,7 +63,7 @@ class Blog extends React.Component {
            <div >
            {this.props.articles.map(p => (
                <div key={p.article_id}>
-              <Article article={p} />
+              <Article article={p} title={true} date={true} />
 				{isAdmin(this.props.user.usertype) ? editbutton(p) : ''}
               </div>
               ))

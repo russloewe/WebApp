@@ -16,7 +16,7 @@ import UserBox from './react/user/userBox.jsx';
 //load the apps
 import Blog from './blog.jsx';
 import Projects from './projects.jsx';
-
+import Home from './home.jsx';
 
 
 if(document.getElementById("main")){
@@ -24,6 +24,7 @@ ReactDOM.render(
     <Router>
     <Provider store={store}>
         <div>
+            <Route exact path="/" component={Home} />
             <Route path="/admin" component={Admin} />
             <Route path="/auth/login" component={LoginScreen} />
             <Route path="/blog" component={Blog} />
