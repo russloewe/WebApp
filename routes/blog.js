@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.get('/article:id?', function(req, res, next) {
     db.findArticle(req.query.id, 'blog', function(err, dbres){
       if(err){
-          res.status(500).send(err).end();
+          res.status(500).end();
       }else{
         res.send(dbres).end();
     }
@@ -27,7 +27,7 @@ router.get('/article:id?', function(req, res, next) {
 router.get('/all', function(req, res, next) {
   db.getArticles('blog', function(err, dbres){
       if(err){
-          res.status(500).send(err).end();
+          res.status(500).end();
       }else{
         res.send(dbres).end();
     }
@@ -47,7 +47,7 @@ router.post('/edit', ensureAdminMW, function(req, res) {
         db.updateArticle(req.body, 'blog', (err, success) => {
             if(err){
                 console.log(err);
-                res.status(500).send(err).end();
+                res.status(500).end();
             }else{
                 res.status(200).end();
             }
@@ -62,7 +62,7 @@ router.post('/add', ensureAdminMW, function(req, res) {
         db.addArticle(req.body, 'blog', (err, success) => {
             if(err){
                 console.log(err);
-                res.status(500).send(err).end();
+                res.status(500).end();
             }else{
                 res.status(200).end();
             }
@@ -79,7 +79,7 @@ router.post('/remove', ensureAdminMW, function(req, res){
             db.removeArticle(article_id, 'blog', function(err, result){
                 if(err){
                     console.log(err);
-                    res.status(500).send(err);
+                    res.status(500);
                     res.end();
                 }else{
                     res.status(200).json({status: true}).end();
