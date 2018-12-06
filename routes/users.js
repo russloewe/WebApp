@@ -21,7 +21,7 @@ router.post('/add', function(req, res) {
         if(err){
 			console.log("error adding user");
 			console.log(err);
-            res.status(500).send(err).end();
+            res.status(500).end();
         }else{
 			db.findByName(req.body.username, function(err2, res2){
 				if(err2){
@@ -48,7 +48,7 @@ router.post('/edit/info', function(req, res) {
         db.updateUserInfo(req.body, (err, success) => {
             if(err){
                 console.log(err);
-                res.status(500).send(err).end();
+                res.status(500).end();
             }else{
                 res.status(200).end();
             }
@@ -66,7 +66,7 @@ router.post('/edit/password', function(req, res) {
         db.updateUserPassword(req.body, (err, success) => {
             if(err){
                 console.log(err);
-                res.status(500).send(err).end();
+                res.status(500).end();
             }else{
                 res.status(200).end();
             }
@@ -84,7 +84,7 @@ router.post('/edit/type', function(req, res) {
         db.updateUserType(req.body, (err, success) => {
             if(err){
                 console.log(err);
-                res.status(500).send(err).end();
+                res.status(500).end();
             }else{
                 res.status(200).end();
             }
