@@ -30,7 +30,7 @@ class ArticleList extends React.Component {
            <div >
                 {this.props.articles.map(p => (
                     <div key={p.article_id}>
-                    <Article  article={p} key={p.article_id} title={true} date={false}/>
+                    <Article  article={p} title={true} date={false}/>
                      </div>
                     ))
                 }
