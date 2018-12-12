@@ -7,7 +7,9 @@ import {userStatus} from '../redux/actions';
 
 const mapStateToProps = state => {
     return{user: state.user,
-		   projectTitles: state.articlesTitles};
+		   projectTitles: state.projectTitles,
+		   blogTitles: state.blogTitles,
+		   parentTopic: state.parentTopic};
 };
 
 class TitleList extends React.Component{
@@ -19,7 +21,7 @@ class TitleList extends React.Component{
 		<div className="subnav">
 		 <ul>
 			{this.props.titles.map(p => (
-				<li><a href={"/projects/post/"+p.article_id} key={p.article_id}>{p.title}</a></li>
+				<li><a className="subnav" href={this.props.parent+"/post/"+p.article_id} key={p.article_id}>{p.title}</a></li>
 			))}
 		</ul>
 		</div>
@@ -33,28 +35,20 @@ class NavBar extends React.Component {
     }
 
     render() {
-		
-        const usertype = this.props.user.usertype;
         const adminbutton = <a href="/admin">Admin Tools</a>;
-        
-        const isAdmin = (type) => {
-            if (type != 1){
-                return false;
-            }else{
-                return true;
-            }
-        };
+      
         return (
-  <div>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/projects">Projects</a>
-        <TitleList titles={this.props.projectTitles} /></li>
-        <li><a href="/blog">Blog</a></li>
-        <li>{isAdmin(this.props.user.usertype) ? adminbutton : ''} </li> 
-    </ul>
-    
-  </div>
+		  <div className="navbar">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/projects">Projects</a>
+				<TitleList titles={this.props.projectTitles} parent="/projects" /></li>
+				<li><a href="/blog">Blog</a>
+				<TitleList titles={this.props.blogTitles} parent="/blog" /></li>
+				<li>{this.props.user.isAdmin ? adminbutton : ''} </li> 
+			</ul>
+			
+		  </div>
   );
 }
 }
