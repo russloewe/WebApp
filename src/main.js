@@ -28,12 +28,15 @@ ReactDOM.render(
             <Route path="/admin" component={Admin} />
             <Route path="/auth/login" component={LoginScreen} />
             <Route path="/blog" component={Blog} />
-            <Route path="/projects" component={Projects} />
+            <Route exact path="/projects" component={Projects} />
+            <Route path="/projects/post/:id" component={Projects} />
         </div>
     </Provider>
     </Router>,
     document.getElementById('main')
 )}
+
+
 
 if(document.getElementById("userbox")){
 ReactDOM.render(
@@ -45,6 +48,16 @@ ReactDOM.render(
     </Provider>
     </Router>,
     document.getElementById('userbox')
+)}
+
+if(document.getElementById("htmlEdit")){
+ReactDOM.render(
+
+        <div>
+            <UserBox />
+        </div>
+,
+    document.getElementById('htmlEdit')
 )}
 
 ReactDOM.render(
