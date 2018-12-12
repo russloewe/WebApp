@@ -1,9 +1,7 @@
 //USER ACTIONS
 import { UPDATE_USER_LIST, SET_ACTIVE_USER, USER_STATUS} from "./action-types";
 //BLOG ACTIONS
-import { ACTIVE_ARTICLE, ALL_ARTICLES} from "./action-types";
-//PROJECT ACTIONS
-import { ALL_PROJECTS} from "./action-types";
+import { ACTIVE_ARTICLE, ALL_ARTICLES, ALL_ARTICLES_TITLES} from "./action-types";
 //HOME ACTIONS
 import { SET_HOME } from "./action-types";
 
@@ -13,7 +11,7 @@ const initialState = {
   user: {loggedin: false},
   article: {},
   articles: [],
-  projects : [],
+  articlesTitles: [],
   home: {}
 };
 const rootReducer = (state = initialState, action) => {
@@ -34,8 +32,8 @@ const rootReducer = (state = initialState, action) => {
     case ALL_ARTICLES:
         newState.articles = action.payload;
         return newState;
-    case ALL_PROJECTS:
-        newState.projects = action.payload;
+    case ALL_ARTICLES_TITLES:
+        newState.articlesTitles = action.payload;
         return newState;
 	case SET_HOME:
         newState.home = action.payload;
