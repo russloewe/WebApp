@@ -21,7 +21,7 @@ class TitleList extends React.Component{
 		<div className="subnav">
 		 <ul>
 			{this.props.titles.map(p => (
-				<li key={p.article_id}><a className="subnav" href={this.props.parent+"/post/"+p.article_id} >{p.title}</a></li>
+				<li key={p.article_id}><a className="subnav" href={this.props.parent+"/post/"+p.article_id+'/'+p.title} >{p.title}</a></li>
 			))}
 		</ul>
 		</div>
