@@ -39,6 +39,16 @@ router.get('/all', function(req, res, next) {
   })
 });
 
+router.get('/all/titles', function(req, res, next) {
+  db.getArticlesTitles('projects', function(err, dbres){
+      if(err){
+          res.status(500).send(err).end();
+      }else{
+        res.send(dbres).end();
+    }
+  })
+});
+
 router.post('/edit', ensureAdminMW, function(req, res) {
     if( !req.body ){
         res.status(500).send('No body').end();
