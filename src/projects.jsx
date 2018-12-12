@@ -15,6 +15,7 @@ import {getSimple} from './api/api.js';
 const mapStateToProps = state => {
     return{projects: state.articles,
 		   project: state.article,
+		   projectTitles: state.projectTitles,
 		   user: state.user};
 };
 
@@ -40,6 +41,7 @@ function getAllProjectsTitles(){
             }
         })
 }
+
 
 function getProjectCB(id){
 	return(
@@ -68,15 +70,16 @@ function getProject(id){
         });
         getAllProjectsTitles();
 }
-    
+   
 class Projects extends React.Component {
     constructor(props){
         super(props);
         //get the list of project titles
         getAllProjectsTitles();
         if(this.props.match.params.id){
-			getProject(this.props.match.params.id);
-			store.dispatch(setEditArticleCB(getProjectCB(this.props.match.params.id)));
+			var id = this.props.match.params.id;
+			getProject(id);
+			store.dispatch(setEditArticleCB(getProjectCB(id)));
 		}else{
 			getAllProjects();
 			store.dispatch(setEditArticleCB(getAllProjects));
