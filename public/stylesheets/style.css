@@ -68,7 +68,14 @@ div#content{
   padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.navbar a{
+  color: #4c5256;
+}
 
+.subnav ul li a{
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #494c54;
+}
 #main {
   padding-left: 40px;
 }
