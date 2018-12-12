@@ -7,7 +7,8 @@ import Article from './react/blog/article.jsx';
 import ArticleList from './react/blog/articleList.jsx';
 import AddArticle from './react/blog/addArticle.jsx';
 //redux store
-import {allArticles, setArticle, allArticlesTitles} from "./redux/actions.js";
+import {Articles, setArticle, setProjectTitles, setParentTopic, setEditArticleCB} from "./redux/actions.js";
+import {PROJECTS} from "./redux/topic-types.js";
 //server api
 import {getSimple} from './api/api.js';
 
@@ -23,9 +24,10 @@ function getAllProjects(){
                 console.log(err);
             }else{
                 console.log(res);
-                store.dispatch(allArticles(res));
+                store.dispatch(Articles(res));
             }
-        })
+        });
+        getAllProjectsTitles();
 }
 
 function getAllProjectsTitles(){
@@ -34,11 +36,27 @@ function getAllProjectsTitles(){
                 console.log(err);
             }else{
                 console.log(res);
-                store.dispatch(allArticlesTitles(res));
+                store.dispatch(setProjectTitles(res));
             }
         })
 }
 
+function getProjectCB(id){
+	return(
+		function getProject(){
+			getSimple('/projects/article?id='+id, function(err,res){
+				if(err){
+					console.log(err);
+				}else{
+					console.log(res);
+					store.dispatch(setArticle(res));
+				}
+			});
+			getAllProjectsTitles();
+		 }
+	)
+}
+	
 function getProject(id){
         getSimple('/projects/article?id='+id, function(err,res){
             if(err){
@@ -47,34 +65,34 @@ function getProject(id){
                 console.log(res);
                 store.dispatch(setArticle(res));
             }
-        })
+        });
+        getAllProjectsTitles();
 }
     
 class Projects extends React.Component {
     constructor(props){
         super(props);
+        //get the list of project titles
         getAllProjectsTitles();
         if(this.props.match.params.id){
 			getProject(this.props.match.params.id);
+			store.dispatch(setEditArticleCB(getProjectCB(this.props.match.params.id)));
 		}else{
 			getAllProjects();
+			store.dispatch(setEditArticleCB(getAllProjects));
 		}
+		store.dispatch(setParentTopic(PROJECTS));
+		
     }
 
     render() {
-		const usertype = this.props.user.usertype;
-		const isAdmin = (type) => {
-            if (type != 1){return false;
-            }else{return true;}
-        };
-        
 		if(this.props.match.params.id){
 			return(
 				<Article article={this.props.project} key={this.props.project.article_id} title={true} date={false}/>
 			)
 		}else{
 			return(
-				<ArticleList isAdmin={isAdmin(usertype)} articles={this.props.projects} updateCB={getAllProjects} />
+				<ArticleList articles={this.props.projects}  />
 			)
 		}
 	}
