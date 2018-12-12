@@ -53,9 +53,15 @@ h4{
   float:left;
 }
 
-div#main {
-width: 80%;
+#main .tile {
+width: 800px;
 }
+
+#main {
+  position: absolute;
+  margin-left: 100px;
+}
+
 div#content{
   float: left
 }
@@ -68,6 +74,27 @@ div#content{
   padding-top: 50px;
   padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+@media screen and (max-width: 600px) {
+  #navbar {
+     width: 100%;
+     height:auto;
+     margin-top: 0px;
+     padding-top: 0px
+  }
+  #main {
+    position: relative;
+    margin-left: 0px;
+    margin-top: 100px;
+  }
+  #main .tile {
+    width: auto;
+  }
+
+  #userbox{
+    position: absolute;
+    right: 10px;
+  }
 }
 .navbar a{
   color: #4c5256;
@@ -93,7 +120,12 @@ div#navbar ul{
 div#navbar li{
   margin:5px;
 }
-
+@media screen and (max-width: 600px) {
+div#navbar li{
+  margin:5px;
+  float: left;
+}
+}
 div#userbox a {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: inline;
