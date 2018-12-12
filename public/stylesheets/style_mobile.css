@@ -63,18 +63,18 @@ div#content{
 
 #navbar {
   float: left;
-  width: 100px;
+  width: 100%;
   padding-left: 50px;
   padding-top: 50px;
   padding-right: 100px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 .navbar a{
   color: #4c5256;
 }
 
 .subnav ul li a{
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #494c54;
 }
 #main {
@@ -92,6 +92,7 @@ div#navbar ul{
 
 div#navbar li{
   margin:5px;
+  float: left;
 }
 
 div#userbox a {
