@@ -54,7 +54,7 @@ h4{
 }
 
 div#main {
-width: 800px;
+width: 80%;
 }
 div#content{
   float: left
@@ -63,7 +63,8 @@ div#content{
 #navbar {
   float: left;
   width: 100px;
-  padding-left: 50px;
+  height: 100%;
+  padding-left: 20px;
   padding-top: 50px;
   padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
