@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Provider } from "react-redux";
 //sub comp
 import Article from './react/blog/article.jsx';
-import EditArticle from './react/blog/editArticle.jsx';
+
+
 import AddArticle from './react/blog/addArticle.jsx';
 //redux store
 import {allProjects} from "./redux/actions.js";
@@ -16,12 +17,7 @@ const mapStateToProps = state => {
 		   user: state.user};
 };
 
-class Projects extends React.Component {
-    constructor(props){
-        super(props);
-        this.getAllProjects();
-    }
-    getAllProjects(){
+function getAllProjects(){
         getSimple('/projects/all', function(err,res){
             if(err){
                 console.log(err);
@@ -30,15 +26,33 @@ class Projects extends React.Component {
                 store.dispatch(allProjects(res));
             }
         })
-    }
+}
+function getProject(id){
+        getSimple('/projects/article?id='+id, function(err,res){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(res);
+                store.dispatch(allProjects([res]));
+            }
+        })
+}
     
+class Projects extends React.Component {
+    constructor(props){
+        super(props);
+        if(this.props.match.params.id){
+			getProject(this.props.match.params.id);
+		}else{
+			getAllProjects();
+		}
+        
+    }
+
     render() {
 		const usertype = this.props.user.usertype;
-        const addbutton =  <AddArticle apiTarget="/projects/add" update={this.getAllProjects} />;
-        const editbutton = (p) => { 
-			return(
-				<EditArticle article={p} apiTarget="/projects/edit" update={this.getAllProjects} />
-				)};
+        const addbutton =  <AddArticle apiTarget="/projects/add" update={getAllProjects} />;
+       
 		const isAdmin = (type) => {
             if (type != 1){
                 return false;
@@ -50,16 +64,15 @@ class Projects extends React.Component {
            <div >
                 {this.props.projects.map(p => (
                     <div key={p.article_id}>
-                    <Article article={p} key={p.article_id} title={true} date={false}/>
-                     {isAdmin(this.props.user.usertype) ? editbutton(p) : ''}
+                    <Article article={p} key={p.article_id} title={true} date={false} usertype={this.props.user.usertype} parent={"projects"}/>
+                     {isAdmin(usertype) ? editbutton(p) : ''}
                      </div>
                     ))
                 }
-                {isAdmin(this.props.user.usertype) ? addbutton : ''}
+                {isAdmin(usertype) ? addbutton : ''}
            </div>
         )
     }
 }
 
 export default connect(mapStateToProps)(Projects);
-                
