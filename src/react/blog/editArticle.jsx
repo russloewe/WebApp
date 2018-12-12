@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import {postSimple} from "../../api/api.js";
 
-export default class EditArticle extends React.Component {
+const mapStateToProps = state => {
+    return{isAdmin: state.user.isAdmin,
+		   parent: state.parentTopic,
+		   editArticleCB: state.editArticleCB};
+};
+
+class EditArticle extends React.Component {
     constructor(props){
         super(props);
         this.state = {title: this.props.article.title,
@@ -24,7 +30,7 @@ export default class EditArticle extends React.Component {
     } 
     
     handleSubmit(event) {
-        let cb = this.props.update;
+        let cb = this.props.editArticleCB;
         let toggle = this.toggleVisible;
         event.preventDefault();
         const jsonData = {title: this.state.title,
@@ -50,7 +56,7 @@ export default class EditArticle extends React.Component {
         let cb = this.props.update;
         let toggle = this.toggleVisible;
         let artId = this.props.article.article_id;
-        postSimple('/blog/remove', {article_id: artId}, function(err, res){
+        postSimple(this.props.parent+'/remove', {article_id: artId}, function(err, res){
             if(err){
                  window.alert("error deleting user: "+ value);
             }else{
@@ -81,3 +87,4 @@ export default class EditArticle extends React.Component {
         )
     }
 }
+export default connect(mapStateToProps)(EditArticle);
