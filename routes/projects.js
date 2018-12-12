@@ -13,6 +13,11 @@ router.get('/', function(req, res, next) {
                            style: req.style});
 });
 
+router.get('/post/*', function(req, res, next) {
+  res.render('index', { title: "Projects",
+                           style: req.style});
+});
+
 router.get('/article:id?', function(req, res, next) {
     db.findArticle(req.query.id, 'projects', function(err, dbres){
       if(err){
