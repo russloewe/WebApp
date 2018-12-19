@@ -30,7 +30,7 @@ class UserBox extends React.Component {
     render() {
         const usertype = this.props.user.usertype;
         const name = this.props.user.username;
-        const greeting = <p>Hello, {name}!</p>;
+        const greeting = <span>Hello, {name}!</span>;
         const adminbutton = <a href="/admin">Admin Tools</a>;
         
         const isAdmin = (type) => {
