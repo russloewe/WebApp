@@ -10,13 +10,18 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 /* GET blog page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: "Projects",
-                           style: req.style});
+                           style: req.style,
+                           footerimage: "http://"+siteName+"/images/graphics/treeline_dim.png",
+                           sitename: siteName});
 });
 
 router.get('/post/*', function(req, res, next) {
   res.render('index', { title: "Projects",
-                           style: req.style});
+                           style: req.style,
+                           footerimage: "http://"+siteName+"/images/graphics/treeline_dim.png",
+                           sitename: siteName});
 });
+
 
 router.get('/article:id?', function(req, res, next) {
     db.findArticle(req.query.id, 'projects', function(err, dbres){

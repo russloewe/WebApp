@@ -1,4 +1,4 @@
-
+var siteName = require('../settings.js').siteName;
 const express = require('express');
 const router  = express.Router();
 const passport = require("passport");
@@ -20,8 +20,10 @@ router.get('/login:auth?:success?', function(req, res) {
     }else{
         loginMessage = "Please login";
     }
-    res.render('reactapp', {title: 'Login Screen', message: loginMessage,
-                            style: req.style});
+    res.render('index', {title: 'Login Screen', message: loginMessage,
+                            style: req.style,
+                            footerimage: "http://"+siteName+"/images/graphics/treeline_dim.png",
+                            sitename: siteName});
 });
 
 router.get('/logout', function(req, res) {

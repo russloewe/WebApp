@@ -10,7 +10,9 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: siteName, root: 'root',
-                        style: req.style});
+                        style: req.style,
+                        footerimage: "images/graphics/treeline3_dim.png",
+                        sitename: siteName});
 });
 router.get('/home', function(req, res, next) {
     db.getHome(function(err, dbres){
