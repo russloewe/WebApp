@@ -1,11 +1,13 @@
+/*Global Rules*/
 html, body {
   height: 100%;
-  width: 100%;
+  overflow: hidden;
   padding:0px;
   margin:0;
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   position: relative;
-  background: #d4f1fb;
+  background: #02001d;
+  color: #696971
 }
 
 a {
@@ -17,10 +19,84 @@ a {
 }
 
 h4{
+  font: 32px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 5px;
   margin: 5px;
   text-align: center;
 }
+
+h3{
+text-align: center;
+}
+
+ul{
+   list-style-type: none;
+   padding-left: 0px;
+}
+/*INPUT*/
+input[type=text], input[type=password], textarea{
+	color: #696971;
+	background-color: #3a2044;
+	border: 2px solid #757179;
+	border-radius: 3px;
+	margin: 2px;
+}
+input[type=submit], button {
+	color: #000000;
+	background-color: #757179;
+	border: 2px solid #757179;
+	border-radius: 4px;
+	margin: 2px;
+}
+/*SRCOLL BAR*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #02001d;  
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #33144c; 
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #702c88; 
+}
+
+/*MULTI AREA */
+.tile{
+  border-radius: 20px;
+  overflow:auto;
+  padding: 10px;
+}
+
+/*MAIN CONTENT AREA*/
+#main{
+overflow: auto;
+padding-left: 100px;
+padding-right: 100px;
+}
+
+div#content{
+  float: left
+}
+/*FOOTER */
+
+#foot-image{
+  position: fixed;
+  bottom: 0;
+  height: 130px;
+  pointer-events: none;
+}
+
+/*TITLE BAR*/
 
 #logout {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -28,22 +104,70 @@ h4{
   background: #cecece;
 }
 
-#userbox {
- background: gray;
- border-radius: 5px;
- padding: 0px;
- font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+div#userbox {
+  position: absolute;
+  right: 0;
+  width: fit-content;
+  height: 20px;
+  float: right;
+  background: #3a2044;
+  border-radius: 5px;
+  padding-top: 3px;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.tile{
-  background: white;
-  border-radius: 20px;
-  box-shadow: 5px 10px #c7dcde;
-  overflow:auto;
-    margin: 20px;
+div#userbox a {
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #99a2a9;
+  border-radius: 5px;
+  display: inline;
+  background: #220c3c;
+}
+/*TITLEBAR GRID */
+#name {
   padding: 10px;
 }
+#name p{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin:0;
+  text-align: left;
+}
+/*BODY GRID */
 
+#icons{
+  grid-area: icons;
+}
+#title-text{
+  grid-area: banner;
+}
+#userbox{
+grid-area: user;
+}
+#name {
+  grid-area: name;
+}
+#main{
+  grid-area: main;
+}
+#foot {
+  grid-area: foot;
+}
+#navbar{
+  grid-area: navbar;
+}
+
+body {
+  display: grid;
+  grid-template-columns: [nav-start] 120px [nav-end main-start] auto [main-end] 100px;
+  grid-template-rows: [top] 50px [banner-bottom] 25px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
+  grid-template-areas:
+      "name banner user"
+      "icons main main"
+      "navbar  main main"
+      "foot foot foot"
+}
+
+/*ADMIN AREA*/
 .usertile{
   border: 2px solid black;
   border-radius: 5px;
@@ -53,49 +177,31 @@ h4{
   float:left;
 }
 
-#main .tile {
-width: 800px;
+div#createUser {
+  background: #6f9ae4;
+  width: fit-content;
+  padding: 10px
 }
-
-#main {
-  position: absolute;
-  margin-left: 100px;
+div#createUser input {
+  margin: 5px
 }
-
-div#content{
-  float: left
+/*ICONS*/
+div#icons li{
+  float: left;
 }
-
+div#icons {
+    position: absolute;
+    padding-left: 30px;
+    bottom: 0;
+}
+/*SIDEBAR*/
 #navbar {
   float: left;
-  width: 100px;
   height: 100%;
   padding-left: 20px;
-  padding-top: 50px;
-  padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-@media screen and (max-width: 600px) {
-  #navbar {
-     width: 100%;
-     height:auto;
-     margin-top: 0px;
-     padding-top: 0px
-  }
-  #main {
-    position: relative;
-    margin-left: 0px;
-    margin-top: 100px;
-  }
-  #main .tile {
-    width: auto;
-  }
 
-  #userbox{
-    position: absolute;
-    right: 10px;
-  }
-}
 .navbar a{
   color: #4c5256;
 }
@@ -103,14 +209,6 @@ div#content{
 .subnav ul li a{
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #494c54;
-}
-#main {
-  padding-left: 40px;
-}
-
-ul{
-   list-style-type: none;
-   padding-left: 0px;
 }
 
 div#navbar ul{
@@ -120,29 +218,34 @@ div#navbar ul{
 div#navbar li{
   margin:5px;
 }
+
+/*SMALL SCREEN*/
+
+
 @media screen and (max-width: 600px) {
-div#navbar li{
-  margin:5px;
-  float: left;
-}
-}
-div#userbox a {
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  display: inline;
-  background: #c7c7c7;
-}
-
-div#userbox{
-  width: 50px;
-  height: 50px;
-  float: right;
-}
-
-div#createUser {
-  background: #6f9ae4;
-  width: fit-content;
-  padding: 10px
-}
-div#createUser input {
-  margin: 5px
+	body {
+	  display: grid;
+	  grid-template-columns: [nav-start] 50px [nav-end main-start] auto [main-end] 40px;
+	  grid-template-rows: [top] 50px [banner-bottom] 35px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
+	  grid-template-areas:
+		  "name banner user"
+		  "icons subheader ."
+		  "navbar  main main"
+		  "foot foot foot"
+	}
+  #navbar {
+     width: 100%;
+     height:auto;
+     margin-top: 0px;
+     padding-top: 0px;
+     grid-area: subheader;
+  }
+  div#navbar li{
+     margin:5px;
+     float: left;
+  }
+  #icons{
+  position:absolute;
+  top: 0px;
+  }
 }
