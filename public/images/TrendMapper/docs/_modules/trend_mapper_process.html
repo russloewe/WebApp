@@ -1,0 +1,252 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>trend_mapper_process &#8212; TrendMapper 0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">TrendMapper 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for trend_mapper_process</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">/***************************************************************************</span>
+<span class="sd"> TrendMapperProcess</span>
+<span class="sd">                                 A QGIS plugin</span>
+<span class="sd"> calculate trendlines along catagories</span>
+<span class="sd">                             -------------------</span>
+<span class="sd">        begin                : 2018-07-28</span>
+<span class="sd">        git sha              : $Format:%H$</span>
+<span class="sd">        copyright            : (C) 2018 by Russell Loewe</span>
+<span class="sd">        email                : russloewe@gmai.com</span>
+<span class="sd"> ***************************************************************************/</span>
+
+<span class="sd">/***************************************************************************</span>
+<span class="sd"> *                                                                         *</span>
+<span class="sd"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<span class="sd"> *   it under the terms of the GNU General Public License as published by  *</span>
+<span class="sd"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<span class="sd"> *   (at your option) any later version.                                   *</span>
+<span class="sd"> *                                                                         *</span>
+<span class="sd"> ***************************************************************************/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">qgis.core</span> <span class="k">import</span> <span class="n">QgsMapLayerRegistry</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtSql</span> <span class="k">import</span> <span class="n">QSqlDatabase</span>
+<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="k">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">uic</span><span class="p">,</span> <span class="n">QtCore</span>
+<span class="kn">from</span> <span class="nn">analysis</span> <span class="k">import</span> <span class="n">calculateLinearRegression</span> <span class="c1">#this needs to be param</span>
+<span class="kn">from</span> <span class="nn">trend_mapper_tools</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">trend_mapper_log</span> <span class="k">import</span> <span class="n">TrendMapperLogger</span>
+<span class="c1"># Set the logger</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">TrendMapperLogger</span><span class="p">()</span>
+
+<div class="viewcode-block" id="TrendMapperProcess"><a class="viewcode-back" href="../index.html#trend_mapper.TrendMapperProcess">[docs]</a><span class="k">class</span> <span class="nc">TrendMapperProcess</span><span class="p">(</span><span class="n">QThread</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A QT thread that does the main work for the plugin.</span>
+<span class="sd">    </span>
+<span class="sd">        **Signals**:</span>
+<span class="sd">            - stopSig: Emit when the thread stops normally.</span>
+<span class="sd">            - abortSig: Emit when the thread is told to stop early.</span>
+<span class="sd">            - errSig: Emit when the thread stops from an error.</span>
+<span class="sd">            - progSig: Emit when the thread updates the progress bar.</span>
+<span class="sd">            - msgSig: Emit when the thread has a message for the message bar. </span>
+<span class="sd">            </span>
+<span class="sd">        :param newLayer: The target layer for that the results of the </span>
+<span class="sd">            analysis.</span>
+<span class="sd">        :type newLayer: QgsVectorLayer</span>
+<span class="sd">        </span>
+<span class="sd">        :param stations: The list of &quot;stations&quot; that we are analyzing</span>
+<span class="sd">        :type stations: [str]</span>
+<span class="sd">        </span>
+<span class="sd">        :param xField: The name of the field for the independent variable </span>
+<span class="sd">            for the analysis.</span>
+<span class="sd">        :type xField: str</span>
+<span class="sd">        </span>
+<span class="sd">        :param yField: The name of the field for the dependent variable </span>
+<span class="sd">            for analysis.</span>
+<span class="sd">        :type yField: str</span>
+<span class="sd">        </span>
+<span class="sd">        :param copyAttr: A list of the other fields that are being copied to </span>
+<span class="sd">            the target layer.</span>
+<span class="sd">        :type copyAttr: [str] </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+    <span class="n">stopSig</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&quot;stopSignal&quot;</span><span class="p">)</span>
+    <span class="n">progSig</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&quot;progress&quot;</span><span class="p">)</span>
+    <span class="n">msgSig</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">SIGNAL</span> <span class="p">(</span><span class="s2">&quot;msgSignal&quot;</span><span class="p">)</span>
+    <span class="n">abortSig</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;abortSignal&#39;</span><span class="p">)</span>
+    <span class="n">errSig</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;errSignal&#39;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newLayer</span><span class="p">,</span> <span class="n">stations</span><span class="p">,</span> <span class="n">xField</span><span class="p">,</span> <span class="n">yField</span><span class="p">,</span> <span class="n">copyAttr</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">TrendMapperProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totalCounter</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">stations</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stations</span> <span class="o">=</span> <span class="n">stations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copyAttr</span> <span class="o">=</span> <span class="n">copyAttr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span> <span class="o">=</span> <span class="p">[</span><span class="n">xField</span><span class="p">,</span> <span class="n">yField</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xField</span> <span class="o">=</span> <span class="n">xField</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yField</span> <span class="o">=</span> <span class="n">yField</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span> <span class="o">=</span> <span class="n">newLayer</span>
+        
+
+            
+<div class="viewcode-block" id="TrendMapperProcess.abort"><a class="viewcode-back" href="../index.html#trend_mapper.TrendMapperProcess.abort">[docs]</a>    <span class="k">def</span> <span class="nf">abort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Tell the thread to stop running and send out an abort signal&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">abortSig</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msgSig</span><span class="p">,</span> <span class="s1">&#39;Abort Called&#39;</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">abortSig</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">errSig</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">return</span>
+            
+    <span class="k">def</span> <span class="nf">createConvFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formatDateCol</span><span class="p">,</span> <span class="n">dateCol</span><span class="p">,</span> <span class="n">dateForm</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">formatDateCol</span><span class="p">:</span>
+            <span class="n">convFunction</span> <span class="o">=</span> <span class="n">convFunNum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">,</span> <span class="n">dateColumn</span> <span class="o">=</span> <span class="n">dateCol</span><span class="p">,</span>
+                                            <span class="n">dateFormat</span> <span class="o">=</span> <span class="n">dateForm</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">convFunction</span> <span class="o">=</span> <span class="n">convFunNum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">convFunction</span> <span class="o">=</span> <span class="n">convFunction</span>
+        
+    <span class="k">def</span> <span class="nf">createDataFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">keyCol</span><span class="p">,</span> <span class="n">statsCheck</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="n">station</span><span class="p">):</span>
+            <span class="n">featureItr</span> <span class="o">=</span> <span class="n">featureGenerator</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">station</span><span class="p">,</span> <span class="n">keyCol</span><span class="p">)</span>
+            <span class="n">pointItr</span> <span class="o">=</span> <span class="n">datapointGenerator</span><span class="p">(</span><span class="n">featureItr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">copyAttr</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">)</span>
+            <span class="n">filterItr</span> <span class="o">=</span> <span class="n">filterDatapointGenerator</span><span class="p">(</span><span class="n">pointItr</span><span class="p">,</span> <span class="n">filterFun</span><span class="p">)</span>
+            <span class="n">convItr</span> <span class="o">=</span> <span class="n">convertedDatapointGenerator</span><span class="p">(</span><span class="n">filterItr</span><span class="p">,</span> 
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">convFunction</span><span class="p">,</span>
+                                       <span class="n">skipOnErr</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">organizeData</span><span class="p">(</span><span class="n">convItr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">xField</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">yField</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">calculateLinearRegression</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">xField</span><span class="p">],</span> 
+                                        <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">yField</span><span class="p">],</span>
+                                    <span class="n">includeStats</span> <span class="o">=</span> <span class="n">statsCheck</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">result</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getData</span> <span class="o">=</span> <span class="n">getdata</span>
+        
+<div class="viewcode-block" id="TrendMapperProcess.run"><a class="viewcode-back" href="../index.html#trend_mapper.TrendMapperProcess.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Just call the woorkloop. Catch any error and emit an error signal.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workloop</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+            
+<div class="viewcode-block" id="TrendMapperProcess.workloop"><a class="viewcode-back" href="../index.html#trend_mapper.TrendMapperProcess.workloop">[docs]</a>    <span class="k">def</span> <span class="nf">workloop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Iterate through the list of &quot;stations&quot;, calling the process </span>
+<span class="sd">        function for each &quot;stations&quot;.</span>
+<span class="sd">        &#39;&#39;&#39;</span> 
+        <span class="n">newFeatures</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">firstRun</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">processSet</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stopSig</span><span class="p">)</span></div>
+    
+        
+    <span class="k">def</span> <span class="nf">processSet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">station</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateProgress</span><span class="p">(</span><span class="s1">&#39;Processing Datasets: (</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">))</span>
+        <span class="c1">#get result for one station</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getData</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstRun</span><span class="p">:</span>
+            <span class="c1">#add the add the result attributes as fields in new layer</span>
+            <span class="n">addResultFields</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="n">firstRun</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">mergeResult</span> <span class="o">=</span> <span class="n">mergeDicts</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">excluded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAttr</span><span class="p">)</span>
+        <span class="n">newFeature</span> <span class="o">=</span> <span class="n">makeFeature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span><span class="p">,</span> <span class="n">mergeResult</span><span class="p">)</span>
+        <span class="n">checkTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span><span class="o">.</span><span class="n">startEditing</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">newFeature</span><span class="p">],</span> <span class="n">makeSelected</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">checkTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newLayer</span><span class="o">.</span><span class="n">commitChanges</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">updateProgress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="n">progress</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">totalCounter</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">progSig</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
+    
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">TrendMapper 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Russell Loewe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

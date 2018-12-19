@@ -1,0 +1,148 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>analysis &#8212; TrendMapper 0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">TrendMapper 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for analysis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># /***************************************************************************</span>
+ <span class="c1"># TrendMapperAnalysis</span>
+                                 <span class="c1"># A QGIS plugin</span>
+ <span class="c1"># calculate trendlines along catagories</span>
+                             <span class="c1"># -------------------</span>
+        <span class="c1"># begin                : 2018-07-28</span>
+        <span class="c1"># git sha              : $Format:%H$</span>
+        <span class="c1"># copyright            : (C) 2018 by Russell Loewe</span>
+        <span class="c1"># email                : russloewe@gmai.com</span>
+ <span class="c1"># ***************************************************************************/</span>
+
+<span class="c1"># /***************************************************************************</span>
+ <span class="c1"># *                                                                         *</span>
+ <span class="c1"># *   This program is free software; you can redistribute it and/or modify  *</span>
+ <span class="c1"># *   it under the terms of the GNU General Public License as published by  *</span>
+ <span class="c1"># *   the Free Software Foundation; either version 2 of the License, or     *</span>
+ <span class="c1"># *   (at your option) any later version.                                   *</span>
+ <span class="c1"># *                                                                         *</span>
+ <span class="c1"># ***************************************************************************/</span>
+
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">sets</span> <span class="k">import</span> <span class="n">Set</span>
+
+<div class="viewcode-block" id="calculateLinearRegression"><a class="viewcode-back" href="../index.html#analysis.calculateLinearRegression">[docs]</a><span class="k">def</span> <span class="nf">calculateLinearRegression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">includeStats</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;take an array of tuples, [(x1,y1), (x2,y2) ..., (xn,yn)]</span>
+<span class="sd">       reorganize as two arrays [x1, x2 ..., xn] and [y1, y2, ..., yn]</span>
+<span class="sd">       and use numpy least squares to find linear best fit coeeficients and</span>
+<span class="sd">       return the slope and intercept for the best fit line and rank&#39;&#39;&#39;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">linearFitResult</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">linearFitResult</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">includeStats</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">linearFitResult</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">risidualSum</span> <span class="o">=</span> <span class="n">calculateRisidualSum</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">,</span><span class="n">slope</span> <span class="p">,</span> <span class="n">intercept</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span> <span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">slope</span><span class="p">),</span> <span class="s1">&#39;intercept&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">intercept</span><span class="p">),</span>
+         <span class="s1">&#39;rank&#39;</span> <span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">rank</span><span class="p">),</span> <span class="s1">&#39;risidualSum&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">risidualSum</span><span class="p">),</span>
+          <span class="s1">&#39;setsize&#39;</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)}</span>
+    <span class="k">else</span><span class="p">:</span>
+         <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span> <span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">slope</span><span class="p">),</span> <span class="s1">&#39;intercept&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">intercept</span><span class="p">)}</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No data points in dataset&#39;</span><span class="p">)</span> 
+    <span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mean&#39;</span> <span class="p">:</span> <span class="n">a</span><span class="p">}</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    
+    
+<div class="viewcode-block" id="calculateRisidualSum"><a class="viewcode-back" href="../index.html#analysis.calculateRisidualSum">[docs]</a><span class="k">def</span> <span class="nf">calculateRisidualSum</span><span class="p">(</span><span class="n">dataSet</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Take a dataseries and calculate the difference in the real value</span>
+<span class="sd">    for each year in the set with the value we get by using our linear model&#39;&#39;&#39;</span>
+    <span class="n">risidual</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">dataPoint</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">:</span> 
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dataPoint</span>
+        <span class="n">risd</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="n">risidual</span> <span class="o">+=</span> <span class="n">risd</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">risidual</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">TrendMapper 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Russell Loewe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>
