@@ -236,7 +236,7 @@ div#navbar li{
 	  width: 100%;
 	  display: grid;
 	  overflow: scroll;
-	  grid-template-columns: auto;
+	  grid-template-columns: 100%;
 	  grid-template-rows: 50px 50px 50px 50px auto 70px 40px;
 	  grid-template-areas:
 		  "banner "
@@ -266,5 +266,12 @@ div#navbar li{
   margin-left: auto;
   margin-right: auto;
   top: 0px;
+  }
+    #main {
+  	padding: 30px;
+  }
+  #main p{
+  	padding: 0px;
+  	margin: 0px
   }
 }
