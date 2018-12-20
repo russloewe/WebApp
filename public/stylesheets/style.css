@@ -96,8 +96,13 @@ div#content{
   pointer-events: none;
 }
 
-/*TITLE BAR*/
 
+/*MESSAGE*/
+#message {
+  padding-left: 100px;
+  }
+  
+  /*TITLE BAR*/
 #logout {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 45px;
@@ -155,6 +160,9 @@ grid-area: user;
 #navbar{
   grid-area: navbar;
 }
+#message{
+	grid-area: message;
+}
 
 body {
   display: grid;
@@ -162,8 +170,8 @@ body {
   grid-template-rows: [top] 50px [banner-bottom] 25px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
   grid-template-areas:
       "name banner user"
-      "icons main main"
-      "navbar  main main"
+      "icons message ."
+      "navbar  main ."
       "foot foot foot"
 }
 
@@ -224,28 +232,39 @@ div#navbar li{
 
 @media screen and (max-width: 600px) {
 	body {
+	  height: fit-content;
+	  width: 100%;
 	  display: grid;
-	  grid-template-columns: [nav-start] 50px [nav-end main-start] auto [main-end] 40px;
-	  grid-template-rows: [top] 50px [banner-bottom] 35px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
+	  overflow: scroll;
+	  grid-template-columns: auto;
+	  grid-template-rows: 50px 50px 50px 50px auto 70px 40px;
 	  grid-template-areas:
-		  "name banner user"
-		  "icons subheader ."
-		  "navbar  main main"
-		  "foot foot foot"
+		  "banner "
+		  "name"
+		  "icons"
+		  "navbar"
+		  "main"
+		  "foot"
+		  "user"
 	}
+  #name p {
+  text-align: center;
+  }
   #navbar {
      width: 100%;
      height:auto;
      margin-top: 0px;
      padding-top: 0px;
-     grid-area: subheader;
   }
   div#navbar li{
      margin:5px;
      float: left;
   }
-  #icons{
-  position:absolute;
+  div#icons{
+  width: fit-content;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   top: 0px;
   }
 }
