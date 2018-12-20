@@ -80,8 +80,8 @@ input[type=submit], button {
 /*MAIN CONTENT AREA*/
 #main{
 overflow: auto;
-padding-left: 100px;
-padding-right: 100px;
+padding-left: 50px;
+padding-right: 50px;
 }
 
 div#content{
@@ -166,12 +166,12 @@ grid-area: user;
 
 body {
   display: grid;
-  grid-template-columns: [nav-start] 120px [nav-end main-start] auto [main-end] 100px;
+  grid-template-columns: [nav-start] 120px [nav-end main-start] auto [main-end] 50px;
   grid-template-rows: [top] 50px [banner-bottom] 25px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
   grid-template-areas:
       "name banner user"
       "icons message ."
-      "navbar  main ."
+      "navbar  main main"
       "foot foot foot"
 }
 
