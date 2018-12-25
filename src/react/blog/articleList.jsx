@@ -34,6 +34,7 @@ class ArticleList extends React.Component {
                      </div>
                     ))
                 }
+		<br />
                 {this.props.isAdmin ? addbutton : ''}
            </div>
         )

@@ -75,6 +75,20 @@ input[type=submit], button {
   border-radius: 20px;
   overflow:auto;
   padding: 10px;
+  margin-bottom: 100px;
+}
+
+.tile div p{
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+.tile div img{
+	width: 400px;
+	height: 300px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 30%;
 }
 
 /*MAIN CONTENT AREA*/
