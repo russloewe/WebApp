@@ -99,8 +99,8 @@ input[type=submit], button {
   grid-template-columns:  30%  auto;
   grid-template-rows:  50px  50px;
   grid-template-areas:
-      ". h3"
-      ". p"
+      "img h3"
+      "img p"
 }
 .article-stub h3{
 	grid-area: h3;
@@ -110,6 +110,11 @@ input[type=submit], button {
 .article-stub p{
 	grid-area: p;
 }
+.article-stub img{
+   width: 100px;
+   height: 100%;
+   grid-area: img;
+ }
 /*MAIN CONTENT AREA*/
 #main{
 overflow: auto;
