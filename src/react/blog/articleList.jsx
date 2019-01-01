@@ -31,7 +31,7 @@ class ArticleList extends React.Component {
                 {this.props.articles.map(p => (
                     <div className="article-stub" key={p.article_id}>
                     <img src={p.thumb_img} />
-                    <h3>{p.title}</h3><p>{p.description}</p>
+                    <h3><a className="subnav" href={this.props.parent+"/post/"+p.article_id+'/'+p.title} >{p.title}</a></h3><p>{p.description}</p>
                      </div>
                     ))
                 }
