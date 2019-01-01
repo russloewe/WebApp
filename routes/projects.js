@@ -59,6 +59,8 @@ router.post('/edit', ensureAdminMW, function(req, res) {
         res.status(500).send('No body').end();
     }else if(!req.body.article_id ){
 		res.status(500).send('No article_id').end();
+    }else if(!req.body.description){
+		res.status(500).send('No article description ').end();
 	}else if(!req.body.title){
 		res.status(500).send('No article title ').end();
 	}else if(!req.body.text){
