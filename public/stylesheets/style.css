@@ -90,7 +90,26 @@ input[type=submit], button {
 	margin-right: auto;
 	padding-left: 30%;
 }
+/* ARTICLE LIST */
+.article-stub {
+	margin: 15px;
+	border: 1px solid blue;
+	background-color: #2b2b2b;
+  display: grid;
+  grid-template-columns:  30%  auto;
+  grid-template-rows:  50px  50px;
+  grid-template-areas:
+      ". h3"
+      ". p"
+}
+.article-stub h3{
+	grid-area: h3;
+	background-color:#1f1d1d;
 
+}
+.article-stub p{
+	grid-area: p;
+}
 /*MAIN CONTENT AREA*/
 #main{
 overflow: auto;
