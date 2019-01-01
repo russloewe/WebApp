@@ -15,6 +15,7 @@ class EditArticle extends React.Component {
         this.state = {title: this.props.article.title,
                       text: this.props.article.text,
                       keywords: this.props.article.keywords,
+                      description: this.props.article.description,
                       visible: false}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -36,6 +37,7 @@ class EditArticle extends React.Component {
         const jsonData = {title: this.state.title,
                           text: this.state.text,
                           keywords: this.state.keywords,
+                          description: this.state.description,
                           article_id: this.props.article.article_id}
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
@@ -72,6 +74,7 @@ class EditArticle extends React.Component {
             <form onSubmit={this.handleSubmit} >
                  Title: <input name="title" type="text" value={this.state.title} onChange={this.handleChange} /> <br/>
                  Keywords: <input name="keywords" type="text" value={this.state.keywords} onChange={this.handleChange} /> <br/>
+                 Description: <input name="description" type="text" value={this.state.description} onChange={this.handleChange} /><br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
               </form>
