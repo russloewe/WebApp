@@ -27,9 +27,9 @@ class ArticleList extends React.Component {
         const addbutton =  <AddArticle apiTarget={this.props.parent+"/add"} update={this.props.editArticleCB} />;
 
         return(
-           <div >
+           <div className="article-list" >
                 {this.props.articles.map(p => (
-                    <div key={p.article_id}>
+                    <div className="article-stub" key={p.article_id}>
                     <h3>{p.title}</h3><p>{p.description}</p>
                      </div>
                     ))
