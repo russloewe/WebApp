@@ -149,8 +149,9 @@ function updateArticle(article, table, cb){
             const title = "title = '" + article.title+"'";
             const keywords = "keywords = '" + article.keywords+"'";
             const text =  "text = '" + article.text+"'";
+            const description = "description='" + article.description+"'";
             const end = " WHERE article_id ="+article.article_id+";";
-            const query_str = intro + title + ", " + keywords + ", " + text + end;
+            const query_str = intro + title + ", " + keywords + ", " + text + "," + description + end;
             client.query(query_str, function(err, res) {
                 done();
                 if(err){
