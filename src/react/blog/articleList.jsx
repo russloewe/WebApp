@@ -30,6 +30,7 @@ class ArticleList extends React.Component {
            <div className="article-list" >
                 {this.props.articles.map(p => (
                     <div className="article-stub" key={p.article_id}>
+                    <img src={p.thumb_img} />
                     <h3>{p.title}</h3><p>{p.description}</p>
                      </div>
                     ))
