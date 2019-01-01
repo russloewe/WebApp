@@ -74,10 +74,11 @@ describe("Test article database internal api", function(){
             article = {title: 'test article',
                        author: 'test author',
                        keywords: 'test test',
+                       description: 'test description',
                        text: 'Article text body'};
             const formatted = db.sqlAddArticleFormat(article, "articles");
             expect(formatted).to.be.a('string');
-            expect(formatted).to.equal("INSERT INTO articles (title, author, keywords, text, created_on) VALUES('test article','test author','test test','Article text body', CURRENT_TIMESTAMP);");
+            expect(formatted).to.equal("INSERT INTO articles (title, author, keywords, text, description, created_on) VALUES('test article','test author','test test','Article text body','test description', CURRENT_TIMESTAMP);");
             done();
         }).timeout(1000);
     });
