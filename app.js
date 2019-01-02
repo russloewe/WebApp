@@ -49,9 +49,9 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 app.use(function(req, res, next) {
     const userAgent = req.headers['user-agent'];
     if(userAgent.includes('Mobi')){ //simple test for mobile device
-        req.style = '/stylesheets/style_mobile.css';
+        req.style = '/stylesheets/mobile.css';
     }else{
-        req.style = '/stylesheets/style.css';
+        req.style = '/stylesheets/desktop.css';
     }
     next();
 });
