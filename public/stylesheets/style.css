@@ -204,7 +204,7 @@ grid-area: user;
 
 body {
   display: grid;
-  grid-template-columns: [nav-start] 120px [nav-end main-start] auto [main-end] 50px;
+  grid-template-columns: [nav-start] 180px [nav-end main-start] auto [main-end] 50px;
   grid-template-rows: [top] 50px [banner-bottom] 25px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
   grid-template-areas:
       "name banner user"
