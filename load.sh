@@ -7,6 +7,13 @@ load () {
     cp -R /media/$FOLDER/* ./
 }
 
+css () {
+    echo "Bundling desktop css files"
+    cat ./src/stylesheets/desktop/*.scss > ./public/stylesheets/desktop.css
+    echo "Bundling mobile css files"
+    cat ./src/stylesheets/mobile/*.scss > ./public/stylesheets/mobile.css
+}
+
 webpack () {
     echo "Calling webpack"
     ./node_modules/.bin/webpack --config webpack.config.js >&2
@@ -21,7 +28,7 @@ sql () {
 }
 
 
-while getopts ":hwplq" opt; do
+while getopts ":hwplqc" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
@@ -33,6 +40,7 @@ while getopts ":hwplq" opt; do
     w) webpack ;;
     p) Prod ;;
     l) load    ;;
+    c) css ;;
     q) sql ;;
      *) echo "Unknown option" 
         break   ;;
