@@ -27,7 +27,8 @@ ReactDOM.render(
             <Route exact path="/" component={Home} />
             <Route path="/admin" component={Admin} />
             <Route path="/auth/login" component={LoginScreen} />
-            <Route path="/blog" component={Blog} />
+            <Route exact path="/blog" component={Blog} />
+            <Route path="/blog/post/:id" component={Blog} />
             <Route exact path="/projects" component={Projects} />
             <Route path="/projects/post/:id" component={Projects} />
         </div>
