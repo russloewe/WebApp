@@ -1,0 +1,42 @@
+/****************************TITLE BAR********************************/
+#logout {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 45px;
+  background: #cecece;
+}
+
+div#userbox {
+  position: absolute;
+  right: 0;
+  width: fit-content;
+  height: 20px;
+  float: right;
+  background: #3a2044;
+  border-radius: 5px;
+  padding-top: 3px;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div#userbox a {
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #99a2a9;
+  border-radius: 5px;
+  display: inline;
+  background: #220c3c;
+}
+
+#name {
+  padding: 10px;
+}
+#name p{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin:0;
+  text-align: left;
+}
+
+/*MESSAGE*/
+#message {
+  padding-left: 100px;
+  }
+  
+/****************************END TITLE BAR********************************/

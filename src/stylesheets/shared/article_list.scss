@@ -1,0 +1,32 @@
+/************************** ARTICLE LIST ***************************/
+.article-list a{
+	width: 700px;
+}
+.article-stub {
+	margin: 15px;
+	background-color: #2b2b2b;
+  display: grid;
+  grid-template-columns:  30%  auto;
+  grid-template-rows:  65px 65px;
+  grid-template-areas:
+      "img h3"
+      "img p"
+}
+.article-stub div{
+   width: 500px;
+}
+   
+.article-stub h3{
+	grid-area: h3;
+	background-color:#1f1d1d;
+
+}
+.article-stub p{
+	grid-area: p;
+}
+.article-stub img{
+   width: 170px;
+   height: 100%;
+   grid-area: img;
+ }
+/**************************END ARTICLE LIST ***************************/

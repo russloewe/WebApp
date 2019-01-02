@@ -1,0 +1,38 @@
+/**********************BODY GRID *************************************/
+
+#icons{
+  grid-area: icons;
+}
+#title-text{
+  grid-area: banner;
+}
+#userbox{
+grid-area: user;
+}
+#name {
+  grid-area: name;
+}
+#main{
+  grid-area: main;
+}
+#foot {
+  grid-area: foot;
+}
+#navbar{
+  grid-area: navbar;
+}
+#message{
+	grid-area: message;
+}
+
+body {
+  display: grid;
+  grid-template-columns: [nav-start] 180px [nav-end main-start] auto [main-end] 50px;
+  grid-template-rows: [top] 50px [banner-bottom] 25px [subbanner-top] auto [main-bottom foot-top] 70px [foot-bottom];
+  grid-template-areas:
+      "name banner user"
+      "icons message ."
+      "navbar  main main"
+      "foot foot foot"
+}
+/**********************END BODY GRID *************************************/
