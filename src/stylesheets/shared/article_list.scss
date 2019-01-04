@@ -1,6 +1,6 @@
 /************************** ARTICLE LIST ***************************/
 .article-list a{
-	width: 800px;
+	width: 700px;
 }
 .article-stub {
 	margin: 15px;
@@ -25,14 +25,15 @@
 }
 .article-stub h3{
 	grid-area: h3;
-	padding: 0px;
+	padding: 7px;
 	margin: 0px;
+	height: fit-content;
 	background-color:#1f1d1d;
-	margin-right: 40px;
 
 }
 .article-stub p{
 	grid-area: p;
+    padding: 5px 0 5px 0;
 }
 .article-stub img{
    width: 200px;
