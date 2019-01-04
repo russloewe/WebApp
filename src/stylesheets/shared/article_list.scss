@@ -1,9 +1,12 @@
 /************************** ARTICLE LIST ***************************/
 .article-list a{
-	width: 700px;
+    width: 700px;
+	padding: 5px;
+	margin: 20px auto 20px auto;
+	height: fit-content;
 }
 .article-stub {
-	margin: 15px;
+	margin: 0px;
 	height: fit-content;
 	background-color: #2b2b2b;
   display: grid;
