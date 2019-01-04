@@ -88,7 +88,7 @@ class Blog extends React.Component {
     render() {
 		if(this.props.match.params.id){
 			return(
-				<Article article={this.props.project} key={this.props.project.article_id} title={true} date={false}/>
+				<Article article={this.props.project} key={this.props.project.article_id} title={true} date={true}/>
 			)
 		}else{
 			return(

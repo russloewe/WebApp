@@ -29,15 +29,11 @@ function Article(props){
 			)};
 				
     return(    
-       <div id="article" >
-            <div className="tile">
-            <h3>{title}</h3>
-            {datetext}<br/>
+       <div className="article" >
+            <h2>{title}</h2>
+            <h6>{datetext}</h6><br/>
             <div dangerouslySetInnerHTML={{ __html: props.article.text }}></div>
-            {props.isAdmin ? editbutton(props.article) : ''}
-            </div>
-
-            
+            {props.isAdmin ? editbutton(props.article) : ''}       
        </div>
         )
 }
