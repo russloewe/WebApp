@@ -95,7 +95,7 @@ class Projects extends React.Component {
 			)
 		}else{
 			return(
-				<ArticleList articles={this.props.projects}  />
+				<ArticleList articles={this.props.projects} image={true} date={false} />
 			)
 		}
 	}

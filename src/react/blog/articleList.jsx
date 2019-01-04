@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { Provider } from "react-redux";
 //sub comp
-import Article from './article.jsx';
+import ArticleStub from './articleStub.jsx';
 
 import AddArticle from './addArticle.jsx';
 //redux store
@@ -30,13 +30,7 @@ class ArticleList extends React.Component {
            <div className="article-list" >
                 {this.props.articles.map(p => (
                     <div key={p.article_id}>
-                    <a className="subnav" href={this.props.parent+"/post/"+p.article_id+'/'+p.title} >
-                        <div className="article-stub">
-                            <img src={p.thumb_img} />
-                            <h3>{p.title}</h3>
-                            <p>{p.description}</p>
-                        </div>
-                    </a>
+                        <ArticleStub article={p} date={this.props.date} image={this.props.image} parent={this.props.parent} />
                     </div>
                     ))
                 }
