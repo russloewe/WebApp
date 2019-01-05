@@ -1,3 +1,37 @@
 /***********************ARTICLE***********************************/
-
+.article div{
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.article pre{
+	color: #a09bff;
+	background-color: #424242;
+	border-radius: 4px;
+    padding: 8px;
+	width: 80ch;
+	margin-left: auto;
+	margin-right: auto;
+}
+.article pre.command{
+	color: #2cf731;
+	background-color: #424242;
+	border-radius: 4px;
+    padding: 8px;
+	width: 80ch;
+	margin-left: auto;
+	margin-right: auto;
+}
+.article code {
+	color: #a09bff;
+}
+.article code.command {
+	color: #2cf731;
+}
+.article file{
+	color: #fd79fa;
+}
+.article p.text-warning{
+	color: #ffba05;
+}
 /***********************END ARTICLE******************************/
