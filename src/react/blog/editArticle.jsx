@@ -36,11 +36,12 @@ class EditArticle extends React.Component {
         let toggle = this.toggleVisible;
         event.preventDefault();
         const jsonData = {title: this.state.title,
-                          text: this.state.text,
+                          text: this.state.text.split("'").join("''"),
                           keywords: this.state.keywords,
                           description: this.state.description,
                           thumb_img: this.state.thumb_img,
                           article_id: this.props.article.article_id}
+        console.log(jsonData);
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
                 console.log('Error Trying to change user.');
