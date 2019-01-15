@@ -11,14 +11,14 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 router.get('/', function(req, res, next) {
   res.render('index', { title: "Blog",
                            style: req.style,
-                           footerimage: "http://"+siteName+"/images/graphics/treeline2_dim.png",
+                           footerimage: "https://"+siteName+"/images/graphics/treeline2_dim.png",
                            sitename: siteName});
 });
 
 router.get('/post/*', function(req, res, next) {
   res.render('index', { title: "Blog",
                            style: req.style,
-                           footerimage: "http://"+siteName+"/images/graphics/treeline2_dim.png",
+                           footerimage: "https://"+siteName+"/images/graphics/treeline2_dim.png",
                            sitename: siteName});
 });
 router.get('/all/titles', function(req, res, next) {
