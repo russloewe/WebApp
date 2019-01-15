@@ -18,7 +18,7 @@ console.log(databaseConfig);
  */
  
 function sqlAddArticleFormat(article, table) {
-   const query = 'INSERT INTO '+table+' (title, author, keywords, text, description, thumb_img created_on) VALUES';
+   const query = 'INSERT INTO '+table+' (title, author, keywords, text, description, thumb_img, created_on) VALUES';
    const to_str = [article.title, article.author, article.keywords, article.text, article.description, article.thumb_img];
    const to_str_quotes = to_str.map(function(ele){
         return( "'"+ele+"'");
