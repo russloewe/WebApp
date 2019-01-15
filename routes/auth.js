@@ -22,7 +22,7 @@ router.get('/login:auth?:success?', function(req, res) {
     }
     res.render('index', {title: 'Login Screen', message: loginMessage,
                             style: req.style,
-                            footerimage: "http://"+siteName+"/images/graphics/treeline_dim.png",
+                            footerimage: "https://"+siteName+"/images/graphics/treeline_dim.png",
                             sitename: siteName});
 });
 
