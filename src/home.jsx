@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+//redux store functions
+import { setEditArticleCB} from "./redux/actions.js";
 //sub comp
 import Article from './react/blog/article.jsx';
 import EditArticle from './react/blog/editArticle.jsx';
@@ -22,6 +24,7 @@ class Home extends React.Component {
         this.state ={home: ''};
         this.getHome = this.getHome.bind(this);
         this.getHome();
+    store.dispatch(setEditArticleCB(this.getHome));
     }
     getHome(){
         getSimple('/home', function(err,res){
