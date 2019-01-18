@@ -15,9 +15,9 @@ function Article(props){
 	    let datetext;
         let date;
         if(props.article.created_on){
-         datestring = props.article.created_on.split("T")[0].split("-");
+         const datestring = props.article.created_on.split("T")[0].split("-");
          date = {year: datestring[0],
-                    month: datestring[1],
+                    month: parseInt(datestring[1]),
                     day: datestring[2]};
         }else{
              date = {year: 0,
@@ -31,7 +31,7 @@ function Article(props){
 	    else{title = '';}
 	    
 	    if(props.date){ 
-			datetext = monthlist[date.month] + ' '+ date.day + ', '+date.year;}
+			datetext = monthlist[date.month - 1] + ' '+ date.day + ', '+date.year;}
 	    else{datetext = '';}
 	    
 	    const editbutton = (p) => { 
