@@ -5,6 +5,7 @@
 	margin-right: auto;
 }
 .article pre{
+    font: 15px/1.5 Monaco, MonoSpace;
 	color: #a09bff;
 	background-color: #424242;
 	border-radius: 4px;
@@ -14,6 +15,7 @@
 	margin-right: auto;
 }
 .article pre.command{
+    font: 15px/1.5 Monaco, MonoSpace;
 	color: #2cf731;
 	background-color: #424242;
 	border-radius: 4px;
@@ -23,12 +25,15 @@
 	margin-right: auto;
 }
 .article code {
+    font: 15px/1.5 Monaco, MonoSpace;
 	color: #a09bff;
 }
 .article code.command {
+    font: 15px/1.5 Monaco, MonoSpace;
 	color: #2cf731;
 }
 .article file{
+    font: 15px/1.5 Monaco, MonoSpace;
 	color: #fd79fa;
 }
 .article p.text-warning{
