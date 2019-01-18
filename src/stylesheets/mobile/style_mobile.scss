@@ -6,7 +6,7 @@ html, body {
   overflow: hidden;
   padding:0px;
   margin:0;
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px/1.1 Monaco, MonoSpace;
   position: relative;
   background: #02001d;
   color: #696971
@@ -211,7 +211,15 @@ div#navbar ul{
 }
 
 div#navbar li{
-  margin:5px;
+  margin:5px;/***************************ICONS*************************************/
+div#icons li{
+  float: left;
+}
+div#icons {
+    position: absolute;
+    padding-left: 30px;
+    bottom: 0;
+}
   float: left;
 }
 #icons ul li {
