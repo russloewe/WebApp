@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { Provider } from "react-redux";
 import EditArticle from './editArticle.jsx';
+import FormatDate from '../formatting/date.jsx';
 
 const mapStateToProps = state => {
     return{isAdmin: state.user.isAdmin,
@@ -13,26 +14,13 @@ const mapStateToProps = state => {
 function Article(props){
 	    let title;
 	    let datetext;
-        let date;
-        if(props.article.created_on){
-         const datestring = props.article.created_on.split("T")[0].split("-");
-         date = {year: datestring[0],
-                    month: parseInt(datestring[1]),
-                    day: datestring[2]};
+        if(props.article.created_on && props.date){
+          datetext = FormatDate(props.article.created_on);
         }else{
-             date = {year: 0,
-                    month: 0,
-                    day: 0};
-                }
-        
-		const monthlist = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
-		
+            datetext = '';
+        }
 		if(props.title){ title = props.article.title;}
 	    else{title = '';}
-	    
-	    if(props.date){ 
-			datetext = monthlist[date.month - 1] + ' '+ date.day + ', '+date.year;}
-	    else{datetext = '';}
 	    
 	    const editbutton = (p) => { 
 			return(

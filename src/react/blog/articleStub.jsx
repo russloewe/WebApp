@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { Provider } from "react-redux";
+import FormatDate from "../formatting/date.jsx";
 
 const mapStateToProps = state => {
     return{isAdmin: state.user.isAdmin,
@@ -13,18 +14,16 @@ function ArticleStub(props){
 	    let title;
 	    let datetext;
         let img;
-        let date = new Date(props.article.created_on);
-		const monthlist = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
-		
+        if(props.article.created_on && props.date){
+          datetext = FormatDate(props.article.created_on);
+        }else{
+            datetext = '';
+        }
 	    if(props.image){
             img = <img src={props.article.thumb_img} />;
         }else{
             img = '';
         }
-
-	    if(props.date){ 
-			datetext = monthlist[date.getMonth()] + ' '+ date.getDay() + ', '+date.getFullYear();}
-	    else{datetext = '';}
 
     return(    
         <a href={props.parent+"/post/"+props.article.article_id+'/'+props.article.title} >
