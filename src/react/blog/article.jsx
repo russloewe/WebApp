@@ -13,14 +13,25 @@ const mapStateToProps = state => {
 function Article(props){
 	    let title;
 	    let datetext;
-        let date = new Date(props.article.created_on);
+        let date;
+        if(props.article.created_on){
+         datestring = props.article.created_on.split("T")[0].split("-");
+         date = {year: datestring[0],
+                    month: datestring[1],
+                    day: datestring[2]};
+        }else{
+             date = {year: 0,
+                    month: 0,
+                    day: 0};
+                }
+        
 		const monthlist = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
 		
 		if(props.title){ title = props.article.title;}
 	    else{title = '';}
 	    
 	    if(props.date){ 
-			datetext = monthlist[date.getMonth()] + ' '+ date.getDay() + ', '+date.getFullYear();}
+			datetext = monthlist[date.month] + ' '+ date.day + ', '+date.year;}
 	    else{datetext = '';}
 	    
 	    const editbutton = (p) => { 
