@@ -26,8 +26,8 @@ export default class AddArticle extends React.Component {
         let cb = this.props.update;
         let toggle = this.toggleVisible;
         event.preventDefault();
-        const jsonData = {title: this.state.title,
-                          text: this.state.text,
+        const jsonData = {title: this.state.title.split("'").join("''"),
+                          text: this.state.text.split("'").join("''"),
                           keywords: this.state.keywords}
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
