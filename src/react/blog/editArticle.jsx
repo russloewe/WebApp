@@ -35,7 +35,7 @@ class EditArticle extends React.Component {
         let cb = this.props.editArticleCB;
         let toggle = this.toggleVisible;
         event.preventDefault();
-        const jsonData = {title: this.state.split("'").join("''"),
+        const jsonData = {title: this.state.title.split("'").join("''"),
                           text: this.state.text.split("'").join("''"),
                           keywords: this.state.keywords,
                           description: this.state.description,
