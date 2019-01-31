@@ -1,0 +1,29 @@
+/******************************SIDEBAR*******************************/
+#navbar {
+  float: left;
+  height: 100%;
+  padding: 0px;
+  font: 150px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.navbar a{
+	width: fit-content;
+	margin-left: 20px;
+	margin-right: auto;
+	color: #4c5256;
+}
+
+.subnav ul li a{
+  font: 60px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #494c54;
+}
+
+div#navbar ul{
+  display: inline;
+}
+
+div#navbar li{
+  margin:5px;
+  background-color: #262436;
+}
+/******************************END SIDEBAR*******************************/
