@@ -92,7 +92,7 @@ class Blog extends React.Component {
 			)
 		}else{
 			return(
-				<ArticleList articles={this.props.projects} image={false} date={true} />
+				<ArticleList articles={this.props.projects} image={true} date={true} />
 			)
 		}
 	}
