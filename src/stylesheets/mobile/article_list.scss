@@ -12,12 +12,13 @@
     border-radius: 3px;
     background-color: #2b2b2b;
     display: grid;
-    grid-template-columns:  210px  auto;
-    grid-template-rows:  auto auto;
+    grid-template-columns: auto;
+    grid-template-rows:  auto;
     grid-template-areas:
-      "date h3"
-      "img p"
-      "img p"
+      "h3"
+      "img"
+      "date"
+      "p"
 }
 .article-stub div{
     width: 500px;
@@ -42,7 +43,8 @@
 }
 .article-stub img{
     grid-area: img;
-    width: 200px;
-    height: 150px;
+    margin: 0 auto;
+    width: 600px;
+    height: 400px;
  }
 /**************************END ARTICLE LIST ***************************/
