@@ -8,8 +8,8 @@ html, body {
   margin:0;
   font: 60px  Arial,helvetica,"Segoe UI",sans-serif;
   position: relative;
-  background: #02001d;
-  color: #696971
+  background: -BACKGROUND-COLOR-;
+  color: -MAIN-TEXT-COLOR- ;
 }
 div{
 height: fit-content;
@@ -20,7 +20,7 @@ a {
   display: block;
   text-decoration: none;
   padding: 3px;
-  color: #515441;
+  color: -STUB-BACKGROUND-COLOR-;
 }
 
 h4{

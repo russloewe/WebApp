@@ -10,7 +10,7 @@
     height: fit-content;
     overflow: hidden;
     border-radius: 3px;
-    background-color: #2b2b2b;
+    background: -ARTICLE-STUB-BACKGROUND-COLOR-;
     display: grid;
     grid-template-columns:  210px  auto 100px;
     grid-template-rows:  auto auto;
@@ -40,7 +40,7 @@
     padding: 7px;
     margin: 0px;
     height: fit-content;
-    background-color:#1f1d1d;
+    background: -ARTICLE-STUB-H3-COLOR-;
 }
 .article-stub p{
     grid-area: p;

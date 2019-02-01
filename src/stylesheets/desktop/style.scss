@@ -6,8 +6,8 @@ html, body {
     margin:0;
     font: 18px  Arial,helvetica,"Segoe UI",sans-serif;
     position: relative;
-    background: #000000;
-    color: #696971
+    background: -BACKGROUND-COLOR-;
+    color: -MAIN-TEXT-COLOR-;
 }
 
 a {
@@ -15,12 +15,12 @@ a {
     display: block;
     text-decoration: none;
     padding: 3px;
-    color: #515441;
+    color: -LINK-BACKGROUND-COLOR-;
 }
 a:hover {
     color:#797474;
     text-decoration: none;
-    background-color: #636161;
+    background: -LINK-HOVER-BACKGROUND-COLOR-;
     border-radius: 7px;
 }
 h4{
