@@ -1,0 +1,29 @@
+/************************** ARTICLE LIST DESKTOP***************************/
+.article-list{
+	width: 100%;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-auto-rows: auto;
+	grid-gap: 20px;
+}
+.article-stub {
+    margin: 0px;
+    height: fit-content;
+    overflow: hidden;
+    border-radius: 3px;
+    background: --STUB-BACKGROUND-COLOR--;
+    display: grid;
+    grid-template-columns:  210px  auto 100px;
+    grid-template-rows:  auto auto;
+    grid-template-areas:
+      "h3 h3 date"
+      "img p p"
+      "img p p"
+}
+
+.article-stub img{
+    grid-area: img;
+    width: 200px;
+    height: 150px;
+ }
+/**************************END ARTICLE LIST ***************************/

@@ -11,7 +11,7 @@ div#userbox {
   width: fit-content;
   height: 20px;
   float: right;
-  background: #3a2044;
+  background: --NAV-LINK-BACKGROUND-COLOR--;
   border-radius: 5px;
   padding-top: 3px;
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -19,10 +19,11 @@ div#userbox {
 
 div#userbox a {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #99a2a9;
+  color: --NAV-LINK-TEXT-COLOR--;
   border-radius: 5px;
+  border: 1px solid --MAIN-BORDER-COLOR--;
   display: inline;
-  background: #220c3c;
+  background: --NAV-LINK-BACKGROUND-COLOR--;
 }
 
 #name {

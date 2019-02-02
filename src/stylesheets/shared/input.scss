@@ -1,15 +1,15 @@
 /*****************************INPUT************************************/
 input[type=text], input[type=password], textarea{
-	color: MAIN-TEXT-COLOR;
-	background: #3a2044;
-	border: 2px solid #757179;
+	color: --MAIN-TEXT-COLOR--;
+	background: --MAIN-BACKGROUND-COLOR--;
+	border: 1px solid black;
 	border-radius: 3px;
 	margin: 2px;
 }
 input[type=submit], button {
-	color: BACKGROUND-COLOR;
-	background: #757179;
-	border: 2px solid #757179;
+	color: --MAIN-TEXT-COLOR--;
+	background: --MAIN-BACKGROUND-COLOR--;
+	border: 1px solid black;
 	border-radius: 4px;
 	margin: 2px;
 }
