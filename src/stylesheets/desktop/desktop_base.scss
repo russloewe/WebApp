@@ -15,16 +15,17 @@ min-height: 100%;
 }
 
 a {
-    color: --MAIN-LINK-TEXT-COLOR--;
+	width: fit-content;
+    color: black;
     display: block;
     text-decoration: none;
     padding: 3px;
-    color: --MAIN-LINK-BACKGROUND-COLOR--;
+    color: blue;
 }
 a:hover {
-    color:#797474;
+    color:#ffffff;
     text-decoration: none;
-    background: --MAIN-LINK-HOVER-BACKGROUND-COLOR--;
+    background: gray;
     border-radius: 7px;
 }
 h4{
