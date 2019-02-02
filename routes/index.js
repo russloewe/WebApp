@@ -11,7 +11,7 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 router.get('/', function(req, res, next) {
   res.render('index', { title: siteName, root: 'root',
                         style: req.style,
-                        footerimage: "images/graphics/treeline3_dim.png",
+                        footerimage: "images/graphics/treeline_home.jpg",
                         sitename: siteName});
 });
 router.get('/home', function(req, res, next) {
