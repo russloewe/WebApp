@@ -11,7 +11,8 @@
     height: fit-content;
     overflow: hidden;
     border-radius: 3px;
-    background: --STUB-BACKGROUND-COLOR--;
+    background: --MAIN-BACKGROUND-COLOR--;
+    border: 1px solid --MAIN-BORDER-COLOR--;    
     display: grid;
     grid-template-columns:  210px  auto 100px;
     grid-template-rows:  auto auto;

@@ -7,4 +7,9 @@ div#icons {
     padding-left: 30px;
     bottom: 0;
 }
+
+div#icons a:hover{
+background-color: white;
+border: 2px solid --MAIN-LINK-HOVER-BACKGROUND-COLOR--;
+}
 /***************************END ICONS*************************************/

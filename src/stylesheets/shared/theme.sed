@@ -7,7 +7,7 @@ s/--MAIN-LINK-TEXT-COLOR--/black/g;
 s/--MAIN-BORDER-COLOR--/black/g;
 s/--NAV-LINK-TEXT-COLOR--/black/g;
 s/--NAV-LINK-BACKGROUND-COLOR--/white/g;
-s/--NAV-LINK-HOVER-TEXT-COLOR--/white/g;
+s/--NAV-LINK-HOVER-TEXT-COLOR--/black/g;
 s/--NAV-LINK-HOVER-BACKGROUND-COLOR--/#d8d8d8/g;
 s/--STUB-BACKGROUND-COLOR--/#b9b9b9/g;
 s/--STUB-H3-COLOR--/#949494/g;
