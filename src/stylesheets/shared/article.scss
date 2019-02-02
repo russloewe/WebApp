@@ -6,7 +6,7 @@
 }
 .article pre{
     font: 15px/1.5 Monaco, MonoSpace;
-	color: #a09bff;
+	color: --CODE-SOURCE--;
 	background-color: #424242;
 	border-radius: 4px;
     padding: 8px;
@@ -16,7 +16,7 @@
 }
 .article pre.command{
     font: 15px/1.5 Monaco, MonoSpace;
-	color: #2cf731;
+	color: --CODE-COMMAND--;
 	background-color: #424242;
 	border-radius: 4px;
     padding: 8px;
@@ -26,15 +26,15 @@
 }
 .article code {
     font: 15px/1.5 Monaco, MonoSpace;
-	color: #a09bff;
+	color: --CODE-SOURCE--;
 }
 .article code.command {
     font: 15px/1.5 Monaco, MonoSpace;
-	color: #2cf731;
+	color: --CODE-COMMAND--;
 }
 .article file{
     font: 15px/1.5 Monaco, MonoSpace;
-	color: #fd79fa;
+	color: --CODE-FILENAME--;
 }
 .article p.text-warning{
 	color: #ffba05;
