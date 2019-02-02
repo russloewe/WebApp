@@ -8,19 +8,19 @@ html, body {
   margin:0;
   font: 60px  Arial,helvetica,"Segoe UI",sans-serif;
   position: relative;
-  background: -BACKGROUND-COLOR-;
-  color: -MAIN-TEXT-COLOR- ;
+  background: --MAIN-BACKGROUND-COLOR--;
+  color: --MAIN-TEXT-COLOR-- ;
 }
 div{
 height: fit-content;
 }
 
 a {
-  color: #00B7FF;
+  color: --MAIN-LINK-TEXT-COLOR--;
   display: block;
   text-decoration: none;
   padding: 3px;
-  color: -STUB-BACKGROUND-COLOR-;
+  color: --MAIN-LINK-BACKGROUND-COLOR--;
 }
 
 h4{

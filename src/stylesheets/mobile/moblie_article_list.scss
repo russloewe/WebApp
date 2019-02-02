@@ -1,0 +1,24 @@
+/************************** ARTICLE LIST MOBILE***************************/
+
+.article-stub {
+    margin: 0px;
+    height: fit-content;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: -ARTICLE--STUB-BACKGROUND-COLOR--;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows:  auto;
+    grid-template-areas:
+      "h3"
+      "img"
+      "date"
+      "p"
+}
+.article-stub img{
+    grid-area: img;
+    margin: 0 auto;
+    width: 600px;
+    height: 400px;
+ }
+/**************************END ARTICLE LIST ***************************/
