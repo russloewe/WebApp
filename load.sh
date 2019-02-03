@@ -9,9 +9,9 @@ load () {
 
 css () {
     echo "Bundling desktop css files"
-    cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme.sed > ./public/stylesheets/desktop.css
+    cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_desktop.sed > ./public/stylesheets/desktop.css
     echo "Bundling mobile css files"
-    cat ./src/stylesheets/mobile/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme.sed > ./public/stylesheets/mobile.css
+    cat ./src/stylesheets/mobile/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_mobile.sed > ./public/stylesheets/mobile.css
 }
 
 webpack () {

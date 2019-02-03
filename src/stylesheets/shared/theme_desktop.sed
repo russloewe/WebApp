@@ -15,3 +15,8 @@ s/--ARTICLE-HEADER-TEXT-COLOR--/teal/g;
 s/--CODE-FILENAME--/#ff00ff/g;
 s/--CODE-SOURCE--/#9f99ff/g;
 s/--CODE-COMMAND--/#0fa10f/g;
+s/--CODE-BOX-COLOR--/#424242/g;
+s/--CODE-BOX-WIDTH--/82ch/g;
+s/--CODE-TEXT-FONT--/Monaco, MonoSpace/g;
+s/--MAIN-TEXT-SIZE--/14px/g;
+s/--MAIN-TEXT-FONT--/"Lucida Grande", Helvetica, Arial, sans-serif/g;

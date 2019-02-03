@@ -3,7 +3,7 @@
   float: left;
   height: 100%;
   padding-left: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: --MAIN-TEXT-SIZE-- --MAIN-TEXT-FONT--;
 }
 
 .navbar a{
@@ -17,12 +17,17 @@
 .navbar a:hover{
    color: --NAV-LINK-HOVER-TEXT-COLOR--;
    background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
-     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+     font: calc(--MAIN-TEXT-SIZE-- + 1px) --MAIN-TEXT-FONT--;
    }
 
 .subnav ul li a{
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: calc(--MAIN-TEXT-SIZE-- - 2px) --MAIN-TEXT-FONT--;
   color: --NAV-LINK-TEXT-COLOR--;
+}
+.subnav ul li a:hover{
+  color: --NAV-LINK-HOVER-TEXT-COLOR--;
+  background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
+  font: calc(--MAIN-TEXT-SIZE-- - 1px) --MAIN-TEXT-FONT--;
 }
 
 div#navbar ul{

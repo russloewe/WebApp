@@ -5,35 +5,35 @@
 	margin-right: auto;
 }
 .article pre{
-    font: 15px/1.5 Monaco, MonoSpace;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
 	color: --CODE-SOURCE--;
-	background-color: #424242;
+	background-color: --CODE-BOX-COLOR--;
 	border-radius: 4px;
     padding: 8px;
-	width: 82ch;
+	width: --CODE-BOX-WIDTH--;
 	margin-left: auto;
 	margin-right: auto;
 }
 .article pre.command{
-    font: 15px/1.5 Monaco, MonoSpace;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
 	color: --CODE-COMMAND--;
-	background-color: #424242;
+	background-color: --CODE-BOX-COLOR--;
 	border-radius: 4px;
     padding: 8px;
-	width: 80ch;
+	width: --CODE-BOX-WIDTH--;
 	margin-left: auto;
 	margin-right: auto;
 }
 .article code {
-    font: 15px/1.5 Monaco, MonoSpace;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
 	color: --CODE-SOURCE--;
 }
 .article code.command {
-    font: 15px/1.5 Monaco, MonoSpace;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
 	color: --CODE-COMMAND--;
 }
 .article file{
-    font: 15px/1.5 Monaco, MonoSpace;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
 	color: --CODE-FILENAME--;
 }
 .article p.text-warning{
