@@ -48,7 +48,15 @@
 }
 
 .article h2{
+    font: calc(--MAIN-TEXT-SIZE-- *1.8) --MAIN-TEXT-FONT--;
 	color: --ARTICLE-HEADER-TEXT-COLOR--;
+}
+.article h3{
+    font: calc(--MAIN-TEXT-SIZE-- *1.6) --MAIN-TEXT-FONT--;
+	color: --ARTICLE-HEADER-TEXT-COLOR--;
+    text-align: left;
+    margin-left: -10px;
+    margin-top: 40px;
 }
 .article h4{
     color: --ARTICLE-HEADER-TEXT-COLOR--;
