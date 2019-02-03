@@ -1,4 +1,5 @@
 var siteName = require('../settings.js').siteName;
+var adminImg = require('../settings.js').adminImg;
 const express = require('express');
 const router  = express.Router();
 const passport = require("passport");
@@ -22,7 +23,7 @@ router.get('/login:auth?:success?', function(req, res) {
     }
     res.render('index', {title: 'Login Screen', message: loginMessage,
                             style: req.style,
-                            footerimage: "https://"+siteName+"/images/graphics/treeline_dim.png",
+                            footerimage: adminImg,
                             sitename: siteName});
 });
 

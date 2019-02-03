@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var siteName = require('../settings.js').siteName;
+var adminImg = require('../settings.js').adminImg;
 
 /* GET profile page. */
 router.get('/', function(req, res, next) {
