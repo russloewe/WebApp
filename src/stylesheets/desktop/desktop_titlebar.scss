@@ -1,10 +1,11 @@
 /****************************TITLE BAR Desk********************************/
 
 #name p{
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: --MAIN-TEXT-SIZE-- --MAIN-TEXT-FONT-- ;
   color:--MAIN-TEXT-COLOR--;
   margin:0;
   text-align: left;
+  white-space: nowrap;
 }
 
   

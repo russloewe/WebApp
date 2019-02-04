@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var siteName = require('../settings.js').siteName;
+var blogImg = require('../settings.js').blogImg;
 const db = require('../db/db_articles.js');
 var ensureAdmin = require('../passport.js').ensureAdmin;
 //set up admin authorized middlware
@@ -11,14 +12,14 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 router.get('/', function(req, res, next) {
   res.render('index', { title: "Blog",
                            style: req.style,
-                           footerimage: "https://"+siteName+"/images/graphics/treeline2_dim.png",
+                           footerimage: blogImg,
                            sitename: siteName});
 });
 
 router.get('/post/*', function(req, res, next) {
   res.render('index', { title: "Blog",
                            style: req.style,
-                           footerimage: "https://"+siteName+"/images/graphics/treeline2_dim.png",
+                           footerimage: blogImg,
                            sitename: siteName});
 });
 router.get('/all/titles', function(req, res, next) {

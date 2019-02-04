@@ -1,12 +1,12 @@
-/* MOBILE STYLESHEET*/
+
 
 /***************************Global Rules*************************/
-html, body {
+body {
   height: fit-content;
   overflow: scroll;
   padding:0px;
   margin:0;
-  font: 60px  Arial,helvetica,"Segoe UI",sans-serif;
+  font: --MAIN-TEXT-SIZE--  --MAIN-TEXT-FONT--;
   position: relative;
   background: --MAIN-BACKGROUND-COLOR--;
   color: --MAIN-TEXT-COLOR-- ;
@@ -23,8 +23,11 @@ a {
   color: --MAIN-LINK-BACKGROUND-COLOR--;
 }
 
+h1{
+text-align: center;
+}
+
 h4{
-  font: 80px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 5px;
   margin: 5px;
   text-align: center;

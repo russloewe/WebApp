@@ -7,13 +7,17 @@
 }
 
 .navbar a{
-	width: fit-content;
-	margin-left: 20px;
-	margin-right: auto;
+  padding-left: 10px;
   color: --NAV-LINK-TEXT-COLOR--;
   background: --NAV-LINK-BACKGROUND-COLOR--;
+  border-radius: 5px;
+  border: 1px solid --MAIN-BORDER-COLOR--;
 }
-
+.navbar a:hover{
+   color: --NAV-LINK-HOVER-TEXT-COLOR--;
+   background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
+   }
+   
 .subnav ul li a{
   font: 60px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: --NAV-LINK-TEXT-COLOR--;
@@ -24,7 +28,7 @@ div#navbar ul{
 }
 
 div#navbar li{
-  margin:5px;
+  margin:15px 0px;
   background: #262436;
 }
 /******************************END SIDEBAR*******************************/

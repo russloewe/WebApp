@@ -1,6 +1,6 @@
 /**********************SMALL SCREEN**********************************/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 950px) {
 	body {
 	  height: fit-content;
 	  width: 100%;
@@ -29,6 +29,9 @@
   div#navbar li{
      margin:5px;
      float: left;
+  }
+  div#navbar a{
+  	width:fit-content;
   }
   div#icons{
   width: fit-content;

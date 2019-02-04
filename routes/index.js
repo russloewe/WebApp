@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var siteName = require('../settings.js').siteName;
+var homeImg = require('../settings.js').homeImg;
 const db = require('../db/db_home.js');
 var ensureAdmin = require('../passport.js').ensureAdmin;
 //set up admin authorized middlware
@@ -11,7 +12,7 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
 router.get('/', function(req, res, next) {
   res.render('index', { title: siteName, root: 'root',
                         style: req.style,
-                        footerimage: "images/graphics/treeline3_dim.png",
+                        footerimage: homeImg,
                         sitename: siteName});
 });
 router.get('/home', function(req, res, next) {

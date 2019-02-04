@@ -5,36 +5,36 @@
 	margin-right: auto;
 }
 .article pre{
-    font: 15px/1.5 Monaco, MonoSpace;
-	color: #a09bff;
-	background-color: #424242;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
+	color: --CODE-SOURCE--;
+	background-color: --CODE-BOX-COLOR--;
 	border-radius: 4px;
     padding: 8px;
-	width: 82ch;
+	width: --CODE-BOX-WIDTH--;
 	margin-left: auto;
 	margin-right: auto;
 }
 .article pre.command{
-    font: 15px/1.5 Monaco, MonoSpace;
-	color: #2cf731;
-	background-color: #424242;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
+	color: --CODE-COMMAND--;
+	background-color: --CODE-BOX-COLOR--;
 	border-radius: 4px;
     padding: 8px;
-	width: 80ch;
+	width: --CODE-BOX-WIDTH--;
 	margin-left: auto;
 	margin-right: auto;
 }
 .article code {
-    font: 15px/1.5 Monaco, MonoSpace;
-	color: #a09bff;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
+	color: --CODE-SOURCE--;
 }
 .article code.command {
-    font: 15px/1.5 Monaco, MonoSpace;
-	color: #2cf731;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
+	color: --CODE-COMMAND--;
 }
 .article file{
-    font: 15px/1.5 Monaco, MonoSpace;
-	color: #fd79fa;
+    font: --MAIN-TEXT-SIZE-- --CODE-TEXT-FONT--;
+	color: --CODE-FILENAME--;
 }
 .article p.text-warning{
 	color: #ffba05;
@@ -48,7 +48,15 @@
 }
 
 .article h2{
+    font: calc(--MAIN-TEXT-SIZE-- *1.8) --MAIN-TEXT-FONT--;
 	color: --ARTICLE-HEADER-TEXT-COLOR--;
+}
+.article h3{
+    font: calc(--MAIN-TEXT-SIZE-- *1.6) --MAIN-TEXT-FONT--;
+	color: --ARTICLE-HEADER-TEXT-COLOR--;
+    text-align: left;
+    margin-left: -10px;
+    margin-top: 40px;
 }
 .article h4{
     color: --ARTICLE-HEADER-TEXT-COLOR--;
@@ -59,7 +67,7 @@
 }
 
 img.profile{
-	margin-left: auto;
+	margin-left: 40%;
 	margin-right: auto;
 	width: 150px;
 	height: 150px;
