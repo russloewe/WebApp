@@ -9,9 +9,9 @@ load () {
 
 css () {
     echo "Bundling desktop css files"
-    cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme.sed > ./public/stylesheets/desktop.css
+    cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_desktop.sed > ./public/stylesheets/desktop.css
     echo "Bundling mobile css files"
-    cat ./src/stylesheets/mobile/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme.sed > ./public/stylesheets/mobile.css
+    cat ./src/stylesheets/mobile/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_mobile.sed > ./public/stylesheets/mobile.css
 }
 
 webpack () {
@@ -22,23 +22,29 @@ Prod () {
 	echo "Launching node in production"
     NODE_ENV=production npm start
 }
+Dev (){
+    	echo "Launching node in development"
+    NODE_ENV=development npm start
+}
 sql () {
 	echo "Launching psql"
     sudo -u postgres psql www
 }
 
 
-while getopts ":hwplqc" opt; do
+while getopts ":hwplqcd" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
       echo "-p       set node production env and run node"
+      echo "-d       set node to development mode and run"
       echo "-l       copy files from external to local"
       echo "-q       launch sql editor"
       exit 1
       ;;
     w) webpack ;;
     p) Prod ;;
+    d) Dev ;;
     l) load    ;;
     c) css ;;
     q) sql ;;
