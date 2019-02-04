@@ -7,12 +7,22 @@
 }
 
 .navbar a{
-  color: LINK-TEXT-COLOR;
+  padding-left: 10px;
+  color: --NAV-LINK-TEXT-COLOR--;
+  background: --NAV-LINK-BACKGROUND-COLOR--;
+  border-radius: 5px;
+  border: 1px solid --MAIN-BORDER-COLOR--;
 }
+
+.navbar a:hover{
+   color: --NAV-LINK-HOVER-TEXT-COLOR--;
+   background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
+     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+   }
 
 .subnav ul li a{
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: LINK-TEXT-COLOR;
+  color: --NAV-LINK-TEXT-COLOR--;
 }
 
 div#navbar ul{

@@ -1,26 +1,30 @@
 /*********************Global desktop Rules*************************/
-html, body {
-    height: 100%;
-    overflow: hidden;
+body {
+    height: fit-content;
+    min-height: 100%;
+    overflow: scroll;
     padding:0px;
     margin:0;
     font: 18px  Arial,helvetica,"Segoe UI",sans-serif;
     position: relative;
-    background: -BACKGROUND-COLOR-;
-    color: -MAIN-TEXT-COLOR-;
+    background: --MAIN-BACKGROUND-COLOR--;
+    color: --MAIN-TEXT-COLOR--;
+}
+html{
+min-height: 100%;
 }
 
 a {
-    color: #00B7FF;
+    color: --MAIN-LINK-TEXT-COLOR--;
     display: block;
     text-decoration: none;
     padding: 3px;
-    color: -LINK-BACKGROUND-COLOR-;
+    color: --MAIN-LINK-BACKGROUND-COLOR--;
 }
 a:hover {
     color:#797474;
     text-decoration: none;
-    background: -LINK-HOVER-BACKGROUND-COLOR-;
+    background: --MAIN-LINK-HOVER-BACKGROUND-COLOR--;
     border-radius: 7px;
 }
 h4{

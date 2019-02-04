@@ -10,12 +10,13 @@
 	width: fit-content;
 	margin-left: 20px;
 	margin-right: auto;
-	color: LINK-TEXT-COLOR;
+  color: --NAV-LINK-TEXT-COLOR--;
+  background: --NAV-LINK-BACKGROUND-COLOR--;
 }
 
 .subnav ul li a{
   font: 60px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #494c54;
+  color: --NAV-LINK-TEXT-COLOR--;
 }
 
 div#navbar ul{
