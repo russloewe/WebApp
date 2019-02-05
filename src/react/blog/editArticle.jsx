@@ -17,9 +17,11 @@ class EditArticle extends React.Component {
                       keywords: this.props.article.keywords,
                       description: this.props.article.description,
                       thumb_img: this.props.article.thumb_img,
+                      published: this.props.article.published,
                       visible: false}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeBoolean = this.handleChangeBoolean.bind(this);
         this.toggleVisible = this.toggleVisible.bind(this);
         this.delArticle = this.delArticle.bind(this);
     }
@@ -30,6 +32,12 @@ class EditArticle extends React.Component {
       const name = target.name;
       this.setState({[name]: value});
     } 
+    handleChangeBoolean(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({[name]: value});
+    }
     
     handleSubmit(event) {
         let cb = this.props.editArticleCB;
@@ -40,6 +48,7 @@ class EditArticle extends React.Component {
                           keywords: this.state.keywords,
                           description: this.state.description,
                           thumb_img: this.state.thumb_img,
+                          published: this.state.published,
                           article_id: this.props.article.article_id}
         console.log(jsonData);
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
@@ -79,6 +88,8 @@ class EditArticle extends React.Component {
                  Keywords: <input name="keywords" type="text" value={this.state.keywords} onChange={this.handleChange} /> <br/>
                  Description: <input name="description" type="text" value={this.state.description} onChange={this.handleChange} /><br/>
                  Thumbnail URL: <input name="thumb_img" type="text" value={this.state.thumb_img} onChange={this.handleChange} /><br/>
+                 Publish: <input name="published" type="radio" value={"true"} checked={this.state.published === "true"} onChange={this.handleChangeBoolean} /> <br/>
+                 Private: <input name="published" type="radio" value={"false"} checked={this.state.published === "false"} onChange={this.handleChangeBoolean} /> <br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
               </form>
