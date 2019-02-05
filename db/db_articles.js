@@ -18,8 +18,8 @@ console.log(databaseConfig);
  */
  
 function sqlAddArticleFormat(article, table) {
-   const query = 'INSERT INTO '+table+' (title, author, keywords, text, description, thumb_img, created_on) VALUES';
-   const to_str = [article.title, article.author, article.keywords, article.text, article.description, article.thumb_img];
+   const query = 'INSERT INTO '+table+' (title, author, keywords, text, description, thumb_img, published, created_on) VALUES';
+   const to_str = [article.title, article.author, article.keywords, article.text, article.description, article.thumb_img, article.published];
    const to_str_quotes = to_str.map(function(ele){
         return( "'"+ele+"'");
   });
@@ -151,8 +151,9 @@ function updateArticle(article, table, cb){
             const text =  "text = '" + article.text+"'";
             const description = "description='" + article.description+"'";
             const thumb_img = "thumb_img='" + article.thumb_img+"'";
+            const published = "published='" + article.published+"'";
             const end = " WHERE article_id ="+article.article_id+";";
-            const query_str = intro + title + ", " + keywords + ", " + text + "," + description +"," + thumb_img  + end;
+            const query_str = intro + title + ", " + keywords + ", " + text + "," + description +"," + thumb_img + "," + published + end;
             client.query(query_str, function(err, res) {
                 done();
                 if(err){
