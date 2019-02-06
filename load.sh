@@ -22,23 +22,29 @@ Prod () {
 	echo "Launching node in production"
     NODE_ENV=production npm start
 }
+Dev (){
+    	echo "Launching node in development"
+    NODE_ENV=development npm start
+}
 sql () {
 	echo "Launching psql"
     sudo -u postgres psql www
 }
 
 
-while getopts ":hwplqc" opt; do
+while getopts ":hwplqcd" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
       echo "-p       set node production env and run node"
+      echo "-d       set node to development mode and run"
       echo "-l       copy files from external to local"
       echo "-q       launch sql editor"
       exit 1
       ;;
     w) webpack ;;
     p) Prod ;;
+    d) Dev ;;
     l) load    ;;
     c) css ;;
     q) sql ;;
