@@ -60,7 +60,7 @@ function findArticle(id, table, options, cb){
         }else{
             let query;
             if(options.published == true){
-                query = "SELECT * FROM "+table+" where article_id = '"+id+"';";
+                query = "SELECT * FROM "+table+" where article_id = '"+id+"' and published = 't';";
             }else{
                 query = "SELECT * FROM "+table+" where article_id = '"+id+"';";
             }
