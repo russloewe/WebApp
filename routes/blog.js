@@ -26,7 +26,12 @@ router.get('/post/*', function(req, res, next) {
 });
 
 router.get('/article:id?', function(req, res, next) {
-    db.findArticle(req.query.id, 'blog', function(err, dbres){
+    if(req.user != null){
+        options = {published : false};
+    }else{
+        options = {published: true};
+    }
+    db.findArticle(req.query.id, 'blog', options, function(err, dbres){
       if(err){
           res.status(500).end();
       }else{
@@ -37,7 +42,12 @@ router.get('/article:id?', function(req, res, next) {
 
 
 router.get('/all', function(req, res, next) {
-  db.getArticles('blog', function(err, dbres){
+    if(req.user != null){
+        options = {published : false};
+    }else{
+        options = {published: true};
+    }
+  db.getArticles('blog', options, function(err, dbres){
       if(err){
           res.status(500).end();
       }else{
