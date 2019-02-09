@@ -46,24 +46,6 @@ function getArticles(table, cb) {
     })
 }
 
-function getArticlesTitles(table, cb) {
-    pool.connect((err, client, done) => {
-        if(err){
-            done();
-            cb(err, null);
-        }else{
-            client.query('SELECT title, article_id FROM '+table+' ORDER BY created_on DESC;', function(err, result){
-                done();
-                if(err){
-                    cb(err, null);
-                }else{
-                    cb(null, result.rows);
-                }
-            })
-        }
-    })
-}
-
 function getLastArticle(table,cb){
     pool.connect((err, client, done) => {
         if(err){
@@ -196,6 +178,5 @@ module.exports = {
    addArticle: addArticle,
    updateArticle: updateArticle,
    removeArticle: removeArticle,
-   getArticlesTitles: getArticlesTitles,
    sqlAddArticleFormat: sqlAddArticleFormat
 }
