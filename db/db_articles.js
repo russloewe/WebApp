@@ -34,7 +34,7 @@ function getArticles(table, cb) {
             done();
             cb(err, null);
         }else{
-            client.query('SELECT * FROM '+table+' ORDER BY created_on DESC;', function(err, result){
+            client.query('SELECT title, description, thumb_img, created_on, article_id FROM '+table+' ORDER BY created_on DESC;', function(err, result){
                 done();
                 if(err){
                     cb(err, null);
