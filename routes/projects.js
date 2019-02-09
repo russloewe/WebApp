@@ -9,6 +9,8 @@ const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
                                    unauthRedirect: '/auth/unauth',
                                    userLevel: 1});
 /* GET blog page. */
+
+/*These next two routes are for sending the page html layout to client */
 router.get('/', function(req, res, next) {
   res.render('index', { title: "Projects",
                            style: req.style,
@@ -45,15 +47,6 @@ router.get('/all', function(req, res, next) {
   })
 });
 
-router.get('/all/titles', function(req, res, next) {
-  db.getArticlesTitles('projects', function(err, dbres){
-      if(err){
-          res.status(500).send(err).end();
-      }else{
-        res.send(dbres).end();
-    }
-  })
-});
 
 router.post('/edit', ensureAdminMW, function(req, res) {
     if( !req.body ){
