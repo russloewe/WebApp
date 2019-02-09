@@ -28,13 +28,19 @@ function sqlAddArticleFormat(article, table) {
   return final;
 }; 
 
-function getArticles(table, cb) {
+function getArticles(table, options, cb) {
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query('SELECT title, description, thumb_img, created_on, article_id FROM '+table+' ORDER BY created_on DESC;', function(err, result){
+            let query;
+            if(options.published == true){
+                query = "SELECT title, description, thumb_img, created_on, article_id FROM "+table+" WHERE published = 't' ORDER BY created_on DESC;";
+            }else{
+                query = 'SELECT title, description, thumb_img, created_on, article_id FROM '+table+' ORDER BY created_on DESC;';
+            }
+            client.query(query, function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -45,6 +51,35 @@ function getArticles(table, cb) {
         }
     })
 }
+
+function findArticle(id, table, options, cb){
+    pool.connect((err, client, done) => {
+        if(err){
+            done();
+            cb(err, null);
+        }else{
+            let query;
+            if(options.published == true){
+                query = "SELECT * FROM "+table+" where article_id = '"+id+"';";
+            }else{
+                query = "SELECT * FROM "+table+" where article_id = '"+id+"';";
+            }
+            client.query(query, function(err, result){
+                done();
+                if(err){
+                    cb(err, null);
+                }else{
+                    if((result.length < 1) || (result.rows[0] == undefined)){
+                        cb(new Error("No articles found"), null);
+                    }else{
+                        cb(null, result.rows[0]);
+                    }
+                }
+            })
+        }
+    })
+};
+
 
 function getLastArticle(table,cb){
     pool.connect((err, client, done) => {
@@ -67,29 +102,6 @@ function getLastArticle(table,cb){
         }
     })
 };
-
-function findArticle(id, table, cb){
-    pool.connect((err, client, done) => {
-        if(err){
-            done();
-            cb(err, null);
-        }else{
-            client.query("SELECT * FROM "+table+" where article_id = '"+id+"';", function(err, result){
-                done();
-                if(err){
-                    cb(err, null);
-                }else{
-                    if((result.length < 1) || (result.rows[0] == undefined)){
-                        cb(new Error("No articles found"), null);
-                    }else{
-                        cb(null, result.rows[0]);
-                    }
-                }
-            })
-        }
-    })
-};
-
 function addArticle(user, table, cb){
     pool.connect((err, client, done) => {
         if(err){
