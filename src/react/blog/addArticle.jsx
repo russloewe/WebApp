@@ -28,7 +28,8 @@ export default class AddArticle extends React.Component {
         event.preventDefault();
         const jsonData = {title: this.state.title.split("'").join("''"),
                           text: this.state.text.split("'").join("''"),
-                          keywords: this.state.keywords}
+                          keywords: this.state.keywords,
+                          published: false}
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
                 console.log('Error Trying to change user.');
