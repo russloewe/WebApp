@@ -15,7 +15,7 @@ import {setArticle, setHome} from "./redux/actions.js";
 
 const mapStateToProps = state => {
     return{user: state.user,
-		   home: state.home};
+		   home: state.article};
 };
 
 class Home extends React.Component {
@@ -32,7 +32,7 @@ class Home extends React.Component {
                 console.log(err);
             }else{
                 console.log(res);
-                store.dispatch(setArticle(res));;
+                store.dispatch(setArticle(res[0]));;
             }
         })
     }
