@@ -25,6 +25,4 @@ export const setParentTopic = topic => ({type: PARENT_TOPIC, payload: topic});
 import { EDIT_ARTICLE_CB } from "./action-types";
 export const setEditArticleCB = cb => ({type: EDIT_ARTICLE_CB, payload: cb});
 
-//Home
-import {SET_HOME} from "./action-types";
-export const setHome = home => ({type: SET_HOME, payload: home});
+

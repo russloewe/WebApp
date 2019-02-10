@@ -6,8 +6,6 @@ import { ACTIVE_ARTICLE, ALL_ARTICLES, ALL_ARTICLES_TITLES} from "./action-types
 import {PROJECT_TITLES, BLOG_TITLES} from "./action-types";
 //NAV ACTIONS
 import {PARENT_TOPIC} from "./action-types";
-//HOME ACTIONS
-import { SET_HOME } from "./action-types";
 //CALLBACKS
 import { EDIT_ARTICLE_CB } from "./action-types";
 
@@ -20,8 +18,7 @@ const initialState = {
   editArticleCB: null,
   blogTitles: [],
   projectTitles: [],
-  parentTopic: '',
-  home: {}
+  parentTopic: ''
 };
 const rootReducer = (state = initialState, action) => {
     const newState = Object.assign({}, state);
@@ -51,9 +48,6 @@ const rootReducer = (state = initialState, action) => {
         return newState;
 	case BLOG_TITLES:
         newState.blogTitles = action.payload;
-        return newState;
-	case SET_HOME:
-        newState.home = action.payload;
         return newState;
     case PARENT_TOPIC:
 		newState.parentTopic = action.payload;
