@@ -11,7 +11,7 @@ import EditArticle from './react/blog/editArticle.jsx';
 //server api
 import {getSimple} from './api/api.js';
 //redux actions
-import {setArticle, setHome} from "./redux/actions.js";
+import {setArticle} from "./redux/actions.js";
 
 const mapStateToProps = state => {
     return{user: state.user,
