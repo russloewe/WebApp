@@ -23,6 +23,7 @@
 .subnav ul li a{
   font: calc(--MAIN-TEXT-SIZE-- - 2px) --MAIN-TEXT-FONT--;
   color: --NAV-LINK-TEXT-COLOR--;
+  width: fit-content;
 }
 .subnav ul li a:hover{
   color: --NAV-LINK-HOVER-TEXT-COLOR--;
