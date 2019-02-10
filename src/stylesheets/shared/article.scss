@@ -65,6 +65,14 @@
 .article h5{
 	color: --ARTICLE-HEADER-TEXT-COLOR--;
 }
+.article a{
+	display: inline;
+}
+.article a:hover{
+	background-color: #d8d8d8;;
+	border-radius: 10px;
+	color: white;
+}
 
 img.profile{
 	margin-left: 40%;
