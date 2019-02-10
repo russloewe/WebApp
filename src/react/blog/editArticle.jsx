@@ -89,7 +89,7 @@ class EditArticle extends React.Component {
                  Description: <input name="description" type="text" value={this.state.description} onChange={this.handleChange} /><br/>
                  Thumbnail URL: <input name="thumb_img" type="text" value={this.state.thumb_img} onChange={this.handleChange} /><br/>
                  Publish: <input name="published" type="radio" value={"true"} checked={this.state.published === "true"} onChange={this.handleChangeBoolean} /> <br/>
-                 Private: <input name="published" type="radio" value={"false"} checked={this.state.published === "false"} onChange={this.handleChangeBoolean} /> <br/>
+                 Private: <input name="published" type="radio" value={"false"} checked={this.state.published === false} onChange={this.handleChangeBoolean} /> <br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
               </form>
