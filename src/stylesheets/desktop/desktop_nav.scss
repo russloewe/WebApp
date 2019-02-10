@@ -18,7 +18,6 @@
 .navbar a:hover{
    color: --NAV-LINK-HOVER-TEXT-COLOR--;
    background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
-     font: calc(--MAIN-TEXT-SIZE-- + 1px) --MAIN-TEXT-FONT--;
    }
 
 .subnav ul li a{
@@ -28,7 +27,6 @@
 .subnav ul li a:hover{
   color: --NAV-LINK-HOVER-TEXT-COLOR--;
   background: --NAV-LINK-HOVER-BACKGROUND-COLOR--;
-  font: calc(--MAIN-TEXT-SIZE-- - 1px) --MAIN-TEXT-FONT--;
 }
 
 div#navbar ul{
