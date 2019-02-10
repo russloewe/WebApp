@@ -28,7 +28,7 @@ grid-area: user;
 body {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-rows: [banner] 50px [icons] 30px [main] 100% [footer] 70px ;
+  grid-template-rows: [banner] 60px [icons] 30px [main] 100% [footer] 70px ;
   grid-template-areas:
       "name banner user"
       "icons message ."
