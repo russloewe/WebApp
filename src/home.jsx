@@ -11,7 +11,7 @@ import EditArticle from './react/blog/editArticle.jsx';
 //server api
 import {getSimple} from './api/api.js';
 //redux actions
-import {setHome} from "./redux/actions.js";
+import {setArticle, setHome} from "./redux/actions.js";
 
 const mapStateToProps = state => {
     return{user: state.user,
@@ -32,7 +32,7 @@ class Home extends React.Component {
                 console.log(err);
             }else{
                 console.log(res);
-                store.dispatch(setHome(res[0]));
+                store.dispatch(setArticle(res));;
             }
         })
     }
