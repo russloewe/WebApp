@@ -8,6 +8,9 @@ var session = require('express-session');
 const hashpassword = require('./passport').hashpassword;
 const compression = require('compression');
 const rateLimit = require("express-rate-limit");
+//import site settings
+var siteName = require('./settings.js').siteName;
+var homeImg = require('./settings.js').homeImg;
 //import routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,6 +19,7 @@ const blogRouter = require('./routes/blog');
 const projectsRouter = require('./routes/projects');
 const profileRouter = require('./routes/profile');
 const adminRouter = require('./routes/admin');
+const mapRouter = require('./routes/map');
 var app = express();
 app.use(compression());
 
@@ -68,11 +72,12 @@ app.use('/',  indexRouter);
 app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
 app.use('/blog', blogRouter);
+app.use('/map', mapRouter);
 app.use('/projects', projectsRouter);
 app.use('/profile', profileRouter);
 app.use('/users', ensureAdminMW, usersRouter);
 app.use('/admin', ensureAdminMW, adminRouter);
-
+app.use('/private', ensureAdminMW, express.static('private'))
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -87,7 +92,10 @@ app.use(function(err, req, res, next) {
   
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { title: siteName, root: 'root',
+                        style: req.style,
+                        footerimage: homeImg,
+                        sitename: siteName});
 });
 
 module.exports = app;
