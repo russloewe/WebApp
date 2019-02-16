@@ -13,7 +13,14 @@ router.get('/', function(req, res, next) {
   res.render('map', { title: siteName, root: 'map',
                         style: req.style,
                         footerimage: homeImg,
-                        sitename: siteName});
+                        sitename: siteName,
+                        map: '/maps/simple.js'});
 });
-
+router.get('/map:id?', function(req, res, next) {
+  res.render('map', { title: "Map",
+                           style: req.style,
+                           footerimage: homeImg,
+                           sitename: siteName,
+                           map: '/maps/'+req.query.id+'.js'});
+});
 module.exports = router;
