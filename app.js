@@ -72,7 +72,7 @@ app.use('/',  indexRouter);
 app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
 app.use('/blog', blogRouter);
-app.use('/map', mapRouter);
+app.use('/maps', mapRouter);
 app.use('/projects', projectsRouter);
 app.use('/profile', profileRouter);
 app.use('/users', ensureAdminMW, usersRouter);
