@@ -9,7 +9,7 @@ require([
     ], function(Map, MapView, SceneView, CSVLayer, WebTileLayer) {
 
       
-       var url = "http://192.168.0.23:3000/maps/data/GSOY.csv";
+       var url = "http://192.168.0.24:3000/maps/data/GSOY.csv";
        var template = {
         title: "Weather Station Info",
         content: "Yearly Change in Average Temperatuer {slope}(F/year) \n Number of data points in regression {setsize}"
@@ -56,7 +56,8 @@ require([
         zoom: 10
       });
       var tiledLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.23:3000/maps/data/gsoy_surface/{level}/{col}/{row}.png",
+        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_ndvi/{level}/{col}/{row}.png",
+        tms: true,
         copyright: "me"
       });
 
