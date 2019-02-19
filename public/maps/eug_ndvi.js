@@ -4,66 +4,68 @@ require([
       "esri/Map",
       "esri/views/MapView",
       "esri/views/SceneView",
-      "esri/layers/CSVLayer",
-      "esri/layers/OpenStreetMapLayer",
-      "esri/layers/WebTileLayer"
-    ], function(Map, MapView, SceneView, CSVLayer, OpenStreetMapLayer, WebTileLayer) {
-
+      "esri/layers/WebTileLayer",
+      "esri/widgets/LayerList"
+    ], function(Map, MapView, SceneView, WebTileLayer, LayerList) {
       
-       var url = "http://192.168.0.24:3000/maps/data/GSOY.csv";
-       var template = {
-        title: "Weather Station Info",
-        content: "Yearly Change in Average Temperatuer {slope}(F/year) \n Number of data points in regression {setsize}"
-       };
-       
-       var csvLayer = new CSVLayer({
-        url: url,
-        copyright: "USGS Earthquakes",
-        popupTemplate: template,
-        elevationInfo: {
-          // drapes icons on the surface of the globe
-          mode: "on-the-ground"
-         }
-        });
-       csvLayer.renderer = {
-        type: "simple", // autocasts as new SimpleRenderer()
-        symbol: {
-          type: "simple-marker", // autocasts as new PointSymbol3D()
-          symbolLayers: [{
-            type: "icon", // autocasts as new IconSymbol3DLayer()
-            material: {
-              color: [238, 69, 0, 0.75]
-            },
-            outline: {
-              width: 0.5,
-              color: "white"
-            },
-            size: "12px"
-          }]
-        }
-      };
-      
-      
+      //Make a new map with a topographic basemap
       map = new Map({
-        basemap: "topo",
         layers: []
       });
       
-      
+      //Add the map to the Mapview for 2D rendering
       view = new MapView({
         map: map,
         container: "viewDiv",
         center: [-123.071730, 44.043538 ],
-        zoom: 10
+        zoom: 12
       });
-      var tiledLayer = new WebTileLayer({
+      
+      //Load our ndvi raster Webtiles
+      var ndviLayer = new WebTileLayer({
         urlTemplate: "http://192.168.0.24:3000/maps/data/eug_ndvi/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
       });
-
-      map.add(tiledLayer);
-     openStreetMapLayer = new OpenStreetMapLayer();
-    map.addLayer(openStreetMapLayer);
-
+      
+      //Add a title of the layer for the Layer List
+      ndviLayer.title = "NDVI";
+      
+      //add the Webtile layer to the map
+      map.add(ndviLayer);
+      
+        //Load our road raster Webtiles
+      var roadLayer = new WebTileLayer({
+        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_roads/{level}/{col}/{row}.png",
+        tms: true,
+        copyright: "me"
+      });
+      roadLayer.title = "Roads";
+      map.add(roadLayer);
+      
+            //Load our water raster Webtiles
+      var waterLayer = new WebTileLayer({
+        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_water/{level}/{col}/{row}.png",
+        tms: true,
+        copyright: "me"
+      });
+      waterLayer.title = "Water";
+      map.add(waterLayer);
+      
+            //Load our place raster Webtiles
+      var placesLayer = new WebTileLayer({
+        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_places/{level}/{col}/{row}.png",
+        tms: true,
+        copyright: "me"
+        });
+        placesLayer.title = "Places";
+      map.add(placesLayer);
+      
+      //Make a Layer List and add it to the top left of the map view
+      var layerList = new LayerList({
+         view: view
+      });
+      view.ui.add(layerList, {
+         position: "bottom-left"
+      });
 });
