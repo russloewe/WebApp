@@ -70,5 +70,5 @@ require([
          position: "bottom-left"
       });
       
-      document.getElementById('header').innerHTML = "<h4>Eugene NDVI</h4>";
+      document.getElementById('title').innerHTML = "Eugene NDVI";
 });
