@@ -1,0 +1,3 @@
+//arcmap api  
+(link rel='stylesheet' href='https://js.arcgis.com/4.10/esri/css/main.css')
+script(src='https://js.arcgis.com/4.10/')

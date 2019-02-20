@@ -1,0 +1,5 @@
+<!-- google scripts -->
+<script src='https://www.googletagmanager.com/gtag/js?id=UA-44408252-2'></script>
+<script src='/javascripts/googleanalytics.js' ></script>
+<!-- google verify metatag -->
+<meta name='google-site-verification' content='Ed9o2vC5UsM8kA_5awz0IdxyEcaW_7CKl-iSlG50a4A' />

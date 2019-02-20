@@ -1,16 +1,12 @@
 doctype html
 html
   head
-    //google scripts
-    script(src='https://www.googletagmanager.com/gtag/js?id=UA-44408252-2')
-    script(src='/javascripts/googleanalytics.js')
-    //google verify metatag
-    meta(name='google-site-verification' content='Ed9o2vC5UsM8kA_5awz0IdxyEcaW_7CKl-iSlG50a4A')
+    include ./include/google.txt
+    include ./include/favicon.txt
+    include ./include/esri.txt
     //our own css stylesheet, given as variable from router
     link(rel='stylesheet', href=style)
-    //favicons are listed in seperate file in this directory
-    include favicon.txt
-    title= title    
+    title= title
   body
 
     div(id="name")
