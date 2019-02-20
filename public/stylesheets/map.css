@@ -5,3 +5,19 @@ body,
       margin: 0;
       height: 100%;
 }
+
+div#header h1{
+  width: fit-content;
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: white;
+}
+
+div#header{
+  width: fit-content;
+  position: absolute;
+  margin-right: auto;
+  margin-left: 50%;
+  z-index: 2;
+}
