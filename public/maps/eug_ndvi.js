@@ -5,8 +5,9 @@ require([
       "esri/views/MapView",
       "esri/views/SceneView",
       "esri/layers/WebTileLayer",
-      "esri/widgets/LayerList"
-    ], function(Map, MapView, SceneView, WebTileLayer, LayerList) {
+      "esri/widgets/LayerList",
+      "esri/geometry/Point"
+    ], function(Map, MapView, SceneView, WebTileLayer, LayerList, Point) {
       
       //Make a new map with a topographic basemap
       map = new Map({
