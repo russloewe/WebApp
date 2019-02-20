@@ -6,8 +6,8 @@ require([
       "esri/views/SceneView",
       "esri/layers/WebTileLayer",
       "esri/widgets/LayerList",
-      "esri/geometry/Point"
-    ], function(Map, MapView, SceneView, WebTileLayer, LayerList, Point) {
+      "esri/support/ContentElement/Text"
+    ], function(Map, MapView, SceneView, WebTileLayer, LayerList, TextContentElement) {
       
       //Make a new map with a topographic basemap
       map = new Map({
@@ -69,4 +69,6 @@ require([
       view.ui.add(layerList, {
          position: "bottom-left"
       });
+      
+      document.getElementById('header').innerHTML = "<h4>Eugene NDVI</h4>";
 });
