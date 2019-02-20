@@ -28,12 +28,14 @@ function Article(props){
 			)};
 				
     return(    
+    <div>
+       {props.isAdmin ? editbutton(props.article) : ''} 
        <div className="article" >
             <h2>{title}</h2>
-            <h6>{datetext}</h6><br/>
+            <h6>{datetext}</h6>
             <div dangerouslySetInnerHTML={{ __html: props.article.text }}></div>
-            {props.isAdmin ? editbutton(props.article) : ''}       
        </div>
+    </div>
         )
 }
 export default connect(mapStateToProps)(Article);
