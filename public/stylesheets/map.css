@@ -15,6 +15,10 @@ div#header h1{
   background-color: white;
 }
 
+div#header h1:empty {
+  visibility: hidden;
+}
+
 div#header{
   width: fit-content;
   position: absolute;
