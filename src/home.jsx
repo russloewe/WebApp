@@ -31,7 +31,6 @@ class Home extends React.Component {
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setArticle(res[0]));;
             }
         })

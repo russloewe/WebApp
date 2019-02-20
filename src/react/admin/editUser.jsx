@@ -35,7 +35,6 @@ export default class EditUser extends React.Component {
                 console.log('Error Trying to change user.');
                 console.log(err);
             }else{
-                console.log(res.body);
                 this.props.update();
             }
         })
