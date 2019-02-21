@@ -31,8 +31,13 @@ sql () {
     sudo -u postgres psql www
 }
 
+dbdump () {
+    echo "Creating databas dump file www.pgdump "
+    sudo -u postgres pg_dump -Fc -c www > www.pgdump  
+}
 
-while getopts ":hwplqcd" opt; do
+
+while getopts ":hwplqcdb" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
@@ -40,6 +45,7 @@ while getopts ":hwplqcd" opt; do
       echo "-d       set node to development mode and run"
       echo "-l       copy files from external to local"
       echo "-q       launch sql editor"
+      echo "-b       backup database"
       exit 1
       ;;
     w) webpack ;;
@@ -48,6 +54,7 @@ while getopts ":hwplqcd" opt; do
     l) load    ;;
     c) css ;;
     q) sql ;;
+    b) dbdump;;
      *) echo "Unknown option" 
         break   ;;
   esac
