@@ -23,7 +23,6 @@ function getAllBlogs(){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setBlogTitles(res));
                 store.dispatch(Articles(res));
             }
@@ -37,7 +36,6 @@ function getBlogCB(id){
 				if(err){
 					console.log(err);
 				}else{
-					console.log(res);
 					store.dispatch(setArticle(res));
 				}
 			});
@@ -50,7 +48,6 @@ function getBlog(id){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setArticle(res));
                 
             }

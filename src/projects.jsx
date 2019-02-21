@@ -24,7 +24,6 @@ function getAllProjects(){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setProjectTitles(res));
                 store.dispatch(Articles(res));
             }
@@ -39,7 +38,6 @@ function getProjectCB(id){
 				if(err){
 					console.log(err);
 				}else{
-					console.log(res);
 					store.dispatch(setArticle(res));
 				}
 			});
@@ -52,7 +50,6 @@ function getProject(id){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setArticle(res));
             }
         });

@@ -23,7 +23,7 @@ require([
       
       //Load our ndvi raster Webtiles
       var tiledLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_ndvi/{level}/{col}/{row}.png",
+        urlTemplate: "https://russloewe.com/maps/data/eug_ndvi/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
       });

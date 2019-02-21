@@ -6,8 +6,8 @@ require([
       "esri/views/SceneView",
       "esri/layers/WebTileLayer",
       "esri/widgets/LayerList",
-      "esri/geometry/Point"
-    ], function(Map, MapView, SceneView, WebTileLayer, LayerList, Point) {
+      "esri/support/ContentElement/Text"
+    ], function(Map, MapView, SceneView, WebTileLayer, LayerList, TextContentElement) {
       
       //Make a new map with a topographic basemap
       map = new Map({
@@ -24,7 +24,7 @@ require([
       
       //Load our ndvi raster Webtiles
       var ndviLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_ndvi/{level}/{col}/{row}.png",
+        urlTemplate: "https://russloewe.com/maps/data/eug_ndvi/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
       });
@@ -37,7 +37,7 @@ require([
       
         //Load our road raster Webtiles
       var roadLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_roads/{level}/{col}/{row}.png",
+        urlTemplate: "https://russloewe.com/maps/data/eug_roads/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
       });
@@ -46,7 +46,7 @@ require([
       
             //Load our water raster Webtiles
       var waterLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_water/{level}/{col}/{row}.png",
+        urlTemplate: "https://russloewe.com/maps/data/eug_water/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
       });
@@ -55,7 +55,7 @@ require([
       
             //Load our place raster Webtiles
       var placesLayer = new WebTileLayer({
-        urlTemplate: "http://192.168.0.24:3000/maps/data/eug_places/{level}/{col}/{row}.png",
+        urlTemplate: "https://russloewe.com/maps/data/eug_places/{level}/{col}/{row}.png",
         tms: true,
         copyright: "me"
         });
@@ -69,4 +69,6 @@ require([
       view.ui.add(layerList, {
          position: "bottom-left"
       });
+      
+      document.getElementById('title').innerHTML = "Eugene NDVI";
 });

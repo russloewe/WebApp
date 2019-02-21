@@ -48,7 +48,6 @@ class EditArticle extends React.Component {
                           thumb_img: this.state.thumb_img,
                           published: this.state.published,
                           article_id: this.props.article.article_id}
-        console.log(jsonData);
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
                 console.log('Error Trying to change user.');
