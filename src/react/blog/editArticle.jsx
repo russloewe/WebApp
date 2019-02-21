@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import {postSimple} from "../../api/api.js";
 
+
+//store
+import {setArticle} from "../../redux/actions.js";
+
 const mapStateToProps = state => {
     return{isAdmin: state.user.isAdmin,
 		   parent: state.parentTopic,
@@ -21,6 +25,7 @@ class EditArticle extends React.Component {
                       visible: false}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.preview = this.preview.bind(this);
         this.toggleVisible = this.toggleVisible.bind(this);
         this.delArticle = this.delArticle.bind(this);
     }
@@ -55,6 +60,19 @@ class EditArticle extends React.Component {
         })
     }
 
+    preview(){
+        //change the article in the redux store so it updates the
+        //actual HTML on the page so we can see it live
+        const jsonData = {title: this.state.title.split("'").join("''"),
+                  text: this.state.text.split("'").join("''"),
+                  keywords: this.state.keywords,
+                  description: this.state.description,
+                  thumb_img: this.state.thumb_img,
+                  published: this.state.published,
+                  article_id: this.props.article.article_id}
+        store.dispatch(setArticle(res))
+    }
+    
     toggleVisible(){
         this.setState({visible: !this.state.visible});
     }
@@ -87,6 +105,7 @@ class EditArticle extends React.Component {
                  </select> <br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
+                 <button onClick={this.preview}> Preview</button>
               </form>
               )
             }
