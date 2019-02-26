@@ -35,6 +35,14 @@ require([
       
       //add the Webtile layer to the map
       map.add(omegaLayer);
+      var legend = new Legend({
+          view: view,
+          layerInfos: [{
+            layer: featureLayer,
+            title: "Legend"
+          }]
+      });
       
-      document.getElementById('title').innerHTML = "Omega Farm Distance";
+      view.ui.add(legend, "bottom-right");
+
 });
