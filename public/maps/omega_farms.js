@@ -20,7 +20,7 @@ require([
         map: map,
         container: "viewDiv",
         center: [-123.504983, 44.122751 ],
-        zoom: 12
+        zoom: 8
       });
       
       //Load our omega raster Webtiles
@@ -31,7 +31,7 @@ require([
       });
       
       //Add a title of the layer for the Layer List
-      ndviLayer.title = "NDVI";
+      ndviLayer.title = "Drive Distance";
       
       //add the Webtile layer to the map
       map.add(omegaLayer);
