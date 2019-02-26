@@ -19,7 +19,7 @@ require([
       view = new MapView({
         map: map,
         container: "viewDiv",
-        center: [-123.071730, 44.043538 ],
+        center: [-123.504983, 44.122751 ],
         zoom: 12
       });
       
@@ -27,7 +27,7 @@ require([
       var omegaLayer = new WebTileLayer({
         urlTemplate: "https://russloewe.com/maps/data/omega_farms/{level}/{col}/{row}.png",
         tms: true,
-        copyright: "me"
+        copyright: "Russell Loewe"
       });
       
       //Add a title of the layer for the Layer List
@@ -36,5 +36,5 @@ require([
       //add the Webtile layer to the map
       map.add(omegaLayer);
       
-      document.getElementById('title').innerHTML = "Eugene NDVI";
+      document.getElementById('title').innerHTML = "Omega Farm Distance";
 });
