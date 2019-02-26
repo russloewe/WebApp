@@ -11,6 +11,7 @@ require([
       
       //Make a new map with a topographic basemap
       map = new Map({
+        basemap: "topo",
         layers: []
       });
       
