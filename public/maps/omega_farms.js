@@ -31,7 +31,7 @@ require([
       });
       
       //Add a title of the layer for the Layer List
-      ndviLayer.title = "Drive Distance";
+      omegaLayer.title = "Drive Distance";
       
       //add the Webtile layer to the map
       map.add(omegaLayer);
