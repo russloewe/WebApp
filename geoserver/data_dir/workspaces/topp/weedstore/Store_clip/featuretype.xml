@@ -1,0 +1,77 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--2479edfb:1693c16e696:-7ffe</id>
+  <name>Store_clip</name>
+  <nativeName>Store_clip</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--570ae188:124761b8d78:-7ffe</id>
+  </namespace>
+  <title>Store_clip</title>
+  <keywords>
+    <string>features</string>
+    <string>Store_clip</string>
+  </keywords>
+  <nativeCRS class="projected">PROJCS[&quot;NAD_1983_2011_Oregon_Statewide_Lambert_Ft_Intl&quot;, 
+  GEOGCS[&quot;GCS_NAD_1983_2011&quot;, 
+    DATUM[&quot;D_NAD_1983_2011&quot;, 
+      SPHEROID[&quot;GRS_1980&quot;, 6378137.0, 298.257222101]], 
+    PRIMEM[&quot;Greenwich&quot;, 0.0], 
+    UNIT[&quot;degree&quot;, 0.017453292519943295], 
+    AXIS[&quot;Longitude&quot;, EAST], 
+    AXIS[&quot;Latitude&quot;, NORTH]], 
+  PROJECTION[&quot;Lambert_Conformal_Conic&quot;], 
+  PARAMETER[&quot;central_meridian&quot;, -120.49999999999999], 
+  PARAMETER[&quot;latitude_of_origin&quot;, 41.75], 
+  PARAMETER[&quot;standard_parallel_1&quot;, 45.5], 
+  PARAMETER[&quot;false_easting&quot;, 1312335.958005249], 
+  PARAMETER[&quot;false_northing&quot;, 0.0], 
+  PARAMETER[&quot;scale_factor&quot;, 1.0], 
+  PARAMETER[&quot;standard_parallel_2&quot;, 43.0], 
+  UNIT[&quot;ft&quot;, 0.3048], 
+  AXIS[&quot;X&quot;, EAST], 
+  AXIS[&quot;Y&quot;, NORTH]]</nativeCRS>
+  <srs>EPSG:4979</srs>
+  <nativeBoundingBox>
+    <minx>239703.89960630238</minx>
+    <maxx>2157803.3940288723</maxx>
+    <miny>113774.51673229039</miny>
+    <maxy>1635983.3546587974</maxy>
+    <crs class="projected">PROJCS[&quot;NAD_1983_2011_Oregon_Statewide_Lambert_Ft_Intl&quot;, 
+  GEOGCS[&quot;GCS_NAD_1983_2011&quot;, 
+    DATUM[&quot;D_NAD_1983_2011&quot;, 
+      SPHEROID[&quot;GRS_1980&quot;, 6378137.0, 298.257222101]], 
+    PRIMEM[&quot;Greenwich&quot;, 0.0], 
+    UNIT[&quot;degree&quot;, 0.017453292519943295], 
+    AXIS[&quot;Longitude&quot;, EAST], 
+    AXIS[&quot;Latitude&quot;, NORTH]], 
+  PROJECTION[&quot;Lambert_Conformal_Conic&quot;], 
+  PARAMETER[&quot;central_meridian&quot;, -120.49999999999999], 
+  PARAMETER[&quot;latitude_of_origin&quot;, 41.75], 
+  PARAMETER[&quot;standard_parallel_1&quot;, 45.5], 
+  PARAMETER[&quot;false_easting&quot;, 1312335.958005249], 
+  PARAMETER[&quot;false_northing&quot;, 0.0], 
+  PARAMETER[&quot;scale_factor&quot;, 1.0], 
+  PARAMETER[&quot;standard_parallel_2&quot;, 43.0], 
+  UNIT[&quot;ft&quot;, 0.3048], 
+  AXIS[&quot;X&quot;, EAST], 
+  AXIS[&quot;Y&quot;, NORTH]]</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-130.0</minx>
+    <maxx>-120.0</maxx>
+    <miny>40.0</miny>
+    <maxy>45.0</maxy>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--2479edfb:1693c16e696:-7fff</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

@@ -1,0 +1,22 @@
+<dataStore>
+  <id>DataStoreInfoImpl--2479edfb:1693c16e696:-7fff</id>
+  <name>weedstore</name>
+  <type>Shapefile</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--570ae188:124761b8d78:-7ffd</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">ISO-8859-1</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">America/Los_Angeles</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">http://www.openplans.org/topp</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="url">file:workspaces/topp/weedstore/Store_clip.shp</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>
