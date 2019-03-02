@@ -1,0 +1,407 @@
+2019-03-01 17:48:46,220 INFO [org.geoserver] - GeoServer configuration lock is enabled
+2019-03-01 17:48:46,312 INFO [org.geoserver] - Loaded style 'pophatch'
+2019-03-01 17:48:46,313 INFO [org.geoserver] - Loaded style 'restricted'
+2019-03-01 17:48:46,313 INFO [org.geoserver] - Loaded style 'line'
+2019-03-01 17:48:46,314 INFO [org.geoserver] - Loaded style 'simple_streams'
+2019-03-01 17:48:46,314 INFO [org.geoserver] - Loaded style 'dem'
+2019-03-01 17:48:46,314 INFO [org.geoserver] - Loaded style 'cite_lakes'
+2019-03-01 17:48:46,315 INFO [org.geoserver] - Loaded style 'poly_landmarks'
+2019-03-01 17:48:46,315 INFO [org.geoserver] - Loaded style 'population'
+2019-03-01 17:48:46,316 INFO [org.geoserver] - Loaded style 'point'
+2019-03-01 17:48:46,316 INFO [org.geoserver] - Loaded style 'polygon'
+2019-03-01 17:48:46,316 INFO [org.geoserver] - Loaded style 'capitals'
+2019-03-01 17:48:46,317 INFO [org.geoserver] - Loaded style 'generic'
+2019-03-01 17:48:46,318 INFO [org.geoserver] - Loaded style 'simple_roads'
+2019-03-01 17:48:46,318 INFO [org.geoserver] - Loaded style 'burg'
+2019-03-01 17:48:46,319 INFO [org.geoserver] - Loaded style 'raster'
+2019-03-01 17:48:46,320 INFO [org.geoserver] - Loaded style 'poi'
+2019-03-01 17:48:46,320 INFO [org.geoserver] - Loaded style 'giant_polygon'
+2019-03-01 17:48:46,320 INFO [org.geoserver] - Loaded style 'tiger_roads'
+2019-03-01 17:48:46,321 INFO [org.geoserver] - Loaded style 'rain'
+2019-03-01 17:48:46,321 INFO [org.geoserver] - Loaded style 'grass'
+2019-03-01 17:48:46,321 INFO [org.geoserver] - Loaded style 'green'
+2019-03-01 17:48:46,322 INFO [org.geoserver] - Loaded default workspace cite
+2019-03-01 17:48:46,336 INFO [org.geoserver] - Loaded workspace 'cite'
+2019-03-01 17:48:46,339 INFO [org.geoserver] - Loaded workspace 'sf'
+2019-03-01 17:48:46,341 INFO [org.geoserver] - Loaded workspace 'it.geosolutions'
+2019-03-01 17:48:46,342 INFO [org.geoserver] - Loaded workspace 'sde'
+2019-03-01 17:48:46,343 INFO [org.geoserver] - Loaded workspace 'nurc'
+2019-03-01 17:48:46,344 INFO [org.geoserver] - Loaded workspace 'topp'
+2019-03-01 17:48:46,345 INFO [org.geoserver] - Loaded workspace 'tiger'
+2019-03-01 17:48:46,660 INFO [org.geoserver] - Loaded data store 'sf', enabled
+2019-03-01 17:48:47,434 INFO [org.geoserver] - Loaded feature type 'bugsites', enabled
+2019-03-01 17:48:47,443 INFO [org.geoserver] - Loaded layer 'bugsites'
+2019-03-01 17:48:47,446 INFO [org.geoserver] - Loaded feature type 'roads', enabled
+2019-03-01 17:48:47,447 INFO [org.geoserver] - Loaded layer 'roads'
+2019-03-01 17:48:47,450 INFO [org.geoserver] - Loaded feature type 'restricted', enabled
+2019-03-01 17:48:47,451 INFO [org.geoserver] - Loaded layer 'restricted'
+2019-03-01 17:48:47,454 INFO [org.geoserver] - Loaded feature type 'streams', enabled
+2019-03-01 17:48:47,455 INFO [org.geoserver] - Loaded layer 'streams'
+2019-03-01 17:48:47,458 INFO [org.geoserver] - Loaded feature type 'archsites', enabled
+2019-03-01 17:48:47,459 INFO [org.geoserver] - Loaded layer 'archsites'
+2019-03-01 17:48:47,462 INFO [org.geoserver] - Loaded coverage store 'sfdem', enabled
+2019-03-01 17:48:47,483 INFO [org.geoserver] - Loaded coverage 'sfdem', enabled
+2019-03-01 17:48:47,484 INFO [org.geoserver] - Loaded layer 'sfdem'
+2019-03-01 17:48:47,487 INFO [org.geoserver] - Loaded data store 'nyc', enabled
+2019-03-01 17:48:47,492 INFO [org.geoserver] - Loaded feature type 'tiger_roads', enabled
+2019-03-01 17:48:47,493 INFO [org.geoserver] - Loaded layer 'tiger_roads'
+2019-03-01 17:48:47,496 INFO [org.geoserver] - Loaded feature type 'poi', enabled
+2019-03-01 17:48:47,497 INFO [org.geoserver] - Loaded layer 'poi'
+2019-03-01 17:48:47,499 INFO [org.geoserver] - Loaded feature type 'poly_landmarks', enabled
+2019-03-01 17:48:47,499 INFO [org.geoserver] - Loaded layer 'poly_landmarks'
+2019-03-01 17:48:47,500 INFO [org.geoserver] - Loaded feature type 'giant_polygon', enabled
+2019-03-01 17:48:47,501 INFO [org.geoserver] - Loaded layer 'giant_polygon'
+2019-03-01 17:48:47,506 INFO [org.geoserver] - Loaded data store 'states_shapefile', enabled
+2019-03-01 17:48:47,509 INFO [org.geoserver] - Loaded feature type 'states', enabled
+2019-03-01 17:48:47,510 INFO [org.geoserver] - Loaded layer 'states'
+2019-03-01 17:48:47,513 INFO [org.geoserver] - Loaded data store 'taz_shapes', enabled
+2019-03-01 17:48:47,516 INFO [org.geoserver] - Loaded feature type 'tasmania_water_bodies', enabled
+2019-03-01 17:48:47,517 INFO [org.geoserver] - Loaded layer 'tasmania_water_bodies'
+2019-03-01 17:48:47,519 INFO [org.geoserver] - Loaded feature type 'tasmania_cities', enabled
+2019-03-01 17:48:47,519 INFO [org.geoserver] - Loaded layer 'tasmania_cities'
+2019-03-01 17:48:47,521 INFO [org.geoserver] - Loaded feature type 'tasmania_state_boundaries', enabled
+2019-03-01 17:48:47,521 INFO [org.geoserver] - Loaded layer 'tasmania_state_boundaries'
+2019-03-01 17:48:47,523 INFO [org.geoserver] - Loaded feature type 'tasmania_roads', enabled
+2019-03-01 17:48:47,523 INFO [org.geoserver] - Loaded layer 'tasmania_roads'
+2019-03-01 17:48:47,526 INFO [org.geoserver] - Loaded coverage store 'mosaic', enabled
+2019-03-01 17:48:47,532 INFO [org.geoserver] - Loaded coverage 'mosaic', enabled
+2019-03-01 17:48:47,534 INFO [org.geoserver] - Loaded layer 'mosaic'
+2019-03-01 17:48:47,535 INFO [org.geoserver] - Loaded coverage store 'worldImageSample', enabled
+2019-03-01 17:48:47,537 INFO [org.geoserver] - Loaded coverage 'Img_Sample', enabled
+2019-03-01 17:48:47,538 INFO [org.geoserver] - Loaded layer 'Img_Sample'
+2019-03-01 17:48:47,539 INFO [org.geoserver] - Loaded coverage store 'arcGridSample', enabled
+2019-03-01 17:48:47,541 INFO [org.geoserver] - Loaded coverage 'Arc_Sample', enabled
+2019-03-01 17:48:47,542 INFO [org.geoserver] - Loaded layer 'Arc_Sample'
+2019-03-01 17:48:47,543 INFO [org.geoserver] - Loaded coverage store 'img_sample2', enabled
+2019-03-01 17:48:47,549 INFO [org.geoserver] - Loaded coverage 'Pk50095', enabled
+2019-03-01 17:48:47,549 INFO [org.geoserver] - Loaded layer 'Pk50095'
+2019-03-01 17:48:47,558 INFO [org.geoserver] - Loaded layer group 'tiger-ny'
+2019-03-01 17:48:47,560 INFO [org.geoserver] - Loaded layer group 'spearfish'
+2019-03-01 17:48:47,561 INFO [org.geoserver] - Loaded layer group 'tasmania'
+2019-03-01 17:48:47,639 INFO [org.geoserver] - Loaded service 'WMTSInfoImpl--2479edfb:1693c16e696:-8000', enabled
+2019-03-01 17:48:47,644 INFO [org.geoserver] - Loaded service 'wcs', enabled
+2019-03-01 17:48:47,651 INFO [org.geoserver] - Loaded service 'wfs', enabled
+2019-03-01 17:48:47,659 INFO [org.geoserver] - Loaded service 'wms', enabled
+2019-03-01 17:48:47,675 INFO [config.GeoserverXMLResourceProvider] - Will look for 'geowebcache.xml' in directory '/home/russell/geoserver-2.15.0/bin/../data_dir/gwc'.
+2019-03-01 17:48:47,707 WARN [config.GeoserverXMLResourceProvider] - Found no configuration file in config directory, will create one at 'gwc/geowebcache.xml' from template jar:file:/home/russell/geoserver-2.15.0/webapps/geoserver/WEB-INF/lib/gwc-core-1.15.0.jar!/geowebcache_empty.xml
+2019-03-01 17:48:47,709 INFO [config.GeoserverXMLResourceProvider] - Found configuration file in gwc
+2019-03-01 17:48:47,709 INFO [config.GeoserverXMLResourceProvider] - Found configuration file in gwc
+2019-03-01 17:48:47,748 WARN [config.XMLConfiguration] - ********************************************************************************
+2019-03-01 17:48:47,748 WARN [config.XMLConfiguration] - *** GWC configuration validation error: cvc-elt.1.a: Cannot find the declaration of element 'gwcConfiguration'.
+2019-03-01 17:48:47,748 WARN [config.XMLConfiguration] - *** Will try to use configuration anyway. Please check the order of declared elements against the schema.
+2019-03-01 17:48:47,748 WARN [config.XMLConfiguration] - ********************************************************************************
+2019-03-01 17:48:47,773 INFO [config.XMLConfiguration] - Initializing GridSets from gwc
+2019-03-01 17:48:47,774 INFO [config.XMLConfiguration] - Initializing layers from gwc
+2019-03-01 17:48:47,796 INFO [gwc.layer] - Initializing GWC configuration based on GeoServer's Catalog
+2019-03-01 17:48:47,796 INFO [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+2019-03-01 17:48:47,796 INFO [gwc.layer] - Loading tile layers from gwc-layers
+2019-03-01 17:48:47,802 INFO [storage.BlobStoreAggregator] - BlobStoreConfiguration gwc contained no blob store infos.
+2019-03-01 17:48:47,806 INFO [storage.DefaultStorageFinder] - *************************************************************************************************************************************************
+2019-03-01 17:48:47,806 INFO [storage.DefaultStorageFinder] - *** Found Java environment variable GEOSERVER_DATA_DIR set to /home/russell/geoserver-2.15.0/bin/../data_dir, using it as the default prefix. ***
+2019-03-01 17:48:47,806 INFO [storage.DefaultStorageFinder] - *************************************************************************************************************************************************
+2019-03-01 17:48:47,835 INFO [gwc.config] - Initializing GeoServer specific GWC configuration from gwc-gs.xml
+2019-03-01 17:48:48,289 INFO [config.GeoserverXMLResourceProvider] - Will look for 'geowebcache-diskquota.xml' in directory '/home/russell/geoserver-2.15.0/bin/../data_dir/gwc'.
+2019-03-01 17:48:48,293 INFO [config.GeoserverXMLResourceProvider] - Will look for 'geowebcache-diskquota-jdbc.xml' in directory '/home/russell/geoserver-2.15.0/bin/../data_dir/gwc'.
+2019-03-01 17:48:48,295 INFO [diskquota.ConfigLoader] - DiskQuota configuration is not readable: gwc/geowebcache-diskquota.xml
+2019-03-01 17:48:48,299 INFO [diskquota.ConfigLoader] - DiskQuota configuration is not readable: gwc/geowebcache-diskquota.xml
+2019-03-01 17:48:48,300 INFO [diskquota.DiskQuotaMonitor] - Setting up disk quota periodic enforcement task
+2019-03-01 17:48:48,300 INFO [diskquota.DiskQuotaMonitor] - 0 layers configured with their own quotas. 
+2019-03-01 17:48:48,305 INFO [diskquota.DiskQuotaMonitor] - 22 layers attached to global quota 500.0 MB
+2019-03-01 17:48:48,328 INFO [diskquota.DiskQuotaMonitor] - Disk quota periodic enforcement task set up every 10 SECONDS
+2019-03-01 17:48:48,410 INFO [geowebcache.GeoWebCacheDispatcher] - Invoked setServletPrefix(gwc)
+2019-03-01 17:48:48,418 INFO [georss.GeoRSSPoller] - Initializing GeoRSS poller in a background job...
+2019-03-01 17:48:48,421 INFO [georss.GeoRSSPoller] - No enabled GeoRSS feeds found, poller will not run.
+2019-03-01 17:48:48,484 INFO [wms.WMSService] - Will NOT recombine tiles for non-tiling clients.
+2019-03-01 17:48:48,484 INFO [wms.WMSService] - Will proxy requests to backend that are not getmap or getcapabilities.
+2019-03-01 17:48:49,417 WARN [gce.imagemosaic] - Unable to set ordering between tiff readers spi
+2019-03-01 17:48:52,233 INFO [geoserver.security] - AuthenticationCache Initialized with 1000 Max Entries, 300 seconds idle time, 600 seconds time to live and 3 concurrency level
+2019-03-01 17:48:52,233 INFO [geoserver.security] - AuthenticationCache Eviction Task created to run every 600 seconds
+2019-03-01 17:48:52,491 INFO [geoserver.security] - Start reloading user/groups for service named default
+2019-03-01 17:48:52,495 INFO [geoserver.security] - Reloading user/groups successful for service named default
+2019-03-01 17:53:58,531 INFO [geoserver.security] - Strong cryptography is available
+2019-03-01 17:59:24,205 WARN [wicket.Localizer] - Tried to retrieve a localized string for a component that has not yet been added to the page. This can sometimes lead to an invalid or no localized resource returned. Make sure you are not calling Component#getString() inside your Component's constructor. Offending component: [ShapefileStoreEditPanel [Component id = parametersPanel]]
+2019-03-01 17:59:24,217 WARN [wicket.Localizer] - Tried to retrieve a localized string for a component that has not yet been added to the page. This can sometimes lead to an invalid or no localized resource returned. Make sure you are not calling Component#getString() inside your Component's constructor. Offending component: [ShapefileStoreEditPanel [Component id = parametersPanel]]
+2019-03-01 18:02:36,548 INFO [geoserver.gwc] - Saving GeoSeverTileLayer topp:Store_clip
+2019-03-01 18:02:41,215 WARN [geoserver.web] - Unable to find property: 'format.wms.application/vnd.google-earth.kml' for component:  [class=org.geoserver.web.demo.MapPreviewPage]. Locale: null, style: null
+2019-03-01 18:02:41,215 WARN [geoserver.web] - Unable to find property: 'format.wms.rss' for component:  [class=org.geoserver.web.demo.MapPreviewPage]. Locale: null, style: null
+2019-03-01 18:02:41,263 INFO [web.demo] - Could not set figure out automatically a good preview link for topp:Store_clip
+org.opengis.geometry.MismatchedDimensionException: Argument "WGS 84" has 3 dimensions, while 2 was expected.
+	at org.geotools.geometry.jts.ReferencedEnvelope.checkCoordinateReferenceSystemDimension(ReferencedEnvelope.java:303)
+	at org.geotools.geometry.jts.ReferencedEnvelope.<init>(ReferencedEnvelope.java:209)
+	at org.geoserver.wms.DefaultWebMapService.autoSetBoundsAndSize(DefaultWebMapService.java:437)
+	at org.geoserver.web.demo.PreviewLayer.getRequest(PreviewLayer.java:157)
+	at org.geoserver.web.demo.PreviewLayer.getWmsLink(PreviewLayer.java:226)
+	at org.geoserver.web.demo.MapPreviewPage$1.getComponentForProperty(MapPreviewPage.java:98)
+	at org.geoserver.web.wicket.GeoServerTablePanel$5.populateItem(GeoServerTablePanel.java:238)
+	at org.apache.wicket.markup.html.list.ListView.onPopulate(ListView.java:523)
+	at org.apache.wicket.markup.repeater.AbstractRepeater.onBeforeRender(AbstractRepeater.java:124)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.MarkupContainer.onBeforeRenderChildren(MarkupContainer.java:1836)
+	at org.apache.wicket.Component.onBeforeRender(Component.java:3916)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.MarkupContainer.onBeforeRenderChildren(MarkupContainer.java:1836)
+	at org.apache.wicket.Component.onBeforeRender(Component.java:3916)
+	at org.apache.wicket.markup.repeater.AbstractRepeater.onBeforeRender(AbstractRepeater.java:143)
+	at org.apache.wicket.markup.repeater.AbstractPageableView.onBeforeRender(AbstractPageableView.java:115)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.MarkupContainer.onBeforeRenderChildren(MarkupContainer.java:1836)
+	at org.apache.wicket.Component.onBeforeRender(Component.java:3916)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.MarkupContainer.onBeforeRenderChildren(MarkupContainer.java:1836)
+	at org.apache.wicket.Component.onBeforeRender(Component.java:3916)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.MarkupContainer.onBeforeRenderChildren(MarkupContainer.java:1836)
+	at org.apache.wicket.Component.onBeforeRender(Component.java:3916)
+	at org.apache.wicket.Page.onBeforeRender(Page.java:801)
+	at org.apache.wicket.Component.internalBeforeRender(Component.java:950)
+	at org.apache.wicket.Component.beforeRender(Component.java:1018)
+	at org.apache.wicket.Component.internalPrepareForRender(Component.java:2236)
+	at org.apache.wicket.Page.internalPrepareForRender(Page.java:242)
+	at org.apache.wicket.Component.render(Component.java:2325)
+	at org.apache.wicket.Page.renderPage(Page.java:1018)
+	at org.apache.wicket.request.handler.render.WebPageRenderer.renderPage(WebPageRenderer.java:124)
+	at org.apache.wicket.request.handler.render.WebPageRenderer.respond(WebPageRenderer.java:236)
+	at org.apache.wicket.core.request.handler.RenderPageRequestHandler.respond(RenderPageRequestHandler.java:175)
+	at org.apache.wicket.request.cycle.RequestCycle$HandlerExecutor.respond(RequestCycle.java:895)
+	at org.apache.wicket.request.RequestHandlerStack.execute(RequestHandlerStack.java:64)
+	at org.apache.wicket.request.cycle.RequestCycle.execute(RequestCycle.java:265)
+	at org.apache.wicket.request.cycle.RequestCycle.processRequest(RequestCycle.java:222)
+	at org.apache.wicket.request.cycle.RequestCycle.processRequestAndDetach(RequestCycle.java:293)
+	at org.apache.wicket.protocol.http.WicketFilter.processRequestCycle(WicketFilter.java:261)
+	at org.apache.wicket.protocol.http.WicketFilter.processRequest(WicketFilter.java:203)
+	at org.apache.wicket.protocol.http.WicketServlet.doGet(WicketServlet.java:137)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.springframework.web.servlet.mvc.ServletWrappingController.handleRequestInternal(ServletWrappingController.java:165)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:177)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:865)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1655)
+	at org.geoserver.filters.ThreadLocalsCleanupFilter.doFilter(ThreadLocalsCleanupFilter.java:26)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:69)
+	at org.geoserver.wms.animate.AnimatorFilter.doFilter(AnimatorFilter.java:73)
+	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:66)
+	at org.geoserver.filters.SpringDelegatingFilter.doFilter(SpringDelegatingFilter.java:41)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.platform.AdvancedDispatchFilter.doFilter(AdvancedDispatchFilter.java:37)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerAnonymousAuthenticationFilter.doFilter(GeoServerAnonymousAuthenticationFilter.java:51)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.geoserver.security.filter.GeoServerUserNamePasswordAuthenticationFilter.doFilter(GeoServerUserNamePasswordAuthenticationFilter.java:112)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.geoserver.security.filter.GeoServerSecurityContextPersistenceFilter$1.doFilter(GeoServerSecurityContextPersistenceFilter.java:52)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.geoserver.security.GeoServerSecurityFilterChainProxy.doFilter(GeoServerSecurityFilterChainProxy.java:142)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.LoggingFilter.doFilter(LoggingFilter.java:90)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.XFrameOptionsFilter.doFilter(XFrameOptionsFilter.java:79)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.GZIPFilter.doFilter(GZIPFilter.java:42)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.SessionDebugFilter.doFilter(SessionDebugFilter.java:46)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.FlushSafeFilter.doFilter(FlushSafeFilter.java:42)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1340)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1242)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:220)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:503)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:364)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2019-03-01 18:02:50,384 WARN [lang.WicketObjects] - Could not resolve class [null&format=application]
+java.lang.ClassNotFoundException: null&format=application
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:466)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:566)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:565)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:374)
+	at org.apache.wicket.application.AbstractClassResolver.resolveClass(AbstractClassResolver.java:101)
+	at org.apache.wicket.core.util.lang.WicketObjects.resolveClass(WicketObjects.java:71)
+	at org.apache.wicket.core.request.mapper.AbstractComponentMapper.getPageClass(AbstractComponentMapper.java:120)
+	at org.apache.wicket.core.request.mapper.BookmarkableMapper.parseRequest(BookmarkableMapper.java:114)
+	at org.apache.wicket.core.request.mapper.AbstractBookmarkableMapper.mapRequest(AbstractBookmarkableMapper.java:346)
+	at org.apache.wicket.request.mapper.CompoundRequestMapper.mapRequest(CompoundRequestMapper.java:147)
+	at org.geoserver.web.DynamicCryptoMapper.mapRequest(DynamicCryptoMapper.java:48)
+	at org.apache.wicket.request.cycle.RequestCycle.resolveRequestHandler(RequestCycle.java:189)
+	at org.apache.wicket.request.cycle.RequestCycle.processRequest(RequestCycle.java:219)
+	at org.apache.wicket.request.cycle.RequestCycle.processRequestAndDetach(RequestCycle.java:293)
+	at org.apache.wicket.protocol.http.WicketFilter.processRequestCycle(WicketFilter.java:261)
+	at org.apache.wicket.protocol.http.WicketFilter.processRequest(WicketFilter.java:203)
+	at org.apache.wicket.protocol.http.WicketServlet.doGet(WicketServlet.java:137)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.springframework.web.servlet.mvc.ServletWrappingController.handleRequestInternal(ServletWrappingController.java:165)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:177)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:865)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1655)
+	at org.geoserver.filters.ThreadLocalsCleanupFilter.doFilter(ThreadLocalsCleanupFilter.java:26)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:69)
+	at org.geoserver.wms.animate.AnimatorFilter.doFilter(AnimatorFilter.java:73)
+	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:66)
+	at org.geoserver.filters.SpringDelegatingFilter.doFilter(SpringDelegatingFilter.java:41)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.platform.AdvancedDispatchFilter.doFilter(AdvancedDispatchFilter.java:37)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerAnonymousAuthenticationFilter.doFilter(GeoServerAnonymousAuthenticationFilter.java:51)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.geoserver.security.filter.GeoServerUserNamePasswordAuthenticationFilter.doFilter(GeoServerUserNamePasswordAuthenticationFilter.java:112)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:70)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.geoserver.security.filter.GeoServerSecurityContextPersistenceFilter$1.doFilter(GeoServerSecurityContextPersistenceFilter.java:52)
+	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:74)
+	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.geoserver.security.GeoServerSecurityFilterChainProxy.doFilter(GeoServerSecurityFilterChainProxy.java:142)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.LoggingFilter.doFilter(LoggingFilter.java:90)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.XFrameOptionsFilter.doFilter(XFrameOptionsFilter.java:79)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.GZIPFilter.doFilter(GZIPFilter.java:42)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.SessionDebugFilter.doFilter(SessionDebugFilter.java:46)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.geoserver.filters.FlushSafeFilter.doFilter(FlushSafeFilter.java:42)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1642)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1340)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1242)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:220)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:503)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:364)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)
+	at java.base/java.lang.Thread.run(Thread.java:844)
