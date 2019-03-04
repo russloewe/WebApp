@@ -77,7 +77,8 @@ app.use('/projects', projectsRouter);
 app.use('/profile', profileRouter);
 app.use('/users', ensureAdminMW, usersRouter);
 app.use('/admin', ensureAdminMW, adminRouter);
-app.use('/private', ensureAdminMW, express.static('private'))
+app.use('/private', ensureAdminMW);
+app.use('/private', express.static(path.join(__dirname, 'private')));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
