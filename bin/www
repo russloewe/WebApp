@@ -24,9 +24,9 @@ if(process.env.NODE_ENV === 'production'){
      */
      console.log("Using HTTPS server");
     const httpsOptions = {
-      key: fs.readFileSync('./private'),
-      cert: fs.readFileSync('./certificate'),
-      ca: fs.readFileSync('./cert_bundle')
+      key: fs.readFileSync('./ssl/private'),
+      cert: fs.readFileSync('./ssl/certificate'),
+      ca: fs.readFileSync('./ssl/cert_bundle')
     }
     server = https.createServer(httpsOptions, app).listen(port, () => {
       console.log('server running at ' + port)
