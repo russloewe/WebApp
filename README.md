@@ -58,7 +58,11 @@ Create the javascript bundle and CSS files
     ./load.sh -w -c
 
     sudo systemctl start webapp
-    
+
+### SSL
+
+If using the SSL option, save the SSL certificates in ./ssl folder
+
 ## Customize
 
 
