@@ -21,8 +21,7 @@ class UserBox extends React.Component {
             }
             if(data.username){
                 store.dispatch(userStatus({loggedin: true,
-                                           username: data.username,
-                                           usertype: data.usertype}));
+                                           username: data.username}));
             }
         })
     }
@@ -31,16 +30,6 @@ class UserBox extends React.Component {
         const usertype = this.props.user.usertype;
         const name = this.props.user.username;
         const greeting = <span>Hello, {name}!</span>;
-        const adminbutton = <a href="/admin">Admin Tools</a>;
-        
-        const isAdmin = (type) => {
-            if (type != 1){
-                return false;
-            }else{
-                return true;
-            }
-        };
-        
         
         return(
            <div id="userbox">

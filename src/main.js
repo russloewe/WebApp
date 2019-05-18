@@ -8,7 +8,6 @@ import store from "./redux/store";
 window.store = store;
 
 //load the root components
-import Admin from './admin.jsx';
 import LoginScreen from './loginScreen.jsx';
 import NavBar from './react/navbar.jsx';
 import UserBox from './react/user/userBox.jsx';
