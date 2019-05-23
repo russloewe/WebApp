@@ -6,35 +6,14 @@ const pool = new pg.Pool(databaseConfig);
 console.log("Connecting to Postrges Database with config: ");
 console.log(databaseConfig);
 
-/*
-    articles(
-    title VARCHAR(500) NOT NULL;
-    created_on TIMESTAMP NOT NULL,
-    last_edit
-    text VARCHAR,
-    keywords VARCHAR(500),
-    author VARCHAR(500),
-    article_id serial PRIMARY KEY);
- */
- 
-function sqlAddArticleFormat(article, table) {
-   const query = 'INSERT INTO '+table+' (title, author, keywords, text, description, thumb_img, created_on) VALUES';
-   const to_str = [article.title, article.author, article.keywords, article.text, article.description, article.thumb_img];
-   const to_str_quotes = to_str.map(function(ele){
-        return( "'"+ele+"'");
-  });
-  const two = '('+to_str_quotes+', CURRENT_TIMESTAMP);';
-  const final = query + two;
-  return final;
-}; 
 
-function getArticles(table, cb) {
+function getPage(topic, cb) {
     pool.connect((err, client, done) => {
         if(err){
             done();
             cb(err, null);
         }else{
-            client.query('SELECT * FROM '+table+' ORDER BY created_on DESC;', function(err, result){
+            client.query('SELECT * FROM pages ORDER BY created_on DESC;', function(err, result){
                 done();
                 if(err){
                     cb(err, null);
@@ -46,7 +25,7 @@ function getArticles(table, cb) {
     })
 }
 
-function getArticlesTitles(table, cb) {
+function getPageTitles(table, cb) {
     pool.connect((err, client, done) => {
         if(err){
             done();
@@ -64,29 +43,8 @@ function getArticlesTitles(table, cb) {
     })
 }
 
-function getLastArticle(table,cb){
-    pool.connect((err, client, done) => {
-        if(err){
-            done();
-            cb(err, null);
-        }else{
-            client.query("SELECT max(article_id) from "+table+";", function(err, result){
-                done();
-                if(err){
-                    cb(err, null);
-                }else{
-                    if(result.length < 1){
-                        cb(new Error("No articles found"), null);
-                    }else{
-                        cb(null, result.rows[0].max);
-                    }
-                }
-            })
-        }
-    })
-};
 
-function findArticle(id, table, cb){
+function getPage(id, table, cb){
     pool.connect((err, client, done) => {
         if(err){
             done();
