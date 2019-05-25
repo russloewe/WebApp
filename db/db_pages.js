@@ -16,7 +16,7 @@ function getPage(topic, id, cb) {
             cb(err, null);
         }else{
 			
-            client.query(pageQuery({id: id, topic: topic}, function(err, result){
+            client.query(pageQuery({id: id, topic: topic}), function(err, result){
                 done();
                 if(err){
                     cb(err, null);
