@@ -40,7 +40,7 @@
 	color: #ffba05;
 }
 .article ul{
-	list-style-type: circle;
+	list-style-type: none;
 	padding-left: 30px;
 }
 .article ul li{
@@ -65,12 +65,20 @@
 .article h5{
 	color: --ARTICLE-HEADER-TEXT-COLOR--;
 }
+.article a{
+	display: inline;
+}
+.article a:hover{
+	background-color: #d8d8d8;;
+	border-radius: 10px;
+	color: white;
+}
 
 img.profile{
 	margin-left: 40%;
 	margin-right: auto;
-	width: 150px;
-	height: 150px;
+	width: 300px;
+	height: 300px;
 	border-radius: 400px;
 }
 /***********************END ARTICLE******************************/

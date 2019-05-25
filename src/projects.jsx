@@ -24,22 +24,10 @@ function getAllProjects(){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
+                store.dispatch(setProjectTitles(res));
                 store.dispatch(Articles(res));
             }
         });
-        getAllProjectsTitles();
-}
-
-function getAllProjectsTitles(){
-        getSimple('/projects/all/titles', function(err,res){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(res);
-                store.dispatch(setProjectTitles(res));
-            }
-        })
 }
 
 
@@ -50,11 +38,9 @@ function getProjectCB(id){
 				if(err){
 					console.log(err);
 				}else{
-					console.log(res);
 					store.dispatch(setArticle(res));
 				}
 			});
-			getAllProjectsTitles();
 		 }
 	)
 }
@@ -64,18 +50,16 @@ function getProject(id){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setArticle(res));
             }
         });
-        getAllProjectsTitles();
 }
    
 class Projects extends React.Component {
     constructor(props){
         super(props);
         //get the list of project titles
-        getAllProjectsTitles();
+        getAllProjects();
         if(this.props.match.params.id){
 			var id = this.props.match.params.id;
 			getProject(id);

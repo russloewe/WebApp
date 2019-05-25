@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  div(id="main")
+     h1= message
+     h2= error.status
+     pre #{error.stack}
+  div(id="foot")
+     img(id="foot-image" src=footerimage width="1400px" height="160px")

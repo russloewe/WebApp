@@ -1,6 +1,7 @@
 /***************************ICONS*************************************/
 div#icons li{
   float: left;
+  margin: 4px;
 }
 div#icons {
     position: absolute;
@@ -14,6 +15,6 @@ div#icons img{
 
 div#icons a:hover{
 background-color: white;
-border: 2px solid --MAIN-LINK-HOVER-BACKGROUND-COLOR--;
+outline: 2px solid --MAIN-LINK-HOVER-BACKGROUND-COLOR--;
 }
 /***************************END ICONS*************************************/

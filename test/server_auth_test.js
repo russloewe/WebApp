@@ -38,17 +38,5 @@ describe('Test /auth', function() {
             });
         }).timeout(1000);
     });
-    describe('/auth/status ', () => {
-        describe("Not logged in", function() {
-            it('should return false', (done) => {
-                chai.request(server)
-                .get('/auth/status')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.have.property('loggedIn', false);
-                    done();
-                });
-            }).timeout(1000);
-        })
-    });
+
 })

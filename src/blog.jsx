@@ -23,22 +23,10 @@ function getAllBlogs(){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
+                store.dispatch(setBlogTitles(res));
                 store.dispatch(Articles(res));
             }
         });
-        getAllBlogTitles();
-}
-
-function getAllBlogTitles(){
-        getSimple('/blog/all/titles', function(err,res){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(res);
-                store.dispatch(setBlogTitles(res));
-            }
-        })
 }
 
 function getBlogCB(id){
@@ -48,11 +36,9 @@ function getBlogCB(id){
 				if(err){
 					console.log(err);
 				}else{
-					console.log(res);
 					store.dispatch(setArticle(res));
 				}
 			});
-			getAllBlogTitles();
 		 }
 	)
 }
@@ -62,18 +48,17 @@ function getBlog(id){
             if(err){
                 console.log(err);
             }else{
-                console.log(res);
                 store.dispatch(setArticle(res));
+                
             }
         });
-        getAllBlogTitles();
 }
     
 class Blog extends React.Component {
     constructor(props){
         super(props);
         //get the list of project titles
-        getAllBlogTitles();
+        getAllBlogs();
         if(this.props.match.params.id){
 			getBlog(this.props.match.params.id);
 			store.dispatch(setEditArticleCB(getBlogCB(this.props.match.params.id)));

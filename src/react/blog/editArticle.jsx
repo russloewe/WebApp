@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import {postSimple} from "../../api/api.js";
 
+
+//store
+import {setArticle} from "../../redux/actions.js";
+
 const mapStateToProps = state => {
     return{isAdmin: state.user.isAdmin,
 		   parent: state.parentTopic,
@@ -17,9 +21,11 @@ class EditArticle extends React.Component {
                       keywords: this.props.article.keywords,
                       description: this.props.article.description,
                       thumb_img: this.props.article.thumb_img,
+                      published: this.props.article.published,
                       visible: false}
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.preview = this.preview.bind(this);
         this.toggleVisible = this.toggleVisible.bind(this);
         this.delArticle = this.delArticle.bind(this);
     }
@@ -30,7 +36,7 @@ class EditArticle extends React.Component {
       const name = target.name;
       this.setState({[name]: value});
     } 
-    
+
     handleSubmit(event) {
         let cb = this.props.editArticleCB;
         let toggle = this.toggleVisible;
@@ -40,8 +46,8 @@ class EditArticle extends React.Component {
                           keywords: this.state.keywords,
                           description: this.state.description,
                           thumb_img: this.state.thumb_img,
+                          published: this.state.published,
                           article_id: this.props.article.article_id}
-        console.log(jsonData);
         postSimple(this.props.apiTarget, jsonData, (err, res) => {
             if(err){
                 console.log('Error Trying to change user.');
@@ -53,6 +59,19 @@ class EditArticle extends React.Component {
         })
     }
 
+    preview(){
+        //change the article in the redux store so it updates the
+        //actual HTML on the page so we can see it live
+        const jsonData = {title: this.state.title.split("'").join("''"),
+                  text: this.state.text.split("'").join("''"),
+                  keywords: this.state.keywords,
+                  description: this.state.description,
+                  thumb_img: this.state.thumb_img,
+                  published: this.state.published,
+                  article_id: this.props.article.article_id}
+        store.dispatch(setArticle(res))
+    }
+    
     toggleVisible(){
         this.setState({visible: !this.state.visible});
     }
@@ -79,8 +98,13 @@ class EditArticle extends React.Component {
                  Keywords: <input name="keywords" type="text" value={this.state.keywords} onChange={this.handleChange} /> <br/>
                  Description: <input name="description" type="text" value={this.state.description} onChange={this.handleChange} /><br/>
                  Thumbnail URL: <input name="thumb_img" type="text" value={this.state.thumb_img} onChange={this.handleChange} /><br/>
+                 <select name="published"  onChange={this.handleChange} >
+                       <option selected={this.state.published} value={true}>publish</option>
+                       <option selected={!this.state.published}value={false}>private</option>
+                 </select> <br/>
                  Body:<br/><textarea name="text" type="text" cols="80" rows="20" value={this.state.text} onChange={this.handleChange} /> <br/>
                  <input type="submit" value="submit" />
+                 <button onClick={this.preview}> Preview</button>
               </form>
               )
             }
