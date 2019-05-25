@@ -1,0 +1,16 @@
+#copy to /etc/systemd/system
+[Unit]
+Description=My app
+
+[Service]
+ExecStart=/home/russloewe/WebApp/geoserver/bin/startup.sh
+Restart=always
+User=nobody
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin:/home/russloewe/.nvm/versions/node/v11.3.0/bin:/usr/local/bin:/usr/bin:/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/russloewe/WebApp/geoserver/
+
+[Install]
+WantedBy=multi-user.target

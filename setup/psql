@@ -1,0 +1,186 @@
+#!/bin/bash
+
+function getvalue {
+    local VALUE="$(./scripts/getparam.py ./config/parameters.csv $1 in out)"
+    echo "$VALUE"
+}
+
+function select_option {
+
+    # little helpers for terminal print control and key input
+    ESC=$( printf "\033")
+    cursor_blink_on()  { printf "$ESC[?25h"; }
+    cursor_blink_off() { printf "$ESC[?25l"; }
+    cursor_to()        { printf "$ESC[$1;${2:-1}H"; }
+    print_option()     { printf "   $1 "; }
+    print_selected()   { printf "  $ESC[7m $1 $ESC[27m"; }
+    get_cursor_row()   { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
+    key_input()        { read -s -n3 key 2>/dev/null >&2
+                         if [[ $key = $ESC[A ]]; then echo up;    fi
+                         if [[ $key = $ESC[B ]]; then echo down;  fi
+                         if [[ $key = ""     ]]; then echo enter; fi; }
+
+    # initially print empty new lines (scroll down if at bottom of screen)
+    for opt; do printf "\n"; done
+
+    # determine current screen position for overwriting the options
+    local lastrow=`get_cursor_row`
+    local startrow=$(($lastrow - $#))
+
+    # ensure cursor and input echoing back on upon a ctrl+c during read -s
+    trap "cursor_blink_on; stty echo; printf '\n'; exit" 2
+    cursor_blink_off
+
+    local selected=0
+    while true; do
+        # print options by overwriting the last lines
+        local idx=0
+        for opt; do
+            cursor_to $(($startrow + $idx))
+            if [ $idx -eq $selected ]; then
+                print_selected "$opt"
+            else
+                print_option "$opt"
+            fi
+            ((idx++))
+        done
+
+        # user key control
+        case `key_input` in
+            enter) break;;
+            up)    ((selected--));
+                   if [ $selected -lt 0 ]; then selected=$(($# - 1)); fi;;
+            down)  ((selected++));
+                   if [ $selected -ge $# ]; then selected=0; fi;;
+        esac
+    done
+
+    # cursor position back to normal
+    cursor_to $lastrow
+    printf "\n"
+    cursor_blink_on
+
+        return $selected
+    }
+    ##################################################################################
+    ##################################################################################
+    ##################################################################################
+    ##################################################################################
+    #######################START EDITING BELOW########################################
+    ##################################################################################
+    ##################################################################################
+    ##################################################################################
+    ##################################################################################
+
+## 0
+function status {
+    journalctl -u "$1".service | tail -n 100;
+    echo "Continue"
+    read
+}
+
+## 1
+function start {
+    echo "starting $1"
+    sudo systemctl start "$1"
+    echo "Continue..."
+    read;
+}
+
+## 2
+function stop {
+    echo "Stopping $1"
+    sudo systemctl stop "$1";
+    echo "Continue.."
+    read
+}
+
+## 3
+function restart {
+    echo "Restarting $1"
+    sudo systemctl restart "$1"
+    echo "Continue..."
+    read;
+}
+
+## 4
+function login {
+    sudo -u postgres psql 
+    echo "Continue"
+    read
+}
+
+## 5
+function init {
+    echo "Assembling db_scheme.sql"
+    sudo cp -v ./config/db_scheme.template.sql ./config/db_scheme.sql
+    sudo ./scripts/replace.py ./config/parameters.csv ./config/db_scheme.sql;
+    sudo chmod a+rx ./config/db_scheme.sql
+    sudo chmod a+x ./config
+    echo "Running db_scheme.sql commands"
+    sudo -u postgres psql -c '\i ./config/db_scheme.sql'
+    echo "Continue...";
+    read
+}
+
+## 6
+function dump {
+
+    echo "Creating backup of $dbName : $dbBackupPath"
+    sudo -u postgres pg_dumpall > "$dbBackupPath" 
+    echo "Continue"
+    read
+}
+
+## 7
+function restore {
+
+    sudo -u postgres psql -f "$dbBackupPath" 
+    echo "Continue";
+    read
+}
+userHome=$(getvalue {user_home})
+dbName=$(getvalue {sql_database_name})
+sqlUsername=$(getvalue {sql_username})
+dbBackupPath=$(getvalue {sql_database_backup_path})
+
+function prompt {
+
+    clear
+    echo "Select one option using up/down keys and enter to confirm:"
+    echo
+
+    options=("0) Status"           \
+            "1) Start"                     \
+            "2) Stop"                       \
+            "3) Restart"                   \
+            "4) Login to Database"\
+            "5) Install: init DB"\
+            "6) Backup Database '$dbName' to $dbBackupPath"\
+            "7) Restore Database '$dbName' from $dbBackupPath"\
+            "8) exit")
+
+    select_option "${options[@]}"
+    choice=$?
+
+    case $choice in
+        0) status postgresql;;
+        1) start postgresql;;
+        2) stop postgresql;;
+        3) restart postgresql;;
+        4) login;;
+        5) init;;
+        6) dump;;
+        7) restore;;
+        8) return 1;;
+        *) echo 
+    esac
+    return 0
+    clear
+}
+
+while prompt
+do
+    echo
+done
+clear
