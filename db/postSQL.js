@@ -40,7 +40,7 @@ function getAll(querry,  cb){
 			/* Execute the querry and close the connection.
 			 * Call cb with either an error or the results.
 			 */
-            client.query(querry), function(err, result){ 
+            client.query(querry, function(err, result){ 
                 donedb();
                 if(err){
                     cb(err, null);
