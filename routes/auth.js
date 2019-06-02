@@ -1,9 +1,19 @@
-var siteName = require('../settings.js').siteName;
-var adminImg = require('../settings.js').adminImg;
+/* filename:     auth.js
+ * author:  russell loewe
+ * project: WebApp
+ * github: http://github.com/russloewe/WebApp
+ * desc:   
+ * 	
+ * Web API to authorize users
+ * 	
+ */
+ 
 const express = require('express');
 const router  = express.Router();
 const passport = require("passport");
-const db = require("../db/db_users");
+const db = require("../db/postSQL.js");
+
+
 
 router.post('/login',
   passport.authenticate('local', { successReturnToOrRedirect: '/',
@@ -22,9 +32,7 @@ router.get('/login:auth?:success?', function(req, res) {
         loginMessage = "Please login";
     }
     res.render('index', {title: 'Login Screen', message: loginMessage,
-                            style: req.style,
-                            footerimage: adminImg,
-                            sitename: siteName});
+                            style: req.style});
 });
 
 router.get('/logout', function(req, res) {

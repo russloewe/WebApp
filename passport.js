@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const db = require("./db/db_users");
+const db = require("./db/postSQL");
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
@@ -19,7 +19,7 @@ passport.deserializeUser(function(id, done) {
         
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    db.findByName(username, function(err, user) {
+    db.getUserName(username, function(err, user) {
       if (err) { 
 		  return done(null, false, {message: 'DB error.'}); 
 		  }

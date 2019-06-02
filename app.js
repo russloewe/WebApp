@@ -8,18 +8,13 @@ var session = require('express-session');
 const hashpassword = require('./passport').hashpassword;
 const compression = require('compression');
 const rateLimit = require("express-rate-limit");
-//import site settings
+
+//import site settings 
 var siteName = require('./settings.js').siteName;
-var homeImg = require('./settings.js').homeImg;
+
 //import routers
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
-const blogRouter = require('./routes/blog');
-const projectsRouter = require('./routes/projects');
-const profileRouter = require('./routes/profile');
-const adminRouter = require('./routes/admin');
-const mapRouter = require('./routes/map');
+const pagesRouter = require('./routes/pages');
 var app = express();
 app.use(compression());
 
@@ -33,7 +28,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 //set up express-sessions
 app.use(session({secret: "cats",
@@ -49,6 +44,7 @@ app.use(passport.session());
 const ensureAdminMW = ensureAdmin({redirectTo:'/auth/login?auth=false',
                                    unauthRedirect: '/auth/unauth',
                                    userLevel: 1});
+                                   
 //add mobile-desktop stylsheet setter
 app.use(function(req, res, next) {
     const userAgent = req.headers['user-agent'];
@@ -71,14 +67,13 @@ app.use('/', hashpassword);
 app.use('/',  indexRouter);
 app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
-app.use('/blog', blogRouter);
-app.use('/maps', mapRouter);
-app.use('/projects', projectsRouter);
-app.use('/profile', profileRouter);
-app.use('/users', ensureAdminMW, usersRouter);
-app.use('/admin', ensureAdminMW, adminRouter);
-app.use('/private', ensureAdminMW);
+app.use('/pages', pagesRouter);
+
+//set static file servers
+app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/private', ensureAdminMW); // require logged in user
 app.use('/private', express.static(path.join(__dirname, 'private')));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -89,7 +84,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   
   // render the error page
   res.status(err.status || 500);
