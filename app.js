@@ -13,6 +13,7 @@ const rateLimit = require("express-rate-limit");
 var siteName = require('./settings.js').siteName;
 
 //import routers
+const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const pagesRouter = require('./routes/pages');
 var app = express();
@@ -63,6 +64,7 @@ const apiLimiter = rateLimit({
 });
 
 //set routers
+app.use('/', indexRouter);
 app.use('/', hashpassword);
 app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
@@ -86,10 +88,8 @@ app.use(function(err, req, res, next) {
   
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { title: siteName, root: 'root',
-                        style: req.style,
-                        footerimage: homeImg,
-                        sitename: siteName});
+  res.render('error', { title: "Error Page", root: 'root',
+                        style: req.style,});
 });
 
 module.exports = app;
