@@ -64,7 +64,6 @@ const apiLimiter = rateLimit({
 
 //set routers
 app.use('/', hashpassword);
-app.use('/',  indexRouter);
 app.use('/auth/login', apiLimiter);
 app.use('/auth', authRouter);
 app.use('/pages', pagesRouter);
