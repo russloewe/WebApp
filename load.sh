@@ -7,6 +7,12 @@ load () {
     cp -R /media/$FOLDER/* ./
 }
 
+loadRmd () {
+	echo "Copying and rendering Rmd website"
+	FOLDER='sf_RmdSite'
+    R ./media/$FOLDER/build.R
+}
+
 css () {
     echo "Bundling desktop css files"
     cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_desktop.sed > ./public/stylesheets/desktop.css
@@ -37,7 +43,7 @@ dbdump () {
 }
 
 
-while getopts ":hwplqcdb" opt; do
+while getopts ":hwplqcdbr" opt; do
         case ${opt} in
     h|\?)
       echo "-w       invoke webpack script"
@@ -46,6 +52,7 @@ while getopts ":hwplqcdb" opt; do
       echo "-l       copy files from external to local"
       echo "-q       launch sql editor"
       echo "-b       backup database"
+      echo "-r       render Rmd site"
       exit 1
       ;;
     w) webpack ;;
@@ -55,6 +62,7 @@ while getopts ":hwplqcdb" opt; do
     c) css ;;
     q) sql ;;
     b) dbdump;;
+    r) loadRMD;;
      *) echo "Unknown option" 
         break   ;;
   esac
