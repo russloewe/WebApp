@@ -62,7 +62,7 @@ while getopts ":hwplqcdbr" opt; do
     c) css ;;
     q) sql ;;
     b) dbdump;;
-    r) loadRMD;;
+    r) loadRmd;;
      *) echo "Unknown option" 
         break   ;;
   esac
