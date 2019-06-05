@@ -41,7 +41,8 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/unauth', function(req, res) {
-    res.render('unauth', {title: 'Unauthorized',
+    res.render('error', {title: 'Unauthorized',
+						 root: 'login',
                             style: req.style});
 });
 

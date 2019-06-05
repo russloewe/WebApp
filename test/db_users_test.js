@@ -1,7 +1,7 @@
 //Test the database API for users
 
 var expect = require("chai").expect;
-var db = require("../db/db_users.js");
+var db = require("../db/postSQL.js");
 
 describe("Test user database internal api", function(){
     describe('.findByName()', function () {

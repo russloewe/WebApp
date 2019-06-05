@@ -8,12 +8,18 @@ load () {
 }
 
 loadRmd () {
+<<<<<<< Updated upstream
 	echo "Copying Rmd website"
 	FOLDER='Rfinal'
         cp -r  /media/sf_Share/$FOLDER ./
 	cd ./$FOLDER
 	Rscript build.R
 	
+=======
+	echo "Copying and rendering Rmd website"
+	FOLDER='sf_RmdSite'
+    R /media/$FOLDER/build.R
+>>>>>>> Stashed changes
 }
 
 css () {

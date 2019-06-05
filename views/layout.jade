@@ -3,28 +3,15 @@ html
   head
     include ./include/google.txt
     include ./include/favicon.txt
-    include ./include/esri.txt
     //our own css stylesheet, given as variable from router
     link(rel='stylesheet', href=style)
     title= title 
   body
-
     div(id="name")
-        p= "Russell Loewe"
-        p= "russloewe@gmail.com"
     div(id="icons")
-        ul
-            li
-                a(href='https://github.com/russloewe')
-                    img(src='http://russloewe.com/images/icons/github.png' width='16px' height='16px')
-            li
-                a(href='https://www.linkedin.com/in/russell-loewe-832bb6171/' )
-                    img(src='http://russloewe.com/images/icons/linkedin.png' width='16px' height='16px')
     div(id="title-text")
         h1= title
     div(id="userbox")
     div(id="navbar")
-    div(id='message') 
-        span= message
     block content
     script(src="/javascripts/bundle.js")
