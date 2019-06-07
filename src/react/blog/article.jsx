@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import FormatDate from '../formatting/date.jsx';
 
 
-function Article(props){
+export default function Article(props){
 	    let title;
 	    let datetext;
         if(props.article.created_on && props.date){
@@ -30,4 +30,4 @@ function Article(props){
     </div>
         )
 }
-export default connect(mapStateToProps)(Article);
+
