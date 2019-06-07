@@ -25,7 +25,7 @@
     "pg-prepared": "^2.5.13",
     "react": "^0.16.8",
     "react-dom": "^0.14.7",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
