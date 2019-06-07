@@ -24,7 +24,6 @@ ReactDOM.render(
     <Provider store={store}>
         <div>
             <Route exact path="/" component={Home} />
-            <Route path="/admin" component={Admin} />
             <Route path="/auth/login" component={LoginScreen} />
             <Route exact path="/blog" component={Blog} />
             <Route path="/blog/post/:id" component={Blog} />
