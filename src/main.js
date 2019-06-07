@@ -15,7 +15,6 @@ import Home from './home.jsx';
 if(document.getElementById("main")){
 ReactDOM.render(
     <Router>
-    <Provider store={store}>
         <div>
             <Route exact path="/" component={Home} />
             <Route path="/auth/login" component={LoginScreen} />
@@ -24,7 +23,6 @@ ReactDOM.render(
             <Route exact path="/projects" component={Projects} />
             <Route path="/projects/post/:id" component={Projects} />
         </div>
-    </Provider>
     </Router>,
     document.getElementById('main')
 )}
@@ -34,21 +32,17 @@ ReactDOM.render(
 if(document.getElementById("userbox")){
 ReactDOM.render(
     <Router>
-    <Provider store={store}>
         <div>
             <UserBox />
         </div>
-    </Provider>
     </Router>,
     document.getElementById('userbox')
 )}
 
 ReactDOM.render(
-    <Provider store={store}>
         <div>
             <NavBar />
-        </div>
-    </Provider>,
+        </div>,
     document.getElementById('navbar')
 )
 
