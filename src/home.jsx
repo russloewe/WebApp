@@ -1,22 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from "react-redux";
-import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //redux store functions
 //sub comp
 import Article from './react/blog/article.jsx';
 //server api
 import {getSimple} from './api/api.js';
-//redux actions
-import {setArticle} from "./redux/actions.js";
 
-const mapStateToProps = state => {
-    return{user: state.user,
-		   home: state.article};
-};
 
-class Home extends React.Component {
+export default class Home extends React.Component {
     constructor(props){
         super(props);
         this.state ={home: ''};
@@ -42,5 +34,5 @@ class Home extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+
                 
