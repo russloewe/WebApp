@@ -27,6 +27,9 @@ router.get('/id/:id', function(req, res, next) {
 router.get('/topic/:topic/cards', function(req, res, next) {
   db.getPageCards(req.query.topic, function(err, dbres){
       if(err){
+		  res.render('error', {title: "DB error",
+								root: 'pages',
+								style: req.style});
           res.status(500).end();
       }else{
         res.send(dbres).end();
