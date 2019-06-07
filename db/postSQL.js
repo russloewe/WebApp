@@ -10,7 +10,7 @@
 * server.
 */
 
-const databaseConfig = require('../settings.js'); // DB server info + credent.
+const databaseConfig = require('../settings.js').databaseConfig; // DB server info + credent.
 const pg = require('pg');
 const prep = require('pg-prepared');
 
