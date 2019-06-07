@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-//initialize the root store
-import store from "./redux/store";
-window.store = store;
 
 //load the root components
 import LoginScreen from './loginScreen.jsx';
@@ -47,16 +42,6 @@ ReactDOM.render(
     </Provider>
     </Router>,
     document.getElementById('userbox')
-)}
-
-if(document.getElementById("htmlEdit")){
-ReactDOM.render(
-
-        <div>
-            <UserBox />
-        </div>
-,
-    document.getElementById('htmlEdit')
 )}
 
 ReactDOM.render(
