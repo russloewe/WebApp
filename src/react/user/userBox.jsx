@@ -1,44 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import {userStatus} from '../../redux/actions';
-import { connect } from "react-redux";
 import {getSimple} from "../../api/api.js";
 
-const mapStateToProps = state => {
-    return{user: state.user};
-};
 
+export default function UserBox extends React.Component {
 
-class UserBox extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    const [user, setUser] = useState(0);
     
-    componentDidMount() {
+    useEffect(() => {
         getSimple('/auth/status', function(err, data) {
             if(err){
                 console.log("Error getting user status");
             }
             if(data.username){
-                store.dispatch(userStatus({loggedin: true,
-                                           username: data.username}));
+                setUser({loggedin: true,
+                         name: data.username});
             }
         })
-    }
+    });
     
-    render() {
-        const usertype = this.props.user.usertype;
-        const name = this.props.user.username;
-        const greeting = <span>Hello, {name}!</span>;
+       
+        const greeting = <span>Hello, {user.name}!</span>;
         
         return(
            <div id="userbox">
-           {this.props.user.loggedin ? greeting : ''}
-           {this.props.user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
+           {user.loggedin ? greeting : ''}
+           {user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
            </div>
         )
     }
 }
-export default connect(mapStateToProps)(UserBox);
+
 
                 
