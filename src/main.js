@@ -8,7 +8,6 @@ import NavBar from './react/navbar.jsx';
 import UserBox from './react/user/userBox.jsx';
 
 //load the apps
-import Blog from './blog.jsx';
 import Projects from './projects.jsx';
 import Home from './home.jsx';
 
