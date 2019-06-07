@@ -1,23 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from "react-redux";
-import { Provider } from "react-redux";
+
 //sub comp
 import Article from './react/blog/article.jsx';
 import ArticleList from './react/blog/articleList.jsx';
-import AddArticle from './react/blog/addArticle.jsx';
-//redux store
-import {Articles, setArticle, setProjectTitles, setParentTopic, setEditArticleCB} from "./redux/actions.js";
-import {PROJECTS} from "./redux/topic-types.js";
 //server api
 import {getSimple} from './api/api.js';
-
-const mapStateToProps = state => {
-    return{projects: state.articles,
-		   project: state.article,
-		   projectTitles: state.projectTitles,
-		   user: state.user};
-};
 
 function getAllProjects(){
         getSimple('/projects/all', function(err,res){
@@ -55,7 +43,7 @@ function getProject(id){
         });
 }
    
-class Projects extends React.Component {
+export default class Projects extends React.Component {
     constructor(props){
         super(props);
         //get the list of project titles
@@ -85,4 +73,4 @@ class Projects extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps)(Projects);
+
