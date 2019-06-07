@@ -89,7 +89,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error', { title: "Error Page", root: 'root',
-                        style: req.style,});
+                        style: req.style});
 });
 
 module.exports = app;
