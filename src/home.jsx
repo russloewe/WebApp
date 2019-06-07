@@ -4,10 +4,8 @@ import { connect } from "react-redux";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //redux store functions
-import { setEditArticleCB} from "./redux/actions.js";
 //sub comp
 import Article from './react/blog/article.jsx';
-import EditArticle from './react/blog/editArticle.jsx';
 //server api
 import {getSimple} from './api/api.js';
 //redux actions
@@ -36,19 +34,9 @@ class Home extends React.Component {
         })
     }
     render() {
-		const usertype = this.props.user.usertype;
-        const editbutton = <EditArticle article={this.props.home} apiTarget="/edit" update={this.getHome} />
-		const isAdmin = (type) => {
-            if (type != 1){
-                return false;
-            }else{
-                return true;
-            }
-        };
         return(
            <div>
               <Article article={this.props.home} title={false} date={false}/>
-              {isAdmin(this.props.user.usertype) ? editbutton : ''}
            </div>
         )
     }
