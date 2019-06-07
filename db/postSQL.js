@@ -20,7 +20,7 @@ console.log(databaseConfig);
 const pool = new pg.Pool(databaseConfig);
 
 // Prepare the SQL query statement
-const pageQuery = prep('SELECT * FROM pages WHERE (id = ${pageId}) ORDER BY created_on DESC;');
+const pageQuery = prep('SELECT * FROM pages WHERE (id = ${pageId});');
 const pageCardQuery = prep('SELECT id, title, description, img FROM pages WHERE (topic = ${pageTopic}) ORDER BY created DESC;');
 const userNameQuery = prep("SELECT * FROM users where name = '${userName}';");
 
