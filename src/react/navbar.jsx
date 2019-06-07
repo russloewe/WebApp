@@ -4,7 +4,7 @@
  * site: https://github.com/russloewe/WebApp
  * desc:
  * 	React component for displaying the navigation bar. Querries
- * the web api for an array of page cards. Uses the 
+ * the web api for an array of page cards. 
  */
 
 import React from 'react';
