@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {getSimple} from "../../api/api.js";
 
 
-export default function UserBox(() => {
+export default function UserBox() {
 
     const [user, setUser] = useState(0);
     
@@ -28,8 +28,8 @@ export default function UserBox(() => {
            {user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
            </div>
         )
-    }
-});
+}
+
 
 
                 
