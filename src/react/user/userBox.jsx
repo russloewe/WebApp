@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {getSimple} from "../../api/api.js";
 
 
-export default function UserBox extends React.Component {
+export default function UserBox(() => {
 
     const [user, setUser] = useState(0);
     
@@ -29,7 +29,7 @@ export default function UserBox extends React.Component {
            </div>
         )
     }
-}
+});
 
 
                 
