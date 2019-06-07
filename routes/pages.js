@@ -14,9 +14,9 @@ const db = require('../db/postSQL.js');
 
 /* GET a single page by id */
 router.get('/id/:id', function(req, res, next) {
-    db.getPage(req.query.id, function(err, dbres){
+    db.getPage(req.params.id, function(err, dbres){
       if(err){
-          res.status(500).end();
+          res.status(500).send(err).end();
       }else{
         res.send(dbres).end();
     }
@@ -24,8 +24,8 @@ router.get('/id/:id', function(req, res, next) {
 });
 
 /* GET an array of page cards (title, desc, thumb, date) */
-router.get('/topic/:topic/cards', function(req, res, next) {
-  db.getPageCards(req.query.topic, function(err, dbres){
+router.get('/topic/:topic', function(req, res, next) {
+  db.getPageCards(req.params.topic, function(err, dbres){
       if(err){
           res.status(500).send(err).end();
       }else{
