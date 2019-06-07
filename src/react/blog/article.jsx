@@ -1,15 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from "react-redux";
-import { Provider } from "react-redux";
-import EditArticle from './editArticle.jsx';
 import FormatDate from '../formatting/date.jsx';
 
-const mapStateToProps = state => {
-    return{isAdmin: state.user.isAdmin,
-		   parent: state.parentTopic,
-		   editArticleCB: state.editArticleCB};
-};
 
 function Article(props){
 	    let title;

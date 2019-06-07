@@ -1,16 +1,16 @@
+/* filename: navbar.jsx
+ * author:   russell loewe
+ * date:   jun 2019
+ * site: https://github.com/russloewe/WebApp
+ * desc:
+ * 	React component for displaying the navigation bar. Querries
+ * the web api for an array of page cards. Uses the 
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from "react-redux";
 import {getSimple} from "../api/api.js";
-import {userStatus} from '../redux/actions';
 
-
-const mapStateToProps = state => {
-    return{user: state.user,
-		   projectTitles: state.projectTitles,
-		   blogTitles: state.blogTitles,
-		   parentTopic: state.parentTopic};
-};
 
 class TitleList extends React.Component{
 	constructor(props){
@@ -29,14 +29,12 @@ class TitleList extends React.Component{
 	}
 }
 
-class NavBar extends React.Component {
+export default class NavBar extends React.Component {
     constructor(props){
         super(props);
     }
 
-    render() {
-        const adminbutton = <a href="/admin">Admin Tools</a>;
-      
+    render() {      
         return (
 		  <div className="navbar">
 			<ul>
@@ -45,11 +43,9 @@ class NavBar extends React.Component {
 				<TitleList titles={this.props.projectTitles} parent="/projects" /></li>
 				<li><a href="/blog">Blog</a>
 				<TitleList titles={this.props.blogTitles} parent="/blog" /></li>
-				<li>{this.props.user.isAdmin ? adminbutton : ''} </li> 
 			</ul>
 			
 		  </div>
   );
 }
 }
-export default connect(mapStateToProps)(NavBar);

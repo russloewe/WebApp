@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {databaseUpdateUsers, databaseStatus, userStatus} from '../../redux/actions';
-import { connect } from "react-redux";
+
 import {postSimple} from "../../api/api.js";
 
 

@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from "react-redux";
-import { Provider } from "react-redux";
 import FormatDate from "../formatting/date.jsx";
 
-const mapStateToProps = state => {
-    return{isAdmin: state.user.isAdmin,
-		   parent: state.parentTopic,
-		   editArticleCB: state.editArticleCB};
-};
 
-function ArticleStub(props){
+
+export default function ArticleStub(props){
 	    let title;
 	    let datetext;
         let img;
@@ -36,4 +30,4 @@ function ArticleStub(props){
         </a>         
         )
 }
-export default connect(mapStateToProps)(ArticleStub);
+
