@@ -19,20 +19,6 @@ function getAllProjects(){
 }
 
 
-function getProjectCB(id){
-	return(
-		function getProject(){
-			getSimple('/projects/article?id='+id, function(err,res){
-				if(err){
-					console.log(err);
-				}else{
-					store.dispatch(setArticle(res));
-				}
-			});
-		 }
-	)
-}
-	
 function getProject(id){
         getSimple('/projects/article?id='+id, function(err,res){
             if(err){

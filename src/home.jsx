@@ -25,13 +25,12 @@ export default function Home () {
         })
     });
     
-    render() {
-        return(
-           <div>
-              <Article article={page} title={false} date={false}/>
-           </div>
-        )
-    }
+	return(
+	   <div>
+		  <Article article={page} title={false} date={false}/>
+	   </div>
+	)
+
 }
 
 
