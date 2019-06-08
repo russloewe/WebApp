@@ -2,9 +2,9 @@
 
 load () {
     echo "Copying files from external source"
-    FOLDER='sf_WebApp'
+    FOLDER='WebApp'
     rm -rf `ls | grep -v 'node_modules' | grep -v '.git'`
-    cp -R /media/$FOLDER/* ./
+    cp -R /media/sf_Share/$FOLDER/* ./
 }
 
 loadRmd () {
