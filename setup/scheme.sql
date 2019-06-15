@@ -7,9 +7,6 @@ var VARCHAR UNIQUE,
 val VARCHAR
 );
 
-INSERT INTO siteinfo (var, val) VALUES ('sitename', 'russloewe.com');
-INSERT INTO siteinfo (var, val) VALUES ('url', 'russloewe.com');
-INSERT INTO siteinfo (var, val) VALUES ('topics', 'About,Resume,Examples')
 
 CREATE TABLE users(
 id serial PRIMARY KEY,
