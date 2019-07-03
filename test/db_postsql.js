@@ -13,7 +13,6 @@ describe('Test Postsql', function() {
 				expect(err).to.be.null;
 				expect(dbres).to.not.be.null;
 				expect(dbres).to.not.be.empty;
-				console.log(dbres);
 				expect(dbres).to.be.a('array');
 				expect(dbres[0]).to.have.property('title').and.to.be.a('string');
 				done()
@@ -28,6 +27,7 @@ describe('Test Postsql', function() {
 				expect(dbres).to.not.be.null;
 				expect(dbres).to.be.a('array');
 				expect(dbres).to.not.be.empty;
+				expect(dbres[0]).to.have.property('title').and.to.be.a('string');
 				done()
 			});
 		}).timeout(1000);
