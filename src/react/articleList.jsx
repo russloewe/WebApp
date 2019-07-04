@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 //sub comp
 import ArticleStub from './articleStub.jsx';
 //server api
-import {getSimple} from '../../api/api.js';
+import {getSimple} from '../api/api.js';
 
 
 export default class ArticleList extends React.Component {

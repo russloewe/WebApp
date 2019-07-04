@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {postSimple} from "../../api/api.js";
+import {postSimple} from "../api/api.js";
 
 
 export default class LoginForm extends React.Component {

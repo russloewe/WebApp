@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FormatDate from "../formatting/date.jsx";
+import FormatDate from "./date.jsx";
 
 
 
