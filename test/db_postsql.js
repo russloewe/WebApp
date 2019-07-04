@@ -32,5 +32,18 @@ describe('Test Postsql', function() {
 			});
 		}).timeout(1000);
     });
+    
+    describe('getPageCardsAll()', () => {
+		it('Should get page object', (done) => {
+			db.getPageCardsAll((err, dbres) => {
+				expect(err).to.be.null;
+				expect(dbres).to.not.be.null;
+				expect(dbres).to.be.a('array');
+				expect(dbres).to.not.be.empty;
+				expect(dbres[0]).to.have.property('title').and.to.be.a('string');
+				done()
+			});
+		}).timeout(1000);
+    });
 });
 

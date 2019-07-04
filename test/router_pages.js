@@ -42,5 +42,22 @@ describe('Test /pages ', function() {
 			});
 		}).timeout(1000);
     });
+    
+	describe('/GET /pages/all/topics', () => {
+		it('Should get page cards', (done) => {
+			chai.request(server)
+			.get('/pages/all/topics')
+			.end((err, results) => {
+				expect(err).to.be.null;
+                expect(results).to.not.be.null;
+                expect(results.body).to.not.be.null;
+                expect(results.body).to.be.a('array');
+                expect(results.body).to.not.be.empty;
+                expect(results.body[0]).to.have.property('title').and.to.be.a('string');
+                expect(results.body[0]).to.have.property('id').and.to.be.a('number');
+				done();
+			});
+		}).timeout(1000);
+    });
 })
 
