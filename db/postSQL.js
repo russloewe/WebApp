@@ -20,8 +20,9 @@ console.log(databaseConfig);
 const pool = new pg.Pool(databaseConfig);
 
 // Prepare the SQL query statement
-const pageQuery = prep('SELECT * FROM pages WHERE (pages.id = ${pageId});');
+const pageQuery = prep('SELECT * FROM pages WHERE (id = ${pageId});');
 const pageCardQuery = prep('SELECT id, title, description, img FROM pages WHERE (pages.topic = ${pageTopic}) ORDER BY created DESC;');
+const pageCardQueryAll = prep('SELECT id, title, description, img, topic FROM pages ORDER BY created DESC;');
 const userNameQuery = prep("SELECT * FROM users where name = '${userName}';");
 
 
@@ -55,20 +56,27 @@ function getAll(querry,  cb){
 
 function getPage(id, cb){
 	// Curried function for pageQuery prepared statement.
-	return getAll(pageQuery({pageId: id}), cb);
+	const prepStatement = pageQuery({pageId: id});
+	getAll(prepStatement, cb);
 }
 
 function getPageCards(topic, cb){
 	// Curried function for pageCardQuerry prepard statement.
-	return getAll(pageCardQuery({pageTopic: topic}), cb);
+	getAll(pageCardQuery({pageTopic: topic}), cb);
+}
+
+function getPageCardsAll(cb){
+	// Curried function for pageCardQuerry prepard statement.
+	getAll(pageCardQueryAll({}), cb);
 }
 
 function getUserName(name, cb){
 	// Curried function for userNameQuerry prepard statement.
-	return getAll(userNameQuery({userName: name}), cb);
+	getAll(userNameQuery({userName: name}), cb);
 }
 
 module.exports = {
    getPage: getPage,
    getPageCards: getPageCards,
+   getPageCardsAll: getPageCardsAll,
    getUserName: getUserName}   
