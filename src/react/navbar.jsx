@@ -3,49 +3,48 @@
  * date:   jun 2019
  * site: https://github.com/russloewe/WebApp
  * desc:
- * 	React component for displaying the navigation bar. Querries
- * the web api for an array of page cards. 
+ * 	React component for displaying the navigation bar. 
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {getSimple} from "../api/api.js";
 
-
-class TitleList extends React.Component{
-	constructor(props){
-		super(props);
-	}
-	render() {
-		return(
-		<div className="subnav">
-		 <ul>
-			{this.props.titles.map(p => (
-				<li key={p.article_id}><a className="subnav" href={this.props.parent+"/post/"+p.article_id+'/'+p.title} >{p.title}</a></li>
-			))}
-		</ul>
-		</div>
-		)
-	}
+function TitleList (props){
+	return(
+	<div className="subnav">
+	 <ul>
+		{props.titles.map(p => (
+			<li key={p.id}><a className="subnav" href={p.url} >{p.title}</a></li>
+		))}
+	</ul>
+	</div>
+	)
 }
 
-export default class NavBar extends React.Component {
-    constructor(props){
-        super(props);
-    }
+export default function NavBar (props) {
 
-    render() {      
+	console.log('Navbar component');
+	console.log(props.pageCards);
+	if(typeof props.pageCards === "array"){
         return (
 		  <div className="navbar">
 			<ul>
 				<li><a href="/">Home</a></li>
 				<li><a href="/projects">Projects</a>
-				<TitleList titles={this.props.projectTitles} parent="/projects" /></li>
-				<li><a href="/blog">Blog</a>
-				<TitleList titles={this.props.blogTitles} parent="/blog" /></li>
+				<TitleList titles={props.pageCards}  /></li>
 			</ul>
 			
 		  </div>
-  );
-}
+		);
+	}else{
+		return (
+		<div className="navbar">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/projects">Projects</a></li>
+			</ul>
+			
+		  </div>
+		  );
+
+	}
 }

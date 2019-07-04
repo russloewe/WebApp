@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
 import FormatDate from './date.jsx';
-import {getSimple} from '../api/api.js';
+import {getPageData} from '../api/api.js';  
 
 
 export default function Page (props){
+		console.log('Page component');
+	
 	    // State hook for storing article object from server
 	    const [page, setPage] = useState(1);
 	    
 	    // Effect hook for querrying server for page
 	    useEffect (() => {
-			getSimple('/pages/topic/home', function(err, res){
+			getPageData(props.pageId, function(err, res){
 				if(err){
 					console.log(err);
 				}else {
