@@ -34,4 +34,15 @@ router.get('/topic/:topic', function(req, res, next) {
   })
 });
 
+/* GET an array of page cards (title, desc, thumb, date) */
+router.get('/all/topics', function(req, res, next) {
+  db.getPageCardsAll(function(err, dbres){
+      if(err){
+          res.status(500).send(err).end();
+      }else{
+        res.send(dbres).end();
+    }
+  })
+});
+
 module.exports = router;
