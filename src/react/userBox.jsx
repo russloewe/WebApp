@@ -1,34 +1,54 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import {getUserStatus} from "../api/api.js";
+import React from 'react';
+import {userStatus} from '../redux/actions';
+import { connect } from "react-redux";
+import {getSimple} from "../api/api.js";
+
+const mapStateToProps = state => {
+    return{user: state.user};
+};
 
 
-export default function UserBox() {
-
-    const [user, setUser] = useState(0);
+class UserBox extends React.Component {
+    constructor(props){
+        super(props);
+    }
     
-    useEffect(() => {
-        getUserStatus(function(err, data) {
+    componentDidMount() {
+        getSimple('/auth/status', function(err, data) {
             if(err){
                 console.log("Error getting user status");
             }
             if(data.username){
-                setUser({loggedin: true,
-                         name: data.username});
+                store.dispatch(userStatus({loggedin: true,
+                                           username: data.username,
+                                           usertype: data.usertype}));
             }
         })
-    });
+    }
     
-    const greeting = <span>Hello, {user.name}!</span>;
+    render() {
+        const usertype = this.props.user.usertype;
+        const name = this.props.user.username;
+        const greeting = <span>Hello, {name}!</span>;
+        const adminbutton = <a href="/admin">Admin Tools</a>;
         
-    return(
+        const isAdmin = (type) => {
+            if (type != 1){
+                return false;
+            }else{
+                return true;
+            }
+        };
+        
+        
+        return(
            <div id="userbox">
-           {user.loggedin ? greeting : ''}
-           {user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
+           {this.props.user.loggedin ? greeting : ''}
+           {this.props.user.loggedin ? <a id="logout" href="/auth/logout">Logout</a> : <a href="/auth/login">Login</a>}
            </div>
         )
+    }
 }
-
-
+export default connect(mapStateToProps)(UserBox);
 
                 

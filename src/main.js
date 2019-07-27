@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-//load the apps
-//import Projects from './projects.jsx';
-import Home from './home.jsx';
-import LoginScreen from './loginScreen.jsx';
+//initialize the root store
+import store from "./redux/store";
+window.store = store;
 
+//load the root components
+import UserBox from './react/userBox.jsx';
 
-if(document.getElementById("main")){
+//
+if(document.getElementById("rloewe_userbox")){
 ReactDOM.render(
     <Router>
+    <Provider store={store}>
         <div>
-            <Route  path="/" component={Home} />
-            <Route path="/auth/login" component={LoginScreen} />
+            <UserBox />
         </div>
+    </Provider>
     </Router>,
-    document.getElementById('main')
+    document.getElementById('rloewe_userbox')
 )}
 
-
+    
