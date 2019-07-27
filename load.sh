@@ -1,32 +1,45 @@
 #!/bin/bash
 
-load () {
-    echo "Copying files from external source"
+loadFolder() {
+    echo "Copying '$1' only"
+    FOLDER='WebApp'    
+    rm -r ./"$1"/*
+    cp -r /media/sf_Share/$FOLDER/"$1"/* ./"$1"/
+}
+loadJs () {
+    loadFolder src
+    echo "Building with webpack"
+    ./node_modules/.bin/webpack --config webpack.config.js >&2
+}
+
+loadAll () {
+    echo "Copying all files from external source"
+    echo "Make sure to rebuild JS bundle with -j"
     FOLDER='WebApp'
     rm -rf `ls | grep -v 'node_modules' | grep -v '.git'`
     cp -R /media/sf_Share/$FOLDER/* ./
+    loadjs
 }
 
 loadRmd () {
-	echo "Copying Rmd website"
-	FOLDER='Rfinal'
-        cp -r  /media/sf_Share/$FOLDER ./
-	cd ./$FOLDER
+	echo "Building R html"
 	Rscript build.R
 	
 }
 
-css () {
-    echo "Bundling desktop css files"
-    cat ./src/stylesheets/desktop/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_desktop.sed > ./public/stylesheets/desktop.css
-    echo "Bundling mobile css files"
-    cat ./src/stylesheets/mobile/*.scss ./src/stylesheets/shared/*.scss | sed -f ./src/stylesheets/shared/theme_mobile.sed > ./public/stylesheets/mobile.css
+loadDjango () {
+    echo "loading django files"
+    rm -rf /home/sysadmin/website/*
+    cp -r /media/sf_Share/website/* /home/sysadmin/website/
+    chmod g+rw /home/sysadmin/website/db.sqlite3
+    chmod a+x /home/sysadmin/website
+    chmod a+x /home/sysadmin/website/russloewe_com
+    sudo chown :www-data /home/sysadmin/website/db.sqlite3
+    sudo chown :www-data /home/sysadmin/website
 }
 
-webpack () {
-    echo "Calling webpack"
-    ./node_modules/.bin/webpack --config webpack.config.js >&2
-}
+
+
 Prod () {
 	echo "Launching node in production"
     NODE_ENV=production npm start
@@ -46,26 +59,28 @@ dbdump () {
 }
 
 
-while getopts ":hwplqcdbr" opt; do
+while getopts ":hjpaqdrvus" opt; do
         case ${opt} in
     h|\?)
-      echo "-w       invoke webpack script"
+      echo "-j       ./src js source files and build (no restart)"
       echo "-p       set node production env and run node"
       echo "-d       set node to development mode and run"
-      echo "-l       copy files from external to local"
+      echo "-a       copy everything"
       echo "-q       launch sql editor"
-      echo "-b       backup database"
-      echo "-r       render Rmd site"
+      echo "-v       views (no restart)"
+      echo "-s       data "
+      echo "-u       django"
+      
       exit 1
       ;;
-    w) webpack ;;
+    j) loadJs ;;
     p) Prod ;;
+    s) loadFolder public;;
     d) Dev ;;
-    l) load    ;;
-    c) css ;;
+    a) loadAll;;
     q) sql ;;
-    b) dbdump;;
-    r) loadRmd;;
+    u) loadDjango ;;
+    v) loadFolder views;;
      *) echo "Unknown option" 
         break   ;;
   esac
