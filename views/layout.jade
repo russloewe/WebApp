@@ -1,11 +1,29 @@
 doctype html
+
+
 html
-  head
-    include ./include/google.txt
-    include ./include/favicon.txt
-    //our own css stylesheet, given as variable from router
-    link(rel='stylesheet', href=style)
-    title= title 
-  body
-    block content
-    script(src="/javascripts/bundle.js")
+	head
+		include ./include/google.txt
+		include ./include/jquery.txt
+		include ./include/bootstrap.txt
+		include ./include/favicon.txt
+		link(rel='stylesheet', href=pageStyle)
+		title= pageTitle
+		meta(name="theme-color", content="#563d7c")
+		body
+		nav(class="navbar navbar-expand-lg navbar-dark  bg-dark")
+			a(class="navbar-brand" href="#") RussLoewe
+			button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+			span(class="navbar-toggler-icon")
+			div(class="collapse navbar-collapse", id="navbarNav")
+			ul(class="navbar-nav")
+				li(class="nav-item")
+				a(class=["nav-link", homeActiveStatus] href="index") Home
+				li(class="nav-item")
+				a(class=["nav-link", "disabled"] href="#") Django Site
+				li(class="nav-item")
+				a(class=["nav-link", contactActiveStatus] href="contact") Contact
+
+				
+		block content
+		script(src="/javascripts/bundle.js")
