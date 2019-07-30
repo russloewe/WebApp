@@ -1,0 +1,114 @@
+﻿extends layout
+
+mixin skill(title)
+	div(id="frontend" class="col-lg-4 rounded text-white bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 m-5 p-5 overflow-hidden")
+		h3(class="text-center b-7")=title
+		block
+		
+
+block content
+	div(class=["position-relative", "overflow-hidden", "text-center"])
+		h1 Russell Loewe
+		h3(class="text-muted") Full Stack Web Developer
+		p(class=["lead", "font-weight-normal"]).
+			I am a hard working, dedicated individual looking for a 
+			job as a remote web developer.
+	div(id="skills" class="d-flex flex-wrap  justify-content-center")
+
+		+skill("Front End Web Dev")
+			p.
+				I am comfortable working with:
+			ul
+				li HTML
+				li CSS
+				li Javascript
+				li React
+				li Redux
+			a(class="btn btn-info" href="https://github.com/russloewe/WebApp/blob/master/src/react/userBox.jsx").
+				Example React Component
+
+		+skill("Back End Web Dev")
+			p.
+				This site and my other web projects are served from my home server using:
+			ul
+				li Ubuntu Server
+				li Node.js
+				li Jade
+				li PostgreSQL
+				li Django
+				li Apache2
+				li Hacky shell scripts
+				li VirtualBox
+				
+		
+			a(class="btn btn-info" href="https://github.com/russloewe/WebApp").
+				Example Nodejs Server
+
+		+skill("Python")
+			p.
+				I have been making software in Python for 10 years. 
+				My first coding project was a HTTP server in 2009 written
+				in Python 2.7. My my latest work is a QGIS Python plugin for 
+				performing regression analysis on spatial data.
+			a(class="btn btn-info" href="https://github.com/russloewe/TrendMapper").
+				Example Python Work
+
+		+skill("C")
+			p.
+				I am experienced enough in C to write a video game using the SDL2 graphics 
+				library and write and compile firmware for ARM developer boards.
+			a(class="btn btn-info" href="https://github.com/russloewe/GnomeSlayer").
+				Example C Work
+
+		+skill("Linux Sysadmin")
+			p.
+				I use Ubuntu as my main desktop and run a Ubuntu server in a VM. I have also
+				 installed and maintained networked servers running CentOS and FreeBSD.
+			a(class="btn btn-info" href="https://github.com/russloewe/WebApp/blob/master/load.sh").
+				Example Shell Script
+
+		+skill("SQL")
+			p.
+				I have experience several SQL languages:
+			ul
+				li PostgreSQL
+				li MySQL
+				li SQLite3
+				liSpatiaLite. 
+			P.
+				Most of my projects eventually need a relational database and so I have
+				written interfaces to SQL databases in Python 2.7/3 and Node.js.  
+			a(class="btn btn-info" href="https://github.com/russloewe/SpatialiteAnalysis/blob/master/data_interface.py").
+				Example SpatiaLite Interface
+
+		+skill("Mathematical Skills")
+			p.
+				I am two terms away from a BS in Applied Mathematics. I 
+				have taken courses in:
+			ul
+				li Calculus
+				li Multi-Variable Calculus
+				li Linear Algebra
+				li Differential Equations
+				li Statistics
+			a(class="btn btn-info" href="http://russloewe.com/Compounding_interst.pdf").
+				Example Math Work
+
+		+skill("Communication and Teamwork")
+			p.
+				I collaborated on a project with 2 classmates solely 
+				online for a final project in C. I set up an IRC channel and introduced 
+				my team mates to IRC, and wrote them a crash course reference on 
+				how to create a pull request in GitHub.
+			a(class="btn btn-info" href="https://github.com/russloewe/GnomeSlayer/blob/master/workflow.md").
+				Example Instructions
+
+		+skill("Working Remotely")
+			p.
+				I graduated with highest honers with my Associates degree which I took 
+				almost entirely online while juggling a full time job and a family. I am 
+				very self motivated and have several years experience with working full time 
+				remotely as a student.
+
+
+
