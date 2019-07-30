@@ -12,8 +12,31 @@ var router = express.Router();
 
 /* GET  index  */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "WebApp",
-                           style: req.style});
+  res.render('home', {  pageTitle: "RussLoewe Profile",
+                        pageStyle: req.style,
+                        homeActiveStatus: 'active',
+                        contactActiveStatus: '',
+                     }
+            );
 });
 
+/* GET  index  */
+router.get('/index', function(req, res, next) {
+  res.render('home', {  pageTitle: "RussLoewe Profile",
+                        pageStyle: req.style,
+                        homeActiveStatus: 'active',
+                        contactActiveStatus: '',
+                     }
+            );
+});
+
+/* GET  contact  */
+router.get('/contact', function(req, res, next) {
+  res.render('contact', {  pageTitle: "RussLoewe Contact",
+                        pageStyle: req.style,
+                        homeActiveStatus: '',
+                        contactActiveStatus: 'active',
+                     }
+            );
+});
 module.exports = router;
