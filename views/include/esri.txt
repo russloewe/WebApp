@@ -1,8 +1,0 @@
-<!-- arcmap api -->
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"> 
-<link rel='stylesheet' href='https://js.arcgis.com/4.10/esri/css/main.css'/>
-<script src='https://js.arcgis.com/4.10/' ></script>
-<script>
-var map, view;
-</script>
