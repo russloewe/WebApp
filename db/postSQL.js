@@ -10,20 +10,22 @@
 * server.
 */
 
-const databaseConfig = require('../settings.js').databaseConfig; // DB server info + credent.
+const userNameQuery = require("./postgresQuery.js").userNameQuery;
+
+const databaseConfig = {
+    user: 'web',
+    database: 'web',
+    password: 'web',
+    port: 5432
+};
+
 const pg = require('pg');
-const prep = require('pg-prepared');
 
 // Create the database connection
 console.log("Connecting to with config: ");
 console.log(databaseConfig);
 const pool = new pg.Pool(databaseConfig);
 
-// Prepare the SQL query statement
-const pageQuery = prep('SELECT * FROM pages WHERE (id = ${pageId});');
-const pageCardQuery = prep('SELECT id, title, description, img FROM pages WHERE (pages.topic = ${pageTopic}) ORDER BY created DESC;');
-const pageCardQueryAll = prep('SELECT id, title, description, img, topic FROM pages ORDER BY created DESC;');
-const userNameQuery = prep("SELECT * FROM users where name = '${userName}';");
 
 
 function getAll(querry,  cb){
@@ -54,29 +56,18 @@ function getAll(querry,  cb){
 };
 
 
-function getPage(id, cb){
-	// Curried function for pageQuery prepared statement.
-	const prepStatement = pageQuery({pageId: id});
-	getAll(prepStatement, cb);
-}
 
-function getPageCards(topic, cb){
-	// Curried function for pageCardQuerry prepard statement.
-	getAll(pageCardQuery({pageTopic: topic}), cb);
-}
-
-function getPageCardsAll(cb){
-	// Curried function for pageCardQuerry prepard statement.
-	getAll(pageCardQueryAll({}), cb);
-}
 
 function getUserName(name, cb){
 	// Curried function for userNameQuerry prepard statement.
 	getAll(userNameQuery({userName: name}), cb);
 }
 
+function getUserId(id, cb){
+    // Find user record by id
+    getAll(userIDQuery({userID: id}), cb);
+}
+
 module.exports = {
-   getPage: getPage,
-   getPageCards: getPageCards,
-   getPageCardsAll: getPageCardsAll,
-   getUserName: getUserName}   
+   getUserName: getUserName,
+   getUserId: getUserId}   
